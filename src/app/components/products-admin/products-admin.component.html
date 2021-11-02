@@ -1,0 +1,27 @@
+<div class="container"> 
+    <div class="header">
+        <h3 id="title">Products</h3>
+        <button (click)="addProduct()" id="add-btn" class="btn btn-outline-success">Add Product</button>
+    </div>
+    <div class="main-categories">
+        <div class="categories">
+            <div *ngFor="let category of categories">
+                <a class="btn-categ" 
+                (click)="selected(category)">
+                {{ category.categoryName }}
+                </a>
+            </div>
+        </div> 
+
+        <div class="main-products"> 
+            <h4 id="categ-name">{{ categoryName }}</h4>
+            <div class="products"> 
+                <ul class="list-group" *ngFor="let product of products">
+                    <app-product-admin (deleteEvent)="delete(product)" (updateEvent)="update(product)" [product]="product"></app-product-admin>
+                </ul>
+                <h3 class="printed-text" *ngIf="!isClicked">Please select a category</h3>
+                <h3 class="printed-text" *ngIf="products.length == 0 && isClicked">This Category has no products</h3>
+            </div>
+        </div>
+    </div>
+</div>

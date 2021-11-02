@@ -1,0 +1,10 @@
+.check-box{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 4px;
+}
+#check-box{
+    width: 40%;
+    height: 20px;
+    margin-left: -95px;
+}

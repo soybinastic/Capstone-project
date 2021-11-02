@@ -1,0 +1,8 @@
+<div class="main"> 
+    <button (click)="add()" class="btn btn-dark add-btn">Add Category</button> 
+    <div class="main-categ"> 
+        <div class="categories" *ngFor="let cat of categories"> 
+            <app-category-admin [category]="cat"></app-category-admin>
+        </div>
+    </div>
+</div>

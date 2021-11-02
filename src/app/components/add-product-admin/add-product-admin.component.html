@@ -1,0 +1,55 @@
+<div class="main"> 
+    <div class="header"> 
+        <button class="btn btn-danger">
+            <i class="fas fa-chevron-circle-left"></i> 
+            Back
+        </button> 
+        <h4 id="title">Add Product</h4>
+    </div> 
+    <div class="product-form"> 
+        <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="product-name">Product Name</label>
+                <input type="text" formControlName="name" class="form-control" id="product-name" placeholder="Product Name">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="description">Description</label>
+                <input type="text" formControlName="description" class="form-control" id="description" placeholder="Description">
+              </div>
+            </div> 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="categories">Categories</label>
+                  <select (change)="selectedValue()" class="form-control" formControlName="category">
+                    <option  *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName }}</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="price">Price</label>
+                  <input type="text" formControlName="price" class="form-control" id="price" placeholder="Price">
+                </div>
+            </div>
+           
+            <div class="form-row">
+                <div class="form-group col-sm">
+                    <label for="quality">Quality</label>
+                    <input type="text" formControlName="quality" class="form-control" id="quality" placeholder="Quality">
+                </div>
+                <div class="form-group col-sm">
+                    <label for="brand">Brand</label>
+                    <input type="text" formControlName="brand" class="form-control" id="brand" placeholder="Brand">
+                </div>
+                <div class="form-group col-sm">
+                    <label for="stock-number">Stock Number</label>
+                    <input type="text" formControlName="stockNumber" class="form-control" id="cstock-number" placeholder="Stock Number">
+                  </div>
+              </div>
+           
+              <div *ngIf="!isValid" class="alert alert-warning" role="alert">
+                {{ message }}
+              </div>
+            <button id="submit-btn" type="submit" class="btn btn-outline-dark">Add</button>
+          </form>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<div class="main-products"> 
+    <div class="categ-header">
+        <ul class="items scrollable">
+            <li class="item"><button (click)="navigate()" class="categ-btn">All</button></li>
+            <div *ngFor="let category of categories">
+                <li class="item"><button (click)="navigate(category.categoryId)" class="categ-btn">{{ category.categoryName }}</button></li>
+            </div>
+        </ul>
+        <button (click)="goToCart()" class="btn btn-danger cart">Cart  <i class="fal fa-shopping-cart"></i> <span class="prod-count">{{ cartCounter > 0 ? cartCounter : '' }}</span></button>
+    </div>
+    <!-- <div class="products"> 
+        <h2 id="categ-name" >Category Name</h2>
+        <div class="prod-container"> 
+            <div class="product-list"> 
+                <div class="product-loop"> 
+                    <app-product></app-product>
+                </div>
+                <div class="product-loop"> 
+                    <app-product></app-product>
+                </div>
+                <div class="product-loop"> 
+                    <app-product></app-product>
+                </div>
+                <div class="product-loop"> 
+                    <app-product></app-product>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <router-outlet></router-outlet>
+</div>

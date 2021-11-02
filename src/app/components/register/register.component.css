@@ -1,0 +1,10 @@
+.main-caontainer{
+    margin-top: 20px;
+    padding: 50px;
+    padding-bottom: 60px;
+}
+#submit-btn{
+    margin-left: 550px;
+    width: 350px;
+    text-align: center;
+}

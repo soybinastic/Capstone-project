@@ -1,0 +1,11 @@
+.container{
+   margin-top: 10px;
+   padding: 10px; 
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   margin: 4px;
+}
+#load-p{
+    margin-top: 20px;
+    margin-left: 500px;
+}

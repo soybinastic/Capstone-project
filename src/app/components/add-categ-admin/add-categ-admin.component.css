@@ -1,0 +1,23 @@
+.my-form{
+    padding: 5px;
+}
+.text{
+    margin: 2px;
+    padding: 5px;
+}
+.my-input{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    margin: 5px;
+}
+#category-name{
+    width: 180px;
+    border-radius: 8px;
+    padding: 5px;
+}
+#btn-submit{
+    margin-top: 5px;
+    width: 180px;
+    border-radius: 8px;
+    padding: 5px;
+}

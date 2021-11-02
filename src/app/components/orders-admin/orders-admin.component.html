@@ -1,0 +1,4 @@
+<div class="list-group" *ngFor="let order of orders">
+    <app-order-admin (viewProductsEvent)="viewProducts($event)" (totalEvent)="getTotal($event)" (detailEvent)="detail($event)" (modifiedEvent)="modified(order)" [order]="order"></app-order-admin>
+</div>
+<h3 *ngIf="orders.length == 0">Loading...</h3>

@@ -1,0 +1,25 @@
+<div class="cart"> 
+    <div class="header">
+        <h1><i (click)="back()" class="fas fa-chevron-left"></i></h1>
+        <h2>Products in Cart</h2>
+        <h2>Total : P{{ total }}</h2>
+    </div>
+    <div class="products">
+        <app-products-in-cart 
+        [productsInCart]="productsInCart"
+        (incrementEvent)="increment($event)"
+        (decrementEvent)="decrement($event)"
+        (removeEvent)="remove($event)">
+        </app-products-in-cart>
+    </div> 
+    <h2 id="alert" *ngIf="productsInCart.length == 0">No Products added in cart.</h2>
+    
+</div>
+
+<div class="check-out" title="Check out" (click)="checkOut()">
+    <div class="content">
+        <p>Check Out</p>
+        <i id="check" class="far fa-check-circle"></i>
+    </div>
+</div>
+

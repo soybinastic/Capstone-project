@@ -1,0 +1,12 @@
+<div class="products"> 
+    <h2 id="categ-name" >{{ categoryName != null ? categoryName : 'All' }}</h2>
+    <div class="prod-container"> 
+        <div class="product-list"> 
+            <div class="product-loop" *ngFor="let product of products"> 
+                <app-product [product]="product"></app-product>
+            </div>
+            
+        </div>
+        <h2 *ngIf="products.length == 0" style="text-align: center;">No products!</h2>
+    </div>
+</div>

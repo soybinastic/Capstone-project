@@ -1,0 +1,9 @@
+<div class="main-container"> 
+    <button (click)="back()" id="back-btn" class="btn btn-outline-danger"><i class="fas fa-chevron-circle-left"></i> Back</button>
+    <h3>Order Products</h3>
+    <div class="orders"> 
+        <div *ngFor="let product of orderProducts"> 
+            <app-order-product-admin [orderProduct]="product"></app-order-product-admin >
+        </div>
+    </div>
+</div>

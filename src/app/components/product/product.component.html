@@ -1,0 +1,10 @@
+<div class="product"> 
+    <img class="prod-img" src="https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg" alt="" height="293" width="279">
+    <div class="prod-content"> 
+        <small><b>Stock :</b> {{ product.stockNumber }}</small>
+        <p><b>Price :</b> P{{ product.price }}</p>
+        <div class="product-name">
+            <a [routerLink]="['/view-product',product.hardwareStoreId,product.productId]" [title]="product.name"><h4>{{ product.name }}</h4></a>
+        </div>
+    </div>
+</div>

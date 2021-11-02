@@ -1,0 +1,20 @@
+#list-btn:hover{
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+.product-detail{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    margin: 3em;
+}
+.operations{
+    float: right;
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px;
+    padding: 20px;
+}
+.btn{
+    margin-left: 4px;
+}

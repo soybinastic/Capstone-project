@@ -1,0 +1,31 @@
+<div class="main"> 
+    <div class="details"> 
+        <h1 id="store-title">Fast Online Hardware</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, assumenda.</p>
+    </div>
+    <div class="main-form"> 
+        <div class="title"> 
+            <i class="far fa-user"></i>
+            <h3 id="login-text">Log In</h3>
+        </div>
+        <form class="user-form" (ngSubmit)="logIn()"> 
+            <div class="my-form"> 
+                <input class="my-input" name="username" [(ngModel)]="username"
+                id="username" type="text" placeholder="Username">
+            </div>
+            <div class="my-form"> 
+                <input class="my-input" name="password" [(ngModel)]="password" 
+                id="password"
+                type="password" placeholder="Password">
+            </div>  
+            
+            <div class="my-form"> 
+                <input class="my-btn" type="submit" value="Login">
+            </div> 
+            
+        </form> 
+        <div id="mess-alert" *ngIf="!isValid" class="alert alert-warning" role="alert">
+            {{ message }}
+          </div>
+    </div>
+</div>

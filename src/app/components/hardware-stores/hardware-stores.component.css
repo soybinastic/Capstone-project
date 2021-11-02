@@ -1,0 +1,15 @@
+.main{
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+.hardware-stores-container{
+    padding: 10px;
+    margin: 10px;
+}
+.store-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 4em;
+}

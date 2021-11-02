@@ -1,0 +1,13 @@
+<div class="main"> 
+    <div class="store-header"> 
+        <ul class="items"> 
+            <li><a href="" class="item">About</a></li>
+            <li><a [routerLink]="['/hardware-store-page',hardwareStoreId,'products',hardwareStoreId,'product-category','all',hardwareStoreId]" class="item">Products</a></li>
+            <li *ngIf="isLogged"><a href="" class="item">Order History</a></li>
+        </ul>
+    </div>
+    <div class="content"> 
+        <router-outlet></router-outlet>
+    </div>
+</div>
+

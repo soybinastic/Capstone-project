@@ -1,0 +1,12 @@
+<div class="main"> 
+    <div class="hardware-stores-container"> 
+        <div class="store-list"> 
+            <div *ngFor="let hardwareStore of hardwareStores">
+                <app-hardware-store 
+                [hardwareStore]="hardwareStore"
+                (goEvent)="go(hardwareStore)">
+                </app-hardware-store>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,71 @@
+<div id="main" class="container-fluid"> 
+    <app-nav-bar [orderNotif]="orderNotif" (menuEvent)="selected($event)"></app-nav-bar>
+    <div class="selected-item">
+        <div *ngIf="selectedMenu == 'default'"> 
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                  <h1 class="display-4">{{ dateTime | date : 'EEE MMMM d y'}}</h1>
+                  <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                </div>
+              </div>
+        </div>
+        <div id="order-item" *ngIf="selectedMenu == 'orders'"> 
+            <app-orders-admin (totalEvent)="getTotal($event)" (detailEvent)="detailClick($event)" (viewProductsEvent)="viewProductsClick($event)" (modifiedEvent)="modifiedClick($event)" [orders]="orders"></app-orders-admin> 
+        </div>
+        <div *ngIf="selectedMenu == 'products'"> 
+            <app-products-admin 
+            [categories]="categories" 
+            [products]="products" 
+            [categoryName]="categoryName"
+            [isClicked]="isClickedCategory"
+            (selectedCategoryEvent)="selectedCategory($event)"
+            (addProductEvent)="addProduct()"
+            (updateEvent)="update($event)"
+            (deleteEvent)="delete($event)">
+            </app-products-admin>
+        </div> 
+        <div *ngIf="selectedMenu == 'categories'"> 
+            <app-categories-admin (addCategoryEvent)="addCateg()" [categories]="categories"></app-categories-admin>
+        </div> 
+        <div *ngIf="detailToggle"> 
+            <app-order-detail [total]="total" [orderDetail]="orderDetail" (backEvent)="back()"></app-order-detail>
+        </div>
+        <div *ngIf="viewProductsToggle"> 
+            <app-order-products-admin (backEvent)="back()" [orderProducts]="orderProducts"></app-order-products-admin>
+        </div> 
+        <div *ngIf="modifiedToggle">
+            <app-modified-order-admin (orderUpdateEvent)="modified($event)" [isCustomerOrderRecieved]="isCustomerOrderRecieved" [orderDetail]="orderDetail" (backEvent)="back()"></app-modified-order-admin>
+        </div> 
+        <div *ngIf="addCategToggle"> 
+            <app-add-categ-admin (addCategEvent)="addCategoryClick($event)"></app-add-categ-admin>
+        </div>
+        <div *ngIf="addProductToggle">
+            <app-add-product-admin 
+            [categories]="categories"
+            (addProductEvent)="addProductClick($event)"
+            ></app-add-product-admin>
+        </div>
+        <div *ngIf="updateProductToggle">
+            <app-update-product-admin (updateEvent)="updateClick($event)" [updateProductInput]="getProductToUpdate"></app-update-product-admin>
+        </div>
+        <div [class]="deleteToggle ? '':'modal'" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>Are you sure you want to delete this product.</p>
+                </div>
+                <div class="modal-footer">
+                  <button (click)="onDelete(productId)" type="button" class="btn btn-danger">Delete</button>
+                  <button (click)="cancelDelete()" type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

@@ -1,0 +1,15 @@
+.main-container{
+    padding: 5px;
+    text-align: center;
+}
+.orders{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 2px;
+    overflow:hidden;
+    overflow-y: scroll;
+    height: 300px;
+} 
+#back-btn{
+    float: left;
+}

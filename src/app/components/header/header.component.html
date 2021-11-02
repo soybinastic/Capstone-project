@@ -1,0 +1,33 @@
+<nav id="main-header" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#"><i class="fas fa-store-alt" id="store-icon"></i> Fast Online Hardware</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a *ngIf="role == 'Admin'" class="nav-link" [routerLink]="['/main-admin']">Admin<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a *ngIf="role == 'StoreOwner' || role == 'TransportAgent'" class="nav-link" [routerLink]="['/store-admin']">Admin Panel<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a *ngIf="isLogin" class="nav-link" [routerLink]="['/home']">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" [routerLink]="['/hardware-stores']">Stores</a>
+        </li>
+      </ul> 
+        <ul class="navbar-nav">
+            <li *ngIf="!isLogin" class="nav-item">
+                <a class="nav-link" [routerLink]="['/login']">Login <i class="fal fa-sign-in"></i></a>
+            </li>
+            <li *ngIf="isLogin" class="nav-item">
+              <a id="log-out" class="nav-link" (click)="logOut()">Logout</a>
+          </li>
+            <li *ngIf="!isLogin" class="nav-item">
+                <a class="nav-link" [routerLink]="['/register']">Sign Up</a>
+            </li>
+        </ul>
+    </div>
+  </nav>

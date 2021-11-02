@@ -1,0 +1,59 @@
+.main-caontainer{
+    margin-top: 100px;
+    padding-right: 40px;
+    padding-left: 40px;
+}
+.main-caontainer #back-icon{
+    padding-bottom: 30px;
+}
+.my-btn{
+    display: flex;
+    justify-content: center;
+}
+#submit-btn{
+    width: 500px;
+}
+.sbt-btn{
+    background-color:  rgba(249, 184, 17, 0.92);
+}
+.main-form{
+    padding: 25px;
+    background: rgba(22, 23, 22, 0.01);
+    mix-blend-mode: darken;
+    /* border: 1px solid rgba(0, 0, 0, 0.38); */
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    border-radius: 11px;
+}
+.title{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 20px;
+    color: rgba(249, 184, 17, 0.92);
+}
+.title .infos{
+    display: flex;
+    justify-content: flex-end;
+}
+.infos p{
+    padding: 2px;
+    margin: 5px;
+}
+#my-check-box{
+    margin-top: 30px;
+    margin-left: 16px;
+}
+input[type="checkbox"]{
+    zoom: 2; 
+}
+#my-label{
+    margin-top: 10px;
+}
+#back-icon{
+    margin-left: 15px;
+    font-size: 45px;
+}
+#back-icon:hover{
+    cursor: pointer;
+}

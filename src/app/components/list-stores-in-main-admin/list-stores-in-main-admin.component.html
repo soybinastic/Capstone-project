@@ -1,0 +1,7 @@
+<div class="container">
+    <div class="row" *ngFor="let store of stores">
+        <app-store-in-admin [hardwareStore]="store"></app-store-in-admin>
+    </div>
+    <h2 *ngIf="stores.length == 0" id="load-p">Loading...</h2>
+</div> 
+

@@ -1,0 +1,15 @@
+.header{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 20px;
+}
+#title{
+    margin-left: 20px;
+}
+#show-form{
+    margin-left: 50%;
+}
+.product-form{
+    margin-top: 15px;
+    padding: 20px;
+}

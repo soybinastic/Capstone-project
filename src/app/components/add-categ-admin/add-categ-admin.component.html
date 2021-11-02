@@ -1,0 +1,12 @@
+<div class="my-form"> 
+    <div class="text"> 
+        <h3>Add Category</h3>
+    </div> 
+    <form [formGroup]="addCategoryForm" (ngSubmit)="addCategory()">
+        <div class="my-input">
+            <label for="category-name">Category Name</label>
+            <input type="text" id="category-name" formControlName="categoryName" placeholder="Category Name">
+            <input id="btn-submit" class="btn btn-outline-dark" type="submit" value="Add">
+        </div>        
+    </form>
+</div>
