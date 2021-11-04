@@ -61,7 +61,7 @@ export class ProductsComponent implements OnInit {
     .then(()=> window.location.reload())
   }
 
-  navigate(categoryId: any = 'all'){
+  navigate(categoryId: any = 'all'){ 
     this.route.navigate(['/hardware-store-page',this.hardwareStoreId,'products',this.hardwareStoreId,'product-category',categoryId,this.hardwareStoreId])
     .then(()=> { window.location.reload() })
   }

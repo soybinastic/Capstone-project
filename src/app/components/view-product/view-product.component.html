@@ -12,7 +12,7 @@
                     <div class="product-details">
                         <div class="desc">
                             <h4>Decription</h4>
-                            <p>{{ product.description }}</p>
+                            <small>{{ product.description }}</small>
                         </div>
                         <div class="quality">
                             <h4>Quality</h4>
@@ -32,7 +32,7 @@
                 </div>
                 <div class="prod-info"> 
                     <div class="prod-info-1">
-                        <small class="text"><b>Stock:</b> {{ product.stockNumber }}</small>
+                        <small class="text">{{ product.stockNumber <= 10 ? 'Only '+product.stockNumber+' item/s left' : 'Total number of items: '+product.stockNumber }}</small>
                         <p class="text" id="price"><b>Price:</b> P{{ product.price }}</p>
                         <h4 id="prod-name"><b>{{ product.name }}</b></h4>
                     </div>

@@ -127,5 +127,13 @@ li{
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
+} 
+
+.categ-selected{
+    font-weight: 600;
+    background-color: #F4DF4EFF;
+    color: #020202;
+    transition: ease-in-out 350ms;
+    transition: ease-out 350ms;
 }
 

@@ -22,7 +22,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  logIn(){
+  logIn(){ 
+    this.message = ''
+    this.isValid = true;
     if(!this.username || !this.password)
     {
       this.message = !this.username ? 'Username is required' : 'Password is required.'
