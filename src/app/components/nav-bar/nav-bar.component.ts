@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IOrderNotifNumber } from 'src/app/models/order-models/ordernotificationnumber';
+import { AccountService } from 'src/app/services/account.service';
 import { OrderService } from 'src/app/services/order.service';
 import { SignalrService } from 'src/app/services/signalr.service';
 
@@ -10,11 +11,13 @@ import { SignalrService } from 'src/app/services/signalr.service';
 })
 export class NavBarComponent implements OnInit {
   selected : string;
+  role : any
   @Input() orderNotif: IOrderNotifNumber
   @Output() menuEvent : EventEmitter<string> = new EventEmitter()
-  constructor() { }
+  constructor(private accountService : AccountService) { }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    this.role = this.accountService.getUserRole();
   }
   selectMenu(val:string){
     this.selected = val; 

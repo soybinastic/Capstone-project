@@ -10,11 +10,13 @@ import { IUpdateOrder } from 'src/app/models/order-models/updateorder';
 import { IAddProduct } from 'src/app/models/product-models/addproduct';
 import { IProduct } from 'src/app/models/product-models/products';
 import { IUpdateProduct } from 'src/app/models/product-models/updateproduct';
+import { IAddTrasportAgent } from 'src/app/models/transport-agent/addtransportagent';
 import { CategoryService } from 'src/app/services/category.service';
 import { HardwareStoreService } from 'src/app/services/hardware-store.service';
 import { OrderService } from 'src/app/services/order.service';
 import { ProductService } from 'src/app/services/product.service';
 import { SignalrService } from 'src/app/services/signalr.service';
+import { TransportagentService } from 'src/app/services/transportagent.service';
 
 @Component({
   selector: 'app-main-store-admin',
@@ -34,6 +36,7 @@ export class MainStoreAdminComponent implements OnInit {
   addCategToggle : boolean; 
   addProductToggle : boolean
   updateProductToggle : boolean
+  addTransportAgtToggle : boolean
   deleteToggle: boolean
 
   orders: IOrder[] = []
@@ -48,8 +51,11 @@ export class MainStoreAdminComponent implements OnInit {
   isCustomerOrderRecieved : boolean
   productId : number 
 
-  dateTime : Date = new Date
-  constructor(private hardwareStoreService : HardwareStoreService ,private orderService: OrderService, private categoryService : CategoryService,private signalRService: SignalrService, private productService : ProductService) { }
+  dateTime : Date = new Date 
+  transportAgentValidate : boolean = true 
+  transportAgentMessage : string 
+  transportAgentBtnText : string;
+  constructor(private hardwareStoreService : HardwareStoreService ,private orderService: OrderService, private categoryService : CategoryService,private signalRService: SignalrService, private productService : ProductService, private transportAgentService : TransportagentService) { }
 
   ngOnInit(): void { 
     this.signalRService.createConnection(); 
@@ -99,7 +105,8 @@ export class MainStoreAdminComponent implements OnInit {
     this.viewProductsToggle = false
     this.addCategToggle = false
     this.addProductToggle = false;
-    this.updateProductToggle = false
+    this.updateProductToggle = false 
+    this.addTransportAgtToggle = false;
     if(this.selectedMenu == 'orders'){
       this.orderNotif.numberOfOrderNotif = 0
       this.orderService.getAllOrders().subscribe()
@@ -269,6 +276,28 @@ export class MainStoreAdminComponent implements OnInit {
         this.deleteToggle = false
         this.selectedMenu = 'products'
       }
+    })
+  } 
+  transpAgentToggle(){ 
+    this.selectedMenu = ''
+    this.addTransportAgtToggle = !this.addTransportAgtToggle;
+  } 
+  addTransportAgent(transportAgent : IAddTrasportAgent){
+    this.transportAgentBtnText = 'Processing...'
+    this.transportAgentMessage = ''
+    this.transportAgentValidate = true
+    this.transportAgentService.addTransportAgent(transportAgent)
+    .subscribe((res)=> {
+      if(res.success == 1){
+          this.transportAgentValidate = true 
+          this.transportAgentBtnText = 'Register'
+          alert(res.message);
+      } 
+      console.log(res)
+    },(err)=>{
+      this.transportAgentValidate = false;
+      this.transportAgentBtnText = 'Register'
+      this.transportAgentMessage = err.error.message.toString();
     })
   }
 }

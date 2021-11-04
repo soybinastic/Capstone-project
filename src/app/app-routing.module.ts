@@ -16,6 +16,7 @@ import { WelcomeComponent } from './components/welcome/welcome.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { MainAdminGuard } from './main-admin.guard';
 import { StoreAdminAccessGuard } from './store-admin-access.guard';
+import { TransportAgentComponent } from './components/transport-agent/transport-agent.component';
 
 const routes: Routes = [
   {path:'', redirectTo:'/welcome', pathMatch:'full'},
@@ -32,7 +33,7 @@ const routes: Routes = [
     ]}
   ]},
   {path : 'view-product/:hardwareStoreId/:productId', component: ViewProductComponent},{path : 'cart/:hardwareStoreId/:from/:productId', component : CartComponent},
-  {path : 'check-out/:hardwareStoreId', component: CheckOutComponent}
+  {path : 'check-out/:hardwareStoreId', component: CheckOutComponent},
 ];
 
 @NgModule({

@@ -1,0 +1,13 @@
+.main{
+    padding: 20px;
+    background: rgba(164, 156, 156, 0.12);
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    border-radius: 11px;
+}
+.main .header{
+    display:  flex;
+    justify-content: flex-start;
+    padding: 10px;
+}

@@ -41,6 +41,8 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProductsInCartComponent } from './components/products-in-cart/products-in-cart.component';
 import { ProductInCartComponent } from './components/product-in-cart/product-in-cart.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
+import { TransportAgentComponent } from './components/transport-agent/transport-agent.component';
+import { AddTransportAgtComponent } from './components/add-transport-agt/add-transport-agt.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +83,9 @@ import { CheckOutComponent } from './components/check-out/check-out.component';
     CartComponent,
     ProductsInCartComponent,
     ProductInCartComponent,
-    CheckOutComponent
+    CheckOutComponent,
+    TransportAgentComponent,
+    AddTransportAgtComponent
   ],
   imports: [
     BrowserModule,
