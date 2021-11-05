@@ -22,7 +22,8 @@ export class ViewProductComponent implements OnInit {
   cart: ICart[] = [] 
   customer : ICustomer
 
-  cartCounter : number = 0
+  cartCounter : number = 0 
+  cartBtnText : string = 'Add To Cart'
   constructor(private productService : ProductService,private route : Router ,private urlParam : ActivatedRoute, private accountService : AccountService, private customerService : CustomerService, private cartService : CartService) { }
 
   ngOnInit(): void {  
@@ -99,7 +100,7 @@ export class ViewProductComponent implements OnInit {
       productPrice : product.price,
       productQuality : product.quality
     }
-
+    this.cartBtnText = 'Adding...'
     const index = this.cart.findIndex(p => p.productId === product.productId
       && p.hardwareStoreId === product.hardwareStoreId)
     if(index > -1){
@@ -112,6 +113,7 @@ export class ViewProductComponent implements OnInit {
             console.log(this.cart)
             this.cartCounter += 1
             alert(res.message)
+            this.cartBtnText = 'Add To Cart'
           }
         })
       }
@@ -124,6 +126,7 @@ export class ViewProductComponent implements OnInit {
             console.log(this.cart)
             this.cartCounter += 1
             alert(res.message)
+            this.cartBtnText = 'Add To Cart'
           }
         })
     }

@@ -32,6 +32,7 @@ export class SignalrService {
         if(orders[index].hardwareStoreId == data.hardwareStoreId){
           orders[index].isCustomerOrderRecieved = data.isCustomerOrderRecieved
           console.log(orders)
+          //alert(data.customerName+"'s order is already recieve.");
         }
       }
     })
