@@ -1,0 +1,42 @@
+
+.main{
+    padding-left: 70px;
+    padding-right: 70px;
+    margin-top: 1%;
+}
+.form-container{
+    padding: 32px;
+    /* background: rgba(164, 156, 156, 0.12); */
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+}
+.make-report-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    /* grid-template-columns: 2fr 4fr;
+    gap: 32px;  */
+    gap: 32px;
+}
+.custom-form-group-row{
+    display: flex; 
+    flex-direction: row;
+}
+.my-btn{
+    margin-left: 15px;
+}
+.table-report {
+    overflow-y: scroll;
+    height: 350px;
+}
+.report-added{
+    padding: 32px;
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    width: 100%;
+} 
+#report-added-tbl{
+    
+}

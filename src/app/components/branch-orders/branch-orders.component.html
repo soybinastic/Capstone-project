@@ -1,0 +1,9 @@
+<div class="orders-container">
+    <div class="orders-header">
+        <a [routerLink]="['/branch','orders']">Orders</a>
+        <a [routerLink]="['/branch','orders','confirmation']">Order Confirmation</a>
+    </div>
+    <div class="orders-body">
+        <router-outlet></router-outlet>
+    </div>
+</div>

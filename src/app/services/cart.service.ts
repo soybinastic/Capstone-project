@@ -22,6 +22,17 @@ export class CartService {
     return this.http.post<any>(this.url+'api/cart/add-to-cart',addToCart,httpHeader)
   }
 
+  adjustQuantity(hardwareStoreId : number, cartId : number, productId : number, branchId : number, adjustQuantity : any) : Observable<any> {
+
+    const httpHeader = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    }  
+
+    return this.http.put<any>(this.url + 'api/cart/adjust-quantity/' + hardwareStoreId + '/' + cartId + '/' + productId + '/' + branchId, adjustQuantity, httpHeader)
+
+  }
   getProductsInCart(hardwareStoreId : number) : Observable<ICart[]>{
     const httpHeader = {
       headers: new HttpHeaders()
@@ -31,8 +42,37 @@ export class CartService {
 
     return this.http.get<ICart[]>(this.url+'api/cart/get-products-in-cart/'+hardwareStoreId,httpHeader)
   }
+  getProductsInCartV2(hardwareStoreId : number, branchId: number) : Observable<ICart[]>{
+    const httpHeader = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    } 
 
-  removeToCart(hardwareStoreId : number, cartId : number, productId : number) : Observable<any>{
+    return this.http.get<ICart[]>(this.url+'api/cart/get-products-in-cart/'+hardwareStoreId + '/' + branchId,httpHeader)
+  }
+  // /api/cart/get-products-pending-in-cart
+  getPendingItemsInCart() : Observable<any[]> {
+    const httpHeader = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    } 
+
+    return this.http.get<any[]>(this.url + 'api/cart/get-products-pending-in-cart', httpHeader)
+  } 
+  // /api/cart/delete-product-pending-in-cart/{cartId}
+  deletePendingItemInCart(cartId : number) : Observable<any>{
+    const httpHeader = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    }  
+
+    return this.http.delete<any>(this.url + 'api/cart/delete-product-pending-in-cart/' + cartId, httpHeader)
+  }
+
+  removeToCart(hardwareStoreId : number, cartId : number, productId : number, branchId : number) : Observable<any>{
 
     const httpHeader = {
       headers: new HttpHeaders()
@@ -40,26 +80,26 @@ export class CartService {
       .set('Authorization','Bearer '+this.accountService.getToken())
     }
     
-    return this.http.delete<any>(this.url+'api/cart/remove-to-cart/'+hardwareStoreId+'/'+cartId+'/'+productId, httpHeader)
+    return this.http.delete<any>(this.url+'api/cart/remove-to-cart/'+hardwareStoreId+'/'+cartId+'/'+productId+'/'+branchId, httpHeader)
   } 
 
-  incrementQuantity(hardwareStoreId : number, cartId : number, productId : number) : Observable<any>{
+  incrementQuantity(hardwareStoreId : number, cartId : number, productId : number, branchId : number) : Observable<any>{
     const httpHeader = {
       headers: new HttpHeaders()
       .set('Content-Type','application/json')
       .set('Authorization','Bearer '+this.accountService.getToken())
     } 
 
-    return this.http.put<any>(this.url+'api/cart/increment-quantity/'+hardwareStoreId+'/'+cartId+'/'+productId, {}, httpHeader)
+    return this.http.put<any>(this.url+'api/cart/increment-quantity/'+hardwareStoreId+'/'+cartId+'/'+productId+'/'+branchId, {}, httpHeader)
   } 
 
-  decrementQuantity(hardwareStoreId : number, cartId : number, productId : number) : Observable<any>{
+  decrementQuantity(hardwareStoreId : number, cartId : number, productId : number, branchId : number) : Observable<any>{
     const httpHeader = {
       headers: new HttpHeaders()
       .set('Content-Type','application/json')
       .set('Authorization','Bearer '+this.accountService.getToken())
     } 
 
-    return this.http.put<any>(this.url+'api/cart/decrement-quantity/'+hardwareStoreId+'/'+cartId+'/'+productId, {},httpHeader)
+    return this.http.put<any>(this.url+'api/cart/decrement-quantity/'+hardwareStoreId+'/'+cartId+'/'+productId + '/'+branchId, {},httpHeader)
   }
 }

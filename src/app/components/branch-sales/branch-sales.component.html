@@ -1,0 +1,56 @@
+<div class="sales-container">
+    <div class="sales-header">
+        <h3>SALES</h3>
+    </div>
+    <div class="sales-content">
+        <div class="sale-item-container">
+            <div class="sale-header-item">
+                <div class="sales-item">
+                    <h3>{{ filterBy == 'daily' ? (salesDate | date : 'mediumDate') : (salesDate | date : 'MMMM') }}</h3>
+                </div>
+                <button class="btn btn-outline-success" (click)="addReport()"><i class="fal fa-file-plus"></i> {{ saveBtnText }}</button>
+            </div>
+            <div class="sales-body">
+                <div class="sales-data">
+                    <h4>{{ totalSale| currency : 'PHP' }}</h4>
+                </div>
+                <div class="sales-item si-col">
+                    <div class="form-group" *ngIf="saleBtnIsShow">
+                        <label for="">Confirm</label>
+                        <button class="btn btn-primary form-control" (click)="onClickSaleDate()">OK</button>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Select Date/Month</label>
+                        <input type="date" class="form-control" id="allMonthSale" (input)="setSaleDate($event)"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Daily/Monthly</label>
+                        <select class="form-control" (change)="selectedFilter($event)">
+                            <option selected value="daily">Daily</option>
+                            <option value="monthly">Monthly</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sale-item-container">
+            <div class="sale-header-item">
+                <div class="sales-item">
+                    <h3>Year : {{ allMonthSalesDate | date : 'YYYY' }}</h3>
+                </div>
+                <div class="sales-item si-row">
+                    <button *ngIf="allMonthSaleButtonIsShow" class="btn btn-primary form-control" (click)="onSetYear()">OK</button>
+                    <input type="month" class="form-control" id="allMonthSale" (input)="setDate($event)"/>
+                </div>
+            </div>
+            <app-branch-all-months-sales [sales]="allMonthSales?.sales"></app-branch-all-months-sales> 
+            <app-branch-sale-item-yearly
+             [saleItems]="saleItems" 
+             [source]="saleItems"
+             [date]="allMonthSalesDate"
+             [isInput]="true"
+             [message]="message">
+            </app-branch-sale-item-yearly>
+        </div>
+    </div>
+</div>

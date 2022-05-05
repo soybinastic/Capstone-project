@@ -25,6 +25,7 @@ export class HeaderComponent implements OnInit {
       {
         alert(res.message)
         this.accountService.removeToken()
+        localStorage.clear()
         this.route.navigate(['/login']).then(()=> window.location.reload())
       }
     })

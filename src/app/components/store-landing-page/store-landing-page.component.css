@@ -39,3 +39,29 @@ li a{
 .item:hover{
     color: #474747;
 }
+.sl-container{
+    display : flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+.store-landing-page{
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.main-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 3vh;
+    column-gap: 2vh;
+}
+.sl-header{
+    display: flex;
+    justify-content: first baseline;
+    margin-left: 20vh;
+}
+.sl-text{
+    padding: 5px;
+    border-bottom: 4px black solid;
+}

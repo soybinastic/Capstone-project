@@ -1,0 +1,18 @@
+#container{
+    margin-top: 25px;
+}
+.header{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.images{
+    display: flex;
+    flex-direction: row;
+}
+.verified{
+    font-size: 45px;
+    color: blue;
+}

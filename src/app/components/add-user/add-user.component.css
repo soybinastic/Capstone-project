@@ -1,0 +1,32 @@
+p{
+    margin-top: 100px;
+}
+.main-container{
+    margin-top: 70px;
+    /* width: 100%; */
+    
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+}
+.add-user-header{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+#submit-btn{
+    margin: 5px;
+    padding: 3px;
+    width: 50%;
+    height: 50px;
+}
+.btn-add{
+    display: flex;
+    justify-content: center;
+    padding: 3px;
+}
+.dd-role{
+    display: flex;
+    justify-content: center;
+}

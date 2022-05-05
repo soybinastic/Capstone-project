@@ -5,5 +5,6 @@ export interface ICustomer{
     lastName : string;
     email : string;
     address : string;
-    contactNo : string
+    contactNo : string;
+    isVerified : boolean;
 }

@@ -1,0 +1,46 @@
+.main-container{
+    padding: 22px;
+    display: flex;
+    justify-content: center;
+}
+.notification{
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+}
+.notification .notification-header{
+    display: flex;
+    justify-content: flex-start;
+    font-weight: bold;
+}
+.t-bold{
+    font-weight: bold;
+    border-bottom: 3px black solid;
+}
+.notifications{
+    margin-top: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow-y : scroll;
+    height: 470px;
+}
+.notification-item{
+    display: flex;
+    flex-direction: column;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.notification-item:hover{
+    padding: 15px;
+    border-radius: 10px;
+    background: rgba(164, 156, 156, 0.12);
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    cursor: pointer;
+}
+.notify-date{
+    display: flex;
+    justify-content: space-between;
+}

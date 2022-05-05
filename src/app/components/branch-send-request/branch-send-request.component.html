@@ -1,0 +1,53 @@
+<div class="sr-container">
+    <div class="sr-header">
+        <h2>Product Request</h2>
+    </div>
+    <div class="req-form">
+        <form [formGroup]="form" (ngSubmit)="sendRequest()" class="request-form">
+            <div class="input-box">
+                <div class="form-row"> 
+                    <label for="category">Select Request Product</label>
+                    <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Products</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01" formControlName="hardwareProductId">
+                                <option selected value="">Choose...</option>
+                                <option *ngFor="let product of products" [value]="product.hardwareProductId">{{ product.name }}</option>
+                                <!-- <option value="1">Product 1</option>
+                                <option value="2">Product 2</option> -->
+                            </select>
+                    </div>
+                </div> 
+                <div class="form-row"> 
+                    <label for="category">Request to Warehouse</label>
+                    <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Warehouses</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01" formControlName="warehouseId">
+                                <option selected value="">Choose...</option>
+                                <option *ngFor="let warehouse of warehouses" [value]="warehouse.id">{{ warehouse.name }}</option>
+                                <!-- <option value="1">Product 1</option>
+                                <option value="2">Product 2</option> -->
+                            </select>
+                    </div>
+                </div> 
+            </div>
+            <div class="input-box">
+                <div class="form-row">
+                    <label for="quantity">Quantity</label>
+                    <input required type="number" name="quantity" class="form-control" id="quantity" placeholder="Quantity" formControlName="quantity">
+                </div> 
+                <div class="form-row submit-btn">
+                    <label for="">Send Request</label>
+                    <button type="submit" class="btn btn-warning form-control" id="sbt-btn">Process Request</button>
+                </div> 
+            </div>
+            
+        </form>
+    </div>
+    <div *ngIf="!isValid" class="alert alert-warning" role="alert">
+        {{ errorMessage }}
+    </div>
+</div>

@@ -1,0 +1,75 @@
+<div class="main-container">
+    <div class="header">
+        <div class="header-item">
+            <h3>Journal</h3>
+        </div>
+        <div class="header-item">
+            <button id="addBtn" [class]="isFormShow ? 'btn btn-danger' : 'btn btn-primary'"
+            (click)="onToggle()"><i [class]="isFormShow ? 'far fa-window-close' : 'fal fa-plus-circle'"></i></button>
+        </div> 
+        
+        <!-- far fa-window-close -->
+    </div>
+    <div class="journal-form" *ngIf="isFormShow">
+        <form [formGroup]="form" (ngSubmit)="onSave()">
+            <div class="row">
+                <div class="col">
+                    <label for="dateDeposited">Date Deposited</label>
+                    <input type="datetime-local" class="form-control" id="dateDeposited" 
+                    formControlName="dateDeposited">
+                </div>
+                <div class="col">
+                    <label for="depositor">Depositor Name</label>
+                    <input type="text" class="form-control" placeholder="Depositor Name" id="depositor" formControlName="depositor">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="bankName">Bank Name</label>
+                    <input type="text" class="form-control" id="bankName" placeholder="Bank Name" formControlName="bankName">
+                </div>
+                <div class="col">
+                    <label for="amountDeposited">Amount Deposited</label>
+                    <input type="number" class="form-control" placeholder="Amount Deposited" id="amountDeposited" formControlName="amountDeposited">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-warning form-control btn-save" type="submit">{{ btnSaveText }}</button>
+                </div>
+            </div>
+            <div class="row" *ngIf="isInvalid">
+                <div class="col">
+                    <div class="alert alert-warning" role="alert">
+                        {{ errorMessage }}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div> 
+    <div class="journal-content">
+        <div class="content" *ngFor="let depositSlip of depositSlips">
+            <div class="row">
+                <div class="col">
+                    <label for="dateDeposited">Date Deposited</label>
+                    <label class="form-control" id="dateDeposited">{{ depositSlip?.dateDeposited | date : 'medium'}}</label>
+                </div>
+                <div class="col">
+                    <label for="depositor">Depositor</label>
+                    <label class="form-control" id="depositor">{{ depositSlip?.depositor }}</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <label for="bankName">Bank</label>
+                    <label class="form-control" id="bankName">{{ depositSlip?.bankName }}</label>
+                </div>
+                <div class="col">
+                    <label for="amountDeposited">Amount</label>
+                    <label class="form-control" id="amountDeposited">{{ depositSlip?.amount | currency : 'PHP' }}</label>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

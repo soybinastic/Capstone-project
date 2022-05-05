@@ -1,0 +1,19 @@
+<table class="table table-hover table-sm table-dark">
+    <thead>
+        <tr>
+            <th>Month</th>
+            <th>Total Sale</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let sale of sales">
+        <tr>
+            <td>{{ sale?.dateSale | date : 'MMMM' }}</td>
+            <td>{{ sale?.totalSale | currency : 'PHP'}}</td>
+            <td><a [routerLink]="['/branch','sales-summary']" [queryParams]="{ date : dateConverter(sale?.dateSale) }" class="btn btn-warning">Summary</a> | <a [routerLink]="['/branch','view-sale-item-monthly']" [queryParams]="{date : dateConverter(sale?.dateSale) }" class="btn btn-success">View Items</a></td>
+        </tr>
+    </tbody>
+</table>
+<div style="text-align: center;" *ngIf="sales?.length == 0">
+    <h3>No Data found.</h3>
+</div>

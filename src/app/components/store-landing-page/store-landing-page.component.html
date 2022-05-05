@@ -1,4 +1,4 @@
-<div class="main"> 
+<!-- <div class="main"> 
     <div class="store-header"> 
         <ul class="items"> 
             <li><a href="" class="item">About</a></li>
@@ -9,5 +9,14 @@
     <div class="content"> 
         <router-outlet></router-outlet>
     </div>
+</div> -->
+<div class="store-landing-page">
+    <div class="sl-header">
+        <h3 class="sl-text">{{ hardwareStore?.hardwareStoreName }} Branches</h3>
+    </div>
+    <div class="sl-container">
+        <div class="main-container">
+            <app-branch-display *ngFor="let branch of branches" [branch]="branch" (onGo)="go($event)"></app-branch-display>
+        </div>
+    </div>
 </div>
-

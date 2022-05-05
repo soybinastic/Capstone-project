@@ -10,3 +10,13 @@
 body {
     font-family: 'Poppins', sans-serif;
 }
+
+.custom-active{
+  background-color:#F2AA4CFF;
+  color: #101820FF;
+  padding:10px;
+  border-radius:13px;
+  
+  /* color: #101820FF; */
+  /* color: #F2AA4CFF */
+}

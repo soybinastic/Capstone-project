@@ -1,0 +1,19 @@
+<div class="main-container">
+    <div class="notification">
+        <div class="notification-header">
+            <h3 class="t-bold">Notifications</h3>
+        </div> 
+        <div class="notifications">
+            <div class="notification-item" *ngFor="let warehouseNotification of warehouseNotifications" (click)="navigate(warehouseNotification?.type)">
+                <div class="notify-date">
+                    <h4>{{ warehouseNotification?.dateNotified | date : 'mediumDate'}}</h4>
+                    <small>{{ warehouseNotification?.dateNotified | date : 'shortTime' }}</small>
+                </div>
+                <div class="notification-text">
+                    <p>{{ warehouseNotification?.text }}</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

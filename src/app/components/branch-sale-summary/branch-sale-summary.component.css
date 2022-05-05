@@ -1,0 +1,8 @@
+.summary-container{
+    padding: 10px;
+}
+.summary-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

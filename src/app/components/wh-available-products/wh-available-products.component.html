@@ -1,0 +1,47 @@
+<div class="main-container">
+    <div class="header">
+        <h2>Available In Stock</h2> 
+        <div class="the-input" *ngIf="getRole() == 'SuperAdmin' || getRole() == 'StoreOwner'">
+            <div class="input-group mb-3" id="option">
+                  <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Warehouses</label>
+                  </div>
+                  <select class="custom-select" id="inputGroupSelect01" (change)="selectedWarehouse($event)">
+                      <option selected value="">Choose...</option>
+                      <option *ngFor="let warehouse of warehouses" [value]="warehouse.id" [selected]="warehouse.id == selectedWarehouseId">{{ warehouse.name }}</option>
+                      <!-- <option value="Add New Product">Warehouse B</option> -->
+                  </select>
+            </div>
+        </div>
+    </div> 
+    <div class="available-products">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>Item Name</td>
+                    <td>Price</td>
+                    <td>Stock Number</td>
+                    <td>Action</td>
+                </tr>
+            </thead>
+            <tbody *ngFor="let availableProduct of availableProducts">
+                <tr>
+                    <td>{{ availableProduct?.hardwareProduct.name }}</td>
+                    <td>{{ availableProduct?.hardwareProduct.costPrice | currency : 'PHP' }}</td>
+                    <td>{{ availableProduct?.stockNumber }}</td>
+                    <td>
+                        <button class="btn btn-success" [routerLink]="['/ware-house','warehouse-manage-products','wh-product-info', availableProduct.hardwareProductId, availableProduct.warehouseId]" title="View">
+                            <i class="fas fa-info-circle"></i>
+                        </button>
+                        <button class="btn btn-warning" title="Transfer" [routerLink]="['/ware-house','warehouse-manage-products','transfer',availableProduct.hardwareProductId]" *ngIf="getRole() == 'WarehouseAdmin'">
+                            <i class="far fa-share-square"></i>
+                        </button>
+                        <button class="btn btn-outline-primary" title="Deliver to branch" *ngIf="getRole() == 'WarehouseAdmin'">
+                            <i class="fal fa-truck-loading"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<div class="dashbord-container">
+    <div class="header">
+        <!-- <h4>{{ dateToday | date : 'mediumDate' }}</h4> -->
+    </div>
+    <div class="wrapper">
+        <div class="db-box revenue">
+            <div class="db-header">
+                <h5>Today</h5>
+            </div>
+            <div class="output">
+                <h2>{{ dateToday | date : 'mediumDate' }}</h2>
+            </div>
+        </div>
+        <div class="db-box sales">
+            <div class="db-header">
+                <h5>Sales</h5>
+            </div>
+            <div class="output">
+                <h2>{{ todaySales | currency : 'PHP' }}</h2>
+            </div>
+        </div>
+        <div class="db-box pending-orders">
+            <div class="db-header">
+                <h5>Pending Orders</h5>
+            </div>
+            <div class="output">
+                <h2>{{ pendingOrders.length }}</h2>
+            </div>
+        </div>
+    </div>
+    
+    <div class="monthly-sales-container">
+        <div class="monthly-sales-wrapper" *ngIf="monthlySales.sales?.length > 0">
+            <div class="sale-bar" *ngFor="let sale of monthlySales.sales">
+                <div class="date">
+                    <p>{{ sale?.dateSale | date : 'MMMM' }}</p>
+                </div>
+                <div class="total-sales">
+                    <h5><b>{{ sale?.totalSale | currency : 'PHP'}}</b></h5>
+                </div>
+            </div>
+        </div>
+        <div class="no-data" *ngIf="monthlySales.sales?.length < 1">
+            <h4>No Data found.</h4>
+        </div>
+    </div>
+</div>

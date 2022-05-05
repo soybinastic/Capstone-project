@@ -1,0 +1,30 @@
+<!-- <div class="tbl-container">
+    
+</div> -->
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Status</th>
+            <th>Is Deliver</th>
+            <th>Is Recieved</th>
+            <th>Total</th>
+            <th>Date Ordered</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let order of orders">
+        <tr>
+            <td>{{ order?.customerName }}</td>
+            <td><span [class]="orderStatusClass(order?.status)">{{ order?.status }}</span></td>
+            <td><span [class]="deliverClass(order?.deliver)">{{ order.deliver ? 'YES' : 'NO' }}</span></td>
+            <td>{{ order.isCustomerOrderRecieved ? 'Recieved' : 'Not Yet' }}</td>
+            <td>{{ order.total | currency : 'PHP' }}</td>
+            <td>{{ order?.orderDate | date : 'mediumDate' }}</td>
+            <td>
+                <button class="btn btn-warning" [routerLink]="['/branch','orders','details',order.orderId]" title="Order Details"><i class="fas fa-info-circle"></i></button>
+            </td>
+        </tr>
+        
+    </tbody>
+</table>

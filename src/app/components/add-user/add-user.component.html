@@ -1,0 +1,82 @@
+<div class="main-container">
+    <div class="add-user-header">
+        <div class="title">
+            <h3>Add User</h3>
+        </div> 
+        <div class="back-to-users">
+            <button class="btn btn-warning" [routerLink]="['/ware-house','users']">Back</button>
+        </div>
+    </div>
+    <div class="form-container">
+        <form [formGroup]="addUserForm" (ngSubmit)="addUser()">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="firstname">First Name</label>
+                <input required type="text" name="firstName" class="form-control" id="firstname" formControlName="firstName" placeholder="Firstname">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="lastname">Last Name</label>
+                <input type="text"  name="lastName" class="form-control" id="lastname" formControlName="lastName"placeholder="Lastname">
+              </div>
+            </div> 
+            
+            <div class="form-row">
+                
+                <div class="form-group col-sm">
+                    <label for="email">Email</label>
+                    <input type="email"  name="email" class="form-control" id="email" formControlName="email"placeholder="Email">
+                </div>
+                <div class="form-group col-sm">
+                  <label for="username">Username</label>
+                  <input type="username"  name="userName" class="form-control" id="username" formControlName="userName"placeholder="Username">
+                </div>
+                <div class="form-group col-sm">
+                  <label for="password">Password</label>
+                  <input type="password"  name="password" class="form-control" id="password" 
+                  formControlName="password" placeholder="Password">
+                </div>
+                <div class="form-group col-sm">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password"  name="confirmPassword" class="form-control" id="confirm-password" formControlName="confirmPassword" placeholder="Confirm Password">
+                  </div>
+              </div>
+                <div class="form-row align-items-center dd-role">
+                    <div class="col-auto my-1">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Role</label>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect"
+                     (change)="onSelect($event)" formControlName="role">
+                        <option selected value="">Choose...</option>
+                        <option *ngFor="let userRole of userRoles" [value]="userRole.name">{{ userRole.name }}</option>
+                        <!-- <option value="2">Admin</option>
+                        <option value="3">TransportAgent</option> -->
+                    </select>
+                    </div>
+                </div>
+                <div class="form-row align-items-center dd-role">
+                  <div class="col-auto my-1">
+                  <label class="mr-sm-2" for="inlineFormCustomSelect">Select Branch</label>
+                  <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" formControlName="branchId" (change)="onSelectBranch($event)">
+                      <option selected value="">Choose...</option>
+                      <option *ngFor="let branch of branches" [value]="branch.id">{{ branch.name }}</option>
+                  </select>
+                  </div>
+              </div>
+              <div class="form-row align-items-center dd-role">
+                <div class="col-auto my-1">
+                <label class="mr-sm-2" for="inlineFormCustomSelect">Select Warehouse</label>
+                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" formControlName="warehouseId" (change)="onSelectWarehouse($event)">
+                    <option selected value="">Choose...</option>
+                    <option *ngFor="let warehouse of warehouses" [value]="warehouse.id" >{{ warehouse.name }}</option>
+                </select>
+                </div>
+            </div>
+              <div *ngIf="!isValidInput" class="alert alert-warning" role="alert">
+                {{ errorMessage }}
+              </div>
+            <div class="btn-add">
+                <button id="submit-btn" type="submit" class="btn btn-outline-dark">Add</button>
+            </div>
+          </form>
+    
+    </div>
+</div>

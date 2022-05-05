@@ -1,0 +1,22 @@
+<p>warehouse-management works!</p>
+<div class="main-container">
+    <div class="add-btn">
+        <button type="button" [routerLink]="['/ware-house','add-warehouse']" class="btn btn-primary btn-lg">Add Warehouse</button>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Warehouse Name</th>
+            <th scope="col">Address</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let warehouse of warehouses">
+          <tr>
+            <td>{{ warehouse.name }}</td>
+            <td>{{ warehouse.address }}</td>
+          </tr>
+        </tbody>
+      </table>
+      
+</div>
+

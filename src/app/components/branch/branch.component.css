@@ -1,0 +1,100 @@
+.branch-container{
+    background-color:#FFFF;
+    margin-top: 60px;
+    display: grid;
+    grid-template-columns: 3fr 10fr;
+}
+.side-bar{
+    padding: 32px;
+    background: rgba(164, 156, 156, 0.12);
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    /* background-color:#FAA307; */
+    display: grid;
+    grid-template-rows: 10fr 3fr;
+    row-gap: 10px;
+
+    /* height: 100%; Full-height: remove this if you want "auto" height */
+    /* width: 160px; Set the width of the sidebar */
+    position: fixed; 
+    z-index: 1;
+    /* top: 0;  */
+    left: 0;
+    /* background-color: #111; Black */
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+.fix{
+    /* height: 100%;
+    width: 160px; */
+    /* position: fixed;
+    z-index: 1; */
+    /* top: 0; */
+    /* overflow-x: hidden;
+    position: -webkit-sticky;
+    position: sticky; */
+    position: -webkit-sticky;
+    position: sticky;
+    /* top: 55px; */
+    /* background-color: #020202;
+    color: rgba(249, 184, 17, 0.92); */
+    z-index: 9;
+    width: 100%;
+}
+.content{
+    padding: 20px;
+    background-color:#FFFF;
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-left: 350px;
+    width: 132%;
+    height: 150%;
+}
+ul li {
+    list-style: none;
+}
+.nav-item:hover{
+    /* background: #FCBF49; */
+    /* mix-blend-mode: darken;
+    box-sizing: border-box; */
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+   
+    transform: translateY(3px);
+    transition: ease-in 330ms;
+    border-radius: 10px;
+}
+.nav-header{
+    padding-left: 10px;
+}
+.nav-items{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.nav-item{
+    padding: 20px;
+    border-bottom: 2px black solid;
+}
+.footer-sb{
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+} 
+.anchor{
+    color: black;
+    padding: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    
+}
+
+a{
+    text-decoration: none;
+}

@@ -29,4 +29,13 @@ export class CustomerService {
     
     return this.http.get<ICustomer>(this.url+'api/customer/get-customer-info', httpHeaders)
   }
+
+  update(data : any) : Observable<any>{
+    const httpHeaders = {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json')
+        .set('Authorization', 'Bearer ' + this.accountService.getToken())
+    } 
+    return this.http.put(this.url + 'api/Customer/update', data, httpHeaders)
+  }
 }

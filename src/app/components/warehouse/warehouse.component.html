@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light" id="warehouse-nav">
+    <a class="navbar-brand" href="#">{{ hardwareStoreDetails?.hardwareStoreName }}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+            <!-- <li class="nav-item active">
+                <a class="nav-link" href="#"><i class="fas fa-chart-line"></i> Dashboard <span class="sr-only">(current)</span></a>
+            </li> -->
+            <li class="nav-item" *ngIf="getRole() == 'SuperAdmin' || getRole() == 'StoreOwner'">
+                <a class="nav-link" [routerLink]="['users']"><i class="fal fa-users"></i> Users</a>
+            </li>
+            <li class="nav-item" *ngIf="getRole() == 'SuperAdmin' || getRole() == 'StoreOwner'">
+                <a class="nav-link" [routerLink]="['warehouses']"><i class="fas fa-warehouse-alt"></i> Warehouses</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['warehouse-manage-products']"><i class="fas fa-tasks"></i> Manage Products</a>
+            </li>
+            
+            <li class="nav-item" *ngIf="getRole() == 'SuperAdmin' || getRole() == 'StoreOwner'">
+                <a class="nav-link" [routerLink]="['branches']"><i class="fas fa-code-branch"></i> Branches</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['product-categories']"><i class="fal fa-boxes"></i> Product Categories</a>
+            </li> 
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['reports']"><i class="fal fa-calendar-edit"></i> Report</a>
+            </li> 
+            <li class="nav-item notif" *ngIf="getRole() == 'WarehouseAdmin'">
+                <a class="nav-link" [routerLink]="['notifications']" (click)="resetNotificationNumber()"><i class="fal fa-bells"></i> Notifications {{ warehouseNotificationNumberInfo?.number > 0 ? warehouseNotificationNumberInfo?.number : '' }}</a>
+            </li>
+      </ul>
+    </div>
+</nav>
+<router-outlet></router-outlet>

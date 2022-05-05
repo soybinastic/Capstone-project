@@ -1,0 +1,29 @@
+.container{
+    margin-top: 80px;
+}
+ul li{
+    list-style-type: none;
+}
+.term-condition{
+    display: flex;
+    flex-direction: column;
+    padding: 22px;
+}
+ul{
+   margin-left: 5vh;
+}
+i{
+    font-size: 35px;
+    color: #FCA311;
+}
+.icon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    white-space: nowrap;
+}
+.content-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

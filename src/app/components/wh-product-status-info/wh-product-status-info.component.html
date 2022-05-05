@@ -1,0 +1,96 @@
+<div class="status-container">
+    <div class="status-header">
+        <i [class]="isAdding ? 'far fa-window-close' : 'fal fa-plus-circle'" id="add-icon" (click)="onToggle()" *ngIf="getRole() != 'StoreOwner' && getRole() != 'SuperAdmin' && reportDetails.warehouseId == warehouseReportOwner"></i>
+        <div class="detail-report" *ngIf="!isAdding">
+          <h2>Product Status Details</h2> 
+        <hr>
+        <p><b>FROM : </b><i>{{ reportDetails.warehouse?.name }}</i></p>
+        <small>Date Reported : <i>{{ reportDetails.dateReported | date : 'mediumDate'}}</i></small>
+        <hr>
+        <p><b>Commentary : </b> <small>{{ reportDetails.description }}</small></p> 
+        </div>
+        <div class="main-form" *ngIf="isAdding">
+          <form [formGroup]="form" (ngSubmit)="onAdd()"> 
+            <div class="add-user-header">
+                <div class="title">
+                    <h3>Add Product State Report</h3>
+                </div> 
+            </div>
+            <div class="form-row">
+                <label for="description">Discription</label>
+                  <input required type="text" name="description" class="form-control" id="description" placeholder="Discription" formControlName="description">
+              </div> 
+            <div class="custom-form-group-row">
+                <div class="my-form-row">
+                    <div class="form-row"> 
+                        <label for="category">Status</label>
+                        <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Status</label>
+                                </div>
+                                <select class="custom-select" id="inputGroupSelect01" formControlName="statusType">
+                                    <option selected value="">Choose...</option>
+                                    <!-- <option value="Delete Product">Delete Product</option> -->
+                                    <option value="New Product">New Products</option>
+                                    <option value="Update Stock">Update Stock</option>
+                                    <option value="Made Active">Made Activate</option>
+                                    <option value="Made Inactive">Made Inactive</option>
+                                    <option value="Update Something">Update Something</option>
+                                </select>
+                        </div>
+                    </div> 
+                    <div class="form-row"> 
+                        <label for="category">Product</label>
+                        <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Products</label>
+                                </div>
+                                <select class="custom-select" id="inputGroupSelect01" formControlName="hardwareProductId">
+                                    <option selected value="">Choose...</option>
+                                    <option *ngFor="let product of products" [value]="product.hardwareProductId">{{ product.hardwareProduct.name }}</option>
+                                    <!-- <option value="1">Product 1</option>
+                                    <option value="2">Product 2</option> -->
+                                </select>
+                        </div>
+                    </div> 
+                </div>
+                
+                 
+                <div class="my-form-row">
+                    <div class="form-row my-btn"> 
+                        <label for="active">Add to List</label>
+                        <div class="input-group mb-3">
+                            <button type="submit" class="form-control btn btn-outline-warning" >Add</button> 
+                        </div>
+                    </div> 
+                    
+                </div>
+            </div>
+                <div *ngIf="!isValid" class="alert alert-warning" role="alert">
+                    {{ errorMessage }}
+                </div>
+          </form> 
+        </div>
+    </div> 
+    <div class="status-table">
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">Product Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Status Type</th>
+                <th scope="col" *ngIf="getRole() != 'StoreOwner' && getRole() != 'SuperAdmin' && reportDetails.warehouseId == warehouseReportOwner">Action</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let statusReport of productStatusReports">
+              <tr>
+                <td>{{ statusReport.hardwareProduct.name }}</td>
+                <td>{{ statusReport.description }}</td>
+                <td>{{ statusReport.statusType }}</td>
+                <td *ngIf="getRole() != 'StoreOwner' && getRole() != 'SuperAdmin' && reportDetails.warehouseId == warehouseReportOwner"><button class="btn btn-danger" (click)="removeStatusReport(statusReport.id)">Remove</button></td>
+              </tr>
+              
+            </tbody>
+          </table>
+    </div>
+</div>

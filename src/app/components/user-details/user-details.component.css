@@ -1,0 +1,21 @@
+.main-container{
+    padding: 5px;
+}
+.header{
+    display: flex;
+    justify-content: center;
+}
+.detail{
+    /* display: grid;
+    grid-template-columns: 1fr 1fr; */
+    padding: 32px;
+}
+.content{
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+}
+.main-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

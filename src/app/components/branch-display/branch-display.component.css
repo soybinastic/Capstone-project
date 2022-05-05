@@ -1,0 +1,25 @@
+.display-branch{
+    padding: 20px;
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    border-radius: 5px;
+}
+.main-container{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    /* width: 20%; */
+}
+img{
+    height: 150px;
+    width: 140px;
+}
+.branch{
+    display: flex;
+    justify-content: center;
+}
+h4{
+    white-space: nowrap;
+}
+

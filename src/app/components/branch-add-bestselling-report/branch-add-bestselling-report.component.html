@@ -1,0 +1,24 @@
+<div class="report-container">
+    <div class="bestselling-report" *ngFor="let bestSellingProduct of bestSellingProducts">
+        <div class="bestselling-data">
+            <h4>{{ bestSellingProduct.bestSellingDate | date : 'mediumDate' }}</h4>
+        </div>
+        <div class="bestselling-products">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Total Sales</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let bestSelling of bestSellingProduct.bestSellingProducts">
+                    <tr>
+                        <td>{{ bestSelling?.hardwareProduct?.name }}</td>
+                        <td>{{ bestSelling?.totalSale | currency : 'PHP' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</div>

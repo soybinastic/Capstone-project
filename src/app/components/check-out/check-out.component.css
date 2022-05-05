@@ -36,9 +36,17 @@
     display: flex;
     justify-content: flex-end;
 }
-.infos p{
+.infos{
     padding: 2px;
     margin: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
 }
 #my-check-box{
     margin-top: 30px;
@@ -56,4 +64,12 @@ input[type="checkbox"]{
 }
 #back-icon:hover{
     cursor: pointer;
+}
+
+#map{
+    height: 80vh;
+}
+.error-alert{
+    color: red;
+    font-size: 18px;
 }

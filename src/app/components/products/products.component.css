@@ -37,6 +37,7 @@ a{
     color: red;
 }
 .categ-header{
+    margin-top: 10px;
     display: flex;
     justify-content: flex-end;
     padding: 20px;

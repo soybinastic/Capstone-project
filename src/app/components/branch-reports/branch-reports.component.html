@@ -1,0 +1,11 @@
+<div class="br-container">
+    <ul class="items">
+        <li class="item"><a [routerLink]="['request','list']"><h3>Requests</h3></a></li>
+        <li class="item"><a [routerLink]="['best-selling']"><h3>Best Selling</h3></a></li>
+        <li class="item"><a [routerLink]="['sales']"><h3>Sales</h3></a></li>
+        <li class="item"><a [routerLink]="['journal']"><h3>Journal</h3></a></li>
+    </ul>
+    <div class="content">
+        <router-outlet></router-outlet>
+    </div>
+</div>

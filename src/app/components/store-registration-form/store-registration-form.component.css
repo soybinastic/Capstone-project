@@ -1,0 +1,24 @@
+.container{
+    margin-top:80px;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+form{
+    margin-top: 25px;
+}
+.footer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.error-alert{
+    font-size: 16px;
+    color: red;
+}
+#privacyAccept{
+    height: 30px;
+    width: 50px;
+}

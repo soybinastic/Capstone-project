@@ -1,0 +1,115 @@
+<div class="main-container">
+    <div class="add-user-header">
+        <div class="title">
+            <h3>Information of Product</h3>
+        </div> 
+        <div class="back-to-users" *ngIf="getRole() == 'WarehouseAdmin'">
+            <button (click)="enableToggle()" [class]="inputEnabler ? 'btn btn-danger' : 'btn btn-warning'">{{ inputEnabler ? 'Disable' : 'Enable' }}</button>
+        </div>
+    </div>
+    <div class="form-container">
+        <form [formGroup]="productInfoForm" (ngSubmit)="update()">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="itemName">Item Name</label>
+                <input required type="text" name="itemName" class="form-control" id="itemName" placeholder="Item Name" formControlName="itemName">
+              </div>
+              <div class="form-group col-md-6">
+                <label for="category">Category</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Categories</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01" formControlName="categoryId" (change)="selectedCategory($event)">
+                      <option selected [value]="defaultCategory.categoryId">{{ defaultCategory.categoryName }}</option>
+                      <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName }}</option>
+                      <!-- <option value="2">Two</option>
+                      <option value="3">Three</option> -->
+                    </select>
+                  </div>
+              </div>
+            </div> 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="description">Description</label>
+                  <input required type="text" name="description" class="form-control" id="description" placeholder="Description" formControlName="description">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="supplier">Supplier</label>
+                  <input type="text"  name="supplier" class="form-control" id="supplier"placeholder="Supplier" formControlName="supplier" >
+                </div>
+            </div> 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="stockNumber">Stock Number</label>
+                  <input required type="number" name="stockNumber" class="form-control" id="stockNumber" placeholder="Stock Number" formControlName="stockNumber" >
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="costPrice">Cost Price</label>
+                  <input type="number"  name="costPrice" class="form-control" id="costPrice"placeholder="Cost Price" formControlName="costPrice" >
+                </div>
+            </div> 
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="active">Is Active</label>
+                  <input required type="checkbox" name="active" class="form-control" id="active" [checked]="checkBoxInput" (change)="isChecked()">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="addedAt">Added At</label>
+                  <input type="datetime-local"  name="addedAt" class="form-control" id="addedAt" placeholder="Added At" formControlName="addedAt">
+                </div>
+            </div> 
+             
+            
+            <!-- <div class="form-row">
+                
+                <div class="form-group col-sm">
+                    <label for="email">Email</label>
+                    <input type="email"  name="email" class="form-control" id="email" placeholder="Email">
+                </div>
+                <div class="form-group col-sm">
+                  <label for="username">Username</label>
+                  <input type="username"  name="userName" class="form-control" id="username" placeholder="Username">
+                </div>
+                <div class="form-group col-sm">
+                  <label for="password">Password</label>
+                  <input type="password"  name="password" class="form-control" id="password" 
+                   placeholder="Password">
+                </div>
+                <div class="form-group col-sm">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password"  name="confirmPassword" class="form-control" id="confirm-password" placeholder="Confirm Password">
+                  </div>
+              </div> -->
+                <!-- <div class="form-row align-items-center dd-role">
+                    <div class="col-auto my-1">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Role</label>
+                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" formControlName="role">
+                        <option selected value="">Choose...</option>
+                        <option value="1">Super Admin</option>
+                        <option value="2">Admin</option>
+                        <option value="3">TransportAgent</option>
+                    </select>
+                    </div>
+                </div> -->
+              <div *ngIf="!isValid() && inputEnabler" class="alert alert-warning" role="alert">
+                {{ errorMessage }}
+              </div>
+            <div class="btn-add" *ngIf="getRole() == 'WarehouseAdmin'">
+                <button id="submit-btn" type="submit" class="btn btn-success" [disabled]="!inputEnabler">Update</button>
+                <button id="submit-btn" type="button" class="btn btn-danger" [disabled]="!inputEnabler" (click)="onDelete()">Delete</button>
+            </div>
+          </form>
+          <div class="product-image">
+              <img [src]="imageUrl ? ('https://localhost:44367/'+imageUrl) : 'https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg'" alt="" height="335" width="300'">
+              <div class="form-group">
+                  <label for="" class="form-label">Choose File</label>
+                  <input type="file" name="" id="" class="form-control" (change)="chooseImageFile($event)" [disabled]="!inputEnabler">
+              </div>
+              <div class="form-group" *ngIf="uploadBtnIsShow">
+                <label for="">Upload</label>
+                <button class="btn btn-outline-dark" (click)="onUpload()">{{ uploadBtnText }}</button>
+            </div>
+          </div>
+    </div>
+</div>

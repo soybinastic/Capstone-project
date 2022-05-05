@@ -1,0 +1,9 @@
+.products-container{
+    display: flex;
+    flex-direction: column;
+}
+a{
+    font-size: 30px;
+    color: black;
+    text-transform: uppercase;
+}

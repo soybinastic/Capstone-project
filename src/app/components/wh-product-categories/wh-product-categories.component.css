@@ -1,0 +1,21 @@
+.main-container{
+    padding: 42px;
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+} 
+.input{
+    padding-left: 10px;
+} 
+.form{
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+
+}
+.form-row{
+    margin: 5px;
+}

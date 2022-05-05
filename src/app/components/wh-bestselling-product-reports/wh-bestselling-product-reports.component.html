@@ -1,0 +1,40 @@
+<div class="report-container">
+    <div class="report-header">
+        <h4>Best Selling Product Reports</h4>
+    </div>
+    <div class="wrapper">
+        <!-- <div class="report-data-wrapper">
+      
+        </div> -->
+        <div class="report-data" *ngFor="let bestSellingReport of bestSellingReports">
+            <div class="report-data-header">
+                <div class="item">
+                    <p class="text"><i>Date Reported: </i> {{ bestSellingReport?.dateReported | date : 'mediumDate'}}</p>
+                    <p class="text"><i>Reported by: </i> {{ bestSellingReport?.branch?.name }}</p>
+                </div>
+                <h5 class="text">{{ bestSellingReport?.bestSellingReportType | titlecase }} Best Selling</h5>
+            </div>
+            <div class="report-details"  *ngFor="let bestSellingDetails of bestSellingReport?.bestSellingDetails">
+                <div class="report-details-header">
+                    <h4>{{ bestSellingReport?.bestSellingReportType == 'daily' ? (bestSellingDetails?.bestSellingDate | date : 'mediumDate') :  (bestSellingDetails?.bestSellingDate | date : 'MMMM')}}</h4>
+                </div>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>TotalSales</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let bestSellingProduct of bestSellingDetails?.bestSellingProductReports">
+                        <tr>
+                            <td>{{ bestSellingProduct?.sale?.hardwareProduct?.name }}</td>
+                            <td>{{ bestSellingProduct?.sale?.totalSale | currency : 'PHP' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <hr>
+            </div>
+            
+        </div>
+    </div>
+</div>

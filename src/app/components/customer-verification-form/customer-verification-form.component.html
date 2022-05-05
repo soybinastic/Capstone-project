@@ -1,0 +1,123 @@
+<div class="container" id="container">
+    <div class="header">
+        <h3><i class="fal fa-badge-check"></i> Verify your Account</h3>
+    </div>
+    <div class="alert alert-primary m-4" role="alert" *ngIf="isDialogShow">
+        <div class="header">
+            <h4>Success!</h4>
+        </div>
+        <p>
+            Please allow up to 1 business day for our team to review your submission.
+            <br>
+            We'll update you on the status of your verification through SMS. Thank you.
+        </p>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="container">
+            <div class="row m-2">
+                <div class="col">
+                    <label>First Name</label>
+                    <input type="text" class="form-control" placeholder="First Name" formControlName="firstName">
+                    <div *ngIf="isFirstNameInvalid()">
+                        <span *ngIf="form.controls['firstName'].errors?.required" class="error-alert">
+                            This field is required
+                        </span>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Last Name</label>
+                    <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName">
+                    <div *ngIf="isLastNameInvalid()">
+                        <span *ngIf="form.controls['lastName'].errors?.required" class="error-alert">
+                            This field is required
+                        </span>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Middle Initial</label>
+                    <input type="text" class="form-control" placeholder="Middle Initial" formControlName="middleName">
+                    <div *ngIf="isMiddleNameInvalid()">
+                        <span *ngIf="form.controls['middleName'].errors?.required" class="error-alert">
+                            This field is required
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col">
+                    <label>Address</label>
+                    <input type="text" class="form-control" placeholder="Address" formControlName="address">
+                    <div *ngIf="isAddressInvalid()">
+                        <span *ngIf="form.controls['address'].errors?.required" class="error-alert">
+                            This field is required
+                        </span>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Birth Date</label>
+                    <input type="date" class="form-control" formControlName="birthDate" value="{{ customer.birthDate | date : 'yyyy-MM-dd' }}">
+                    <input type="hidden" >
+                    <div *ngIf="isBirthDateInvalid()">
+                        <span *ngIf="form.controls['birthDate'].errors?.required" class="error-alert">
+                            This field is required
+                        </span>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Age</label>
+                    <!-- <input type="number" class="form-control" placeholder="Age" (change)="setAge($event)"> -->
+                    <input type="number" formControlName="age" class="form-control" placeholder="Age">
+                    <div *ngIf="isAgeInvalid()">
+                        <span *ngIf="form.controls['age'].errors?.required" class="error-alert">
+                            This field is required
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col">
+                    <label>NBI</label>
+                    <input type="file" class="form-control-file" (change)="setNbiFile($event)">
+                    <input type="hidden" formControlName="nbi">
+                    <div *ngIf="isNbiInvalid()">
+                        <span *ngIf="form.controls['nbi'].errors?.required" class="error-alert">
+                            This field is required
+                        </span>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Barangay Clearance</label>
+                    <input type="file" class="form-control-file" (change)="setBrgyClearanceFile($event)">
+                    <input type="hidden" formControlName="barangayClearance">
+                    <div *ngIf="isBarangayClearanceInvalid()">
+                        <span *ngIf="form.controls['barangayClearance'].errors?.required" class="error-alert">
+                            This field is required
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row m-2">
+                <div class="col">
+                    <label>Government Id</label>
+                    <input type="file" class="form-control-file" (change)="setGovernmentIdFile($event)">
+                    <input type="hidden" formControlName="governmentId">
+                    <div *ngIf="isGovernmentIdInvalid()">
+                        <span *ngIf="form.controls['governmentId'].errors?.required" class="error-alert">
+                            This field is required
+                        </span>
+                    </div>
+                </div>
+                <div class="col">
+                    <label>Bank Statement/(optional)</label>
+                    <input type="file" class="form-control-file" (change)="setBankStatementFile($event)">
+                    <input type="hidden">
+                </div>
+            </div>
+            <div class="row mt-3 m-2">
+                <div class="col">
+                    <button type="submit" class="btn btn-primary" [disabled]="form.invalid || !isBtnEnabled">{{ btnText }}</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -7,7 +7,8 @@ import { IProduct } from 'src/app/models/product-models/products';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-  @Input() product : IProduct
+  // @Input() product : IProduct
+  @Input() product : any = {}
   constructor() { }
 
   ngOnInit(): void {

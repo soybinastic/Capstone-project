@@ -1,0 +1,39 @@
+<div id="container">
+    <div class="wrapper">
+        <div class="header">
+            <h3>User Profile</h3>
+        </div>
+        <div class="row-item center" *ngIf="!isLoaded">
+            <h4>{{ message }}</h4>
+        </div>
+        <div class="info-wrapper" *ngIf="isLoaded">
+            
+            <div class="row-item" (click)="navigate('/my-information')">
+                <div class="item">
+                    <i class="fal fa-info-square info"></i>
+                </div>
+                <div class="item">
+                    <h4>Personal Information</h4>
+                </div>
+            </div>
+            <hr>
+            <div class="row-item" (click)="navigate('/verification', customer.isVerified)">
+                <div class="item">
+                    <i [class]="customer.isVerified ? 'fad fa-badge-check verified' : 'fal fa-badge-check not-verified'"></i>
+                </div>
+                <div class="item">
+                    <h4>{{ customer.isVerified ? 'Verified' : 'Verify Now' }}</h4>
+                </div>
+            </div>
+            <hr>
+            <!-- <div class="row-item">
+                <div class="item">
+                    <i [class]="customer.isVerified ? 'fad fa-badge-check verified' : 'fal fa-badge-check not-verified'"></i>
+                </div>
+                <div class="item">
+                    <h4>Order Reference</h4>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="container" id="container" *ngIf="isContentShow">
+    <div class="header">
+        <h2>User Verification Details</h2>
+        <button class="btn btn-primary" *ngIf="!details.customer.isVerified" [disabled]="verfiyBtnText != 'Verify'" (click)="onVerifyUser(details.customerId)">{{ verfiyBtnText }}</button>
+        <i class="fal fa-badge-check verified" *ngIf="details.customer.isVerified"></i>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="">First Name</label>
+            <label for="" class="form-control">{{ details?.firstName }}</label>
+        </div>
+        <div class="col">
+            <label for="">Middle Name</label>
+            <label for="" class="form-control">{{ details?.middleName }}</label>
+        </div>
+        <div class="col">
+            <label for="">Last Name</label>
+            <label for="" class="form-control">{{ details?.lastName }}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="">Birth Date</label>
+            <label for="" class="form-control">{{ details?.birthDate | date : 'mediumDate' }}</label>
+        </div>
+        <div class="col">
+            <label for="">Age</label>
+            <label for="" class="form-control">{{ details?.age }}</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="">Address</label>
+            <label for="" class="form-control">{{ details?.address }}</label>
+        </div>
+        <div class="col">
+            <label for="">Contact Number</label>
+            <label for="" class="form-control">{{ details?.customer?.contactNo }}</label>
+        </div>
+    </div>
+    <h3 class="m-3">Attachments</h3>
+    <div class="images">
+        <div class="col">
+            <label for="">NBI</label>
+            <img [src]="'https://localhost:44367/' + details?.nbiImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.nbiImageFile)">
+        </div>
+        <div class="col">
+            <label for="">Barangay Clearance</label>
+            <img [src]="'https://localhost:44367/' + details?.barangayClearanceImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.barangayClearanceImageFile)">
+        </div>
+        <div class="col">
+            <label for="">Government Id</label>
+            <img [src]="'https://localhost:44367/' + details?.governmentIdImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.governmentIdImageFile)">
+        </div>
+        <div class="col">
+            <label for="">Bank Statement</label>
+            <img [src]="'https://localhost:44367/' + details?.bankStatementImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.bankStatementImageFile)">
+        </div>
+    </div>
+</div>
+
+<h1 style="display: flex; justify-content: center; align-items: center; margin-top: 40px;" *ngIf="!isContentShow">{{ message }}</h1>

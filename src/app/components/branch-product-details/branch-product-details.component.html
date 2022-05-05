@@ -1,0 +1,54 @@
+<div class="details-container">
+    <div class="details-header">
+        <div class="details-item">
+            <h5>Product Details</h5>
+        </div>
+        <div class="details-item">
+            <button class="btn btn-dark" [routerLink]="['/branch','reports','request','send']">Request to Warehouse</button>
+        </div>
+       
+    </div>
+    <div class="d-container">
+        
+        <img [src]="product?.imageFile ? 'https://localhost:44367/' + product?.imageFile : 'https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg'" alt="" height="300" width="300">
+        <div class="content">
+            
+            <div class="details-wrapper">
+                <div class="data">
+                    <div class="data-label">
+                        <p>Product</p>
+                    </div>
+                    <div class="data-value">
+                        <h3>{{ product?.name }}</h3>
+                    </div>
+                </div>
+                <div class="data">
+                    <div class="data-label">
+                        <p>Price</p>
+                    </div>
+                    <div class="data-value">
+                        <h3>{{ product?.price | currency : 'PHP'}}</h3>
+                    </div>
+                </div>
+                <div class="data">
+                    <div class="data-label">
+                        <p>Stock Number</p>
+                    </div>
+                    <div class="data-value">
+                        <h3>{{ product?.stockNumber }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="product-desc">
+                <div class="data">
+                    <div class="data-label">
+                        <p>Description</p>
+                    </div>
+                    <div class="data-valu">
+                        <p><b>{{ product?.description }}</b></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+.my-container{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.content-container{
+    display: flex;
+    flex-direction: row;
+    gap: 30px; 
+    height: 450px;
+}
+.main-form{
+    padding: 42px;
+    /* background: rgba(164, 156, 156, 0.12); */
+    
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    width: 35%;
+}
+
+.my-btn{
+    margin-top: 5px;
+}
+#form-row{
+    margin-top:30px;
+}
+.content-header{
+    display:flex;
+    justify-content: space-between;
+}
+.report-added{
+    padding: 32px;
+    /* background: rgba(164, 156, 156, 0.12); */
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    width: 67%;
+}
+.my-form-row{
+    display: flex;
+    flex-direction: row;
+}

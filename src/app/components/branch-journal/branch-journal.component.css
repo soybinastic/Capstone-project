@@ -1,0 +1,31 @@
+.main-container{
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+#addBtn{
+    font-size: 25px;
+}
+.btn-save{
+    margin-top: 10px;
+}
+.journal-content{
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+}
+.content{
+    padding: 32px;
+    margin: 10px;
+    background: rgba(164, 156, 156, 0.12);
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    /* box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37); */
+    border-radius: 10px;
+}

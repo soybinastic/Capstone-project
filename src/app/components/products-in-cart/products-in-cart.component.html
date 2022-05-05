@@ -4,7 +4,8 @@
         [productInCart]="product"
         (incrementEvent)="increment(product)"
         (decrementEvent)="decrement(product)"
-        (removeEvent)="remove(product)">
+        (removeEvent)="remove(product)"
+        (adjustQuantityEvent)="adjustQuantity($event)">
         </app-product-in-cart>
     </div>
 </div>

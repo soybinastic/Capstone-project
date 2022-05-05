@@ -1,0 +1,33 @@
+<div class="main-container">
+    <div class="header">
+        <h3>Product Categories</h3>
+        <div class="input">
+            <form [formGroup]="form" (ngSubmit)="createCategory()" class="form">
+                <div class="form-row">
+                    <label for="costPrice">Category Name</label>
+                    <input required type="text" name="categoryName" class="form-control" id="categoryName" placeholder="Category Name" formControlName="categoryName"> 
+                    
+                </div>  
+                <div class="form-row">
+                    <label for="">Add new category</label>
+                    <button type="submit" class="form-control btn btn-success">Add</button>
+                </div>  
+                
+            </form>
+        </div>
+    </div> 
+    <div class="data">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <td>Category Name</td>
+                </tr>
+            </thead>
+            <tbody *ngFor="let category of categories">
+                <tr>
+                    <td>{{ category?.categoryName }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

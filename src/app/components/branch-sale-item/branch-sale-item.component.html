@@ -1,0 +1,46 @@
+<div class="sale-item-container">
+    <div class="header">
+        <div class="header-item">
+            <button class="btn btn-warning" [routerLink]="['/branch','sales-summary']" [queryParams]="{date : stringDate()}">Back</button>
+        </div>
+        <div class="header-item">
+            <h3>Items</h3>
+        </div>
+        <div class="header-item">
+            <h3>{{ date | date : 'mediumDate' }}</h3>
+        </div>
+    </div> 
+    <div class="content">
+        <h2 *ngIf="saleItems.length == 0" id="message">{{ message }}</h2>
+        <div class="data-wrapper" *ngFor="let saleItem of saleItems">
+            <div class="header">
+                <div class="header-item">
+                    <p>Customer : <i>{{ saleItem?.customer?.firstName + ', ' + saleItem?.customer?.lastName }}</i></p>
+                </div>
+                <div class="header-item">
+                    <p>Date : <i>{{ saleItem?.saleItemDate | date : 'medium' }}</i></p>
+                    <!-- <p>Total : {{ saleItem?.total | currency : 'PHP' }}</p> -->
+                </div>
+            </div> 
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let summary of saleItem?.saleItemSummaries">
+                    <tr>
+                        <td>{{ summary?.hardwareProduct?.name }}</td>
+                        <td>{{ summary?.amount | currency : 'PHP' }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="footer">
+                <div class="footer-item">
+                    <h5><b>TOTAL : </b> {{ saleItem?.total | currency : 'PHP' }}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

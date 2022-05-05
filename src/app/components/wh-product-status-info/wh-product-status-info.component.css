@@ -1,0 +1,29 @@
+.status-container{
+    padding: 42px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+.status-header{
+    width: 30%;
+    padding: 20px;
+}
+.status-table{
+    width: 65%;
+    padding: 20px;
+    overflow-x: scroll;
+    height: 60vh;
+}
+.main-form{
+    padding : 43px;
+}
+#add-icon{
+    float: right;
+    font-size: 45px;
+}
+#add-icon:hover{
+    transform: translateX(4px);
+    /* transform: translateY(2px); */
+    transition: ease-in-out 400ms;
+    cursor: pointer;
+}

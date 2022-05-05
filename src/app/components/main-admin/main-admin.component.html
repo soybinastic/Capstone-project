@@ -1,16 +1,12 @@
 <div id="main-cantainer" class="container"> 
     <nav class="nav nav-pills nav-justified">
         <!-- <a class="nav-item nav-link my-nav" (click)="click('store')">Stores</a> -->
-        <button class="nav-item nav-link my-nav" (click)="click('store')">Stores</button>
-        <button class="nav-item nav-link my-nav" (click)="click('register')">Register Store</button>
+        <button class="nav-item nav-link my-nav" [routerLink]="['/main-admin','store-list']">Stores</button>
+        <button class="nav-item nav-link my-nav" [routerLink]="['/main-admin','register-store']">Register Store</button>
         <!-- <a class="nav-item nav-link my-nav" (click)="click('register')">Register Store</a> -->
-        <a class="nav-item nav-link my-nav" href="#">ETC</a>
+        <a class="nav-item nav-link my-nav" [routerLink]="['/main-admin','company-registered-list']">Registers</a>
+        <a class="nav-item nav-link my-nav" [routerLink]="['/main-admin','user-verification-list']">Users to be verify</a>
     </nav>  
-    <div *ngIf="menu == 'store'">
-        <app-list-stores-in-main-admin></app-list-stores-in-main-admin>
-    </div>
-    <div *ngIf="menu == 'register'">
-        <app-register-store></app-register-store>
-    </div>
+    <router-outlet></router-outlet>
 </div> 
 

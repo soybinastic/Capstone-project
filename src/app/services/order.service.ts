@@ -52,7 +52,17 @@ export class OrderService {
 
     return this.http.get<IOrderProduct[]>(this.url+'api/order/get-order-products/'+orderId,httpHeaders)
   }
-  postOrder(order : IPostOrder) : Observable<any>{
+
+  getOrder(orderId : number) : Observable<any> {
+    const httpHeaders = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    } 
+    return this.http.get<any>(this.url + 'api/order/get-order/' + orderId, httpHeaders)
+  }
+ 
+  postOrder(order : any) : Observable<any>{
     const httpHeader = {
       headers: new HttpHeaders()
       .set('Content-Type','application/json')
@@ -69,5 +79,44 @@ export class OrderService {
     }  
 
     return this.http.put<any>(this.url+'api/order/update-order/'+orderId,orderUpdate,httpHeaders)
+  }
+
+  getCompletedOrders() : Observable<any[]> {
+    const httpHeaders = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    } 
+
+    return this.http.get<any[]>(this.url + 'api/Order/get-completed-orders', httpHeaders)
+  } 
+
+  getCompletedOrder(orderId : number) : Observable<any>{
+    const httpHeaders = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    } 
+    return this.http.get<any>(this.url + 'api/Order/get-completed-order/' + orderId, httpHeaders)
+  }
+
+  approveOrder(orderId : number) : Observable<any>{
+    const httpHeaders = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    }
+
+    return this.http.put<any>(this.url + 'api/Order/approve-order/' + orderId, {}, httpHeaders)
+  }
+  confirmOrder(orderId : number) : Observable<any>{
+    
+    const httpHeaders = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    }
+
+    return this.http.put<any>(this.url + 'api/Order/confirm-order/' + orderId, {}, httpHeaders)
   }
 }

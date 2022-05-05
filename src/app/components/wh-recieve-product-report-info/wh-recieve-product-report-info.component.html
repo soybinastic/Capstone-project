@@ -1,0 +1,110 @@
+<div class="my-container">
+    <div class="my-header">
+        <h3>Recieved Products</h3>
+    </div> 
+    <div class="body">
+        <div class="content">
+            <div class="action-icons">
+                <i [class]="displayForm ? 'far fa-window-close' : 'fal fa-plus-circle'" (click)="onToggle()" *ngIf="getRole() == 'WarehouseAdmin'"></i>
+                <i class="far fa-window-close" (click)="onToggle()" *ngIf="(getRole() == 'SuperAdmin' || getRole() == 'StoreOwner') && displayForm"></i>
+            </div>
+            <div class="report-details" *ngIf="!isInserting && !isGetting">
+                <div class="item">
+                    <p><b>Description:</b><br>{{ reportDetails?.description }}</p>
+                </div> 
+                <hr>
+                <div class="item">
+                    <p><small>Date Reported: <i>{{ reportDetails?.dateReported | date : 'mediumDate' }}</i></small></p>
+                </div>
+                <hr>
+            </div> 
+            <div class="action" *ngIf="displayForm">
+                <form [formGroup]="form"> 
+                    <div class="add-user-header">
+                        <div class="title">
+                            <h3>Details</h3>
+                        </div> 
+                    </div>
+                    <div class="custom-form-group-row">
+                        <div class="my-form-row">
+                            <div class="form-row"> 
+                                <label for="category">Products</label>
+                                <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text" for="inputGroupSelect01">Products</label>
+                                        </div>
+                                        <select class="custom-select" id="inputGroupSelect01" formControlName="productId" (change)="selectedProduct($event)">
+                                            <option selected value="">Choose...</option>
+                                            <option *ngFor="let product of products" [value]="product.hardwareProductId">{{ product.hardwareProduct.name }}</option>
+                                            <!-- <option value="1">Product 1</option>
+                                            <option value="2">Product 2</option>
+                                            <option value="3">Product 3</option>
+                                            <option value="4">Product 4</option> -->
+                                        </select>
+                                </div>
+                            </div> 
+                            <div class="form-row">
+                                <label for="costPrice">Cost Price</label>
+                                  <input required type="number" name="costPrice" class="form-control" id="costPrice" placeholder="Cost Price" formControlName="costPrice">
+                            </div> 
+                            <div class="form-row">
+                                <label for="quantity">Quantity</label>
+                                  <input required type="number" name="quantity" class="form-control" id="quantity" placeholder="Quantity" formControlName="quantity">
+                            </div> 
+                            <div class="form-row" *ngIf="isGetting">
+                                <label for="totalCostPrice">Total Cost Price</label>
+                                  <input type="text" name="totalCostPrice" class="form-control" id="totalCostPrice" placeholder="Discription" formControlName="totalCostPrice">
+                            </div> 
+                            
+                        </div>
+                        
+                         
+                        <div class="my-form-row" *ngIf="isInserting == true">
+                            <div class="form-row my-btn"> 
+                                <label for="active">Insert</label>
+                                <div class="input-group mb-3">
+                                    <button type="button" class="form-control btn btn-outline-primary" (click)="onAdd()">Insert</button> 
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="my-form-row" *ngIf="isGetting && getRole() == 'WarehouseAdmin'">
+                            <div class="form-row my-btn"> 
+                                <label for="active">Update</label>
+                                <div class="input-group mb-3">
+                                    <button type="button" class="form-control btn btn-outline-warning" (click)="onUpdate()">Update</button> 
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <div *ngIf="!isValid" class="alert alert-warning" role="alert">
+                        {{ errorMessage }}
+                    </div>
+                  </form> 
+            </div>
+        </div> 
+        <div class="recieve-products-table">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>Item Name</td>
+                        <td>Cost Price</td>
+                        <td>Quantity</td>
+                        <td>Total Cost</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let recieveProduct of recieveProducts">
+                    <tr>
+                        <td>{{ recieveProduct.hardwareProduct.name }}</td>
+                        <td>{{ recieveProduct.costPrice | currency : "PHP" }}</td>
+                        <td>{{ recieveProduct.quantity }}</td>
+                        <td>{{ recieveProduct.totalCost | currency : "PHP"}}</td>
+                        <td>
+                            <button class="btn btn-warning" (dblclick)="detailClick(recieveProduct.id)">Details</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

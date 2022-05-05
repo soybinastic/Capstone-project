@@ -10,10 +10,10 @@ export class StoreAdminAccessGuard implements CanActivate {
   constructor(private accountService: AccountService, private route: Router){}
   canActivate(){
     if(this.accountService.isLoggedIn()){
-      if(this.accountService.getUserRole() == "StoreOwner" || this.accountService.getUserRole() == "TransportAgent"){
+      if(this.accountService.getUserRole() == "StoreAdmin"){
         return true;
       }else{
-        this.route.navigate(['/home'])
+        this.route.navigate(['/branch','orders'])
         return false;
       }
     }else{ 

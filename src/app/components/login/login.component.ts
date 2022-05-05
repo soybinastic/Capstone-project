@@ -41,8 +41,15 @@ export class LoginComponent implements OnInit {
       if(res.success == 1)
       { 
         this.accountService.setToken(res.token)
-        this.isValid = true;
-        this.route.navigate(['/home']).then(()=> window.location.reload())
+        this.isValid = true; 
+        const unauhtorize_adding_to_cart = localStorage.getItem('unauthorize_adding_to_cart')
+        if(!!unauhtorize_adding_to_cart){
+          const values = unauhtorize_adding_to_cart.split(',')
+          this.route.navigate(['/view-product',values[0],values[2],values[1]]).then(() => window.location.reload())
+        }else{
+          this.route.navigate(['/home']).then(()=> window.location.reload())
+        }
+        
         alert(this.accountService.getUserRole().toString())
       }
     }, (err)=>{

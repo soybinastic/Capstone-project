@@ -16,9 +16,11 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ViewProductComponent implements OnInit {
 
-  hardwareStoreId : number
+  branchId : number
   productId : number
-  product : IProduct
+  hardwareStoreId : number
+  // product : IProduct
+  product : any = {}
   cart: ICart[] = [] 
   customer : ICustomer
 
@@ -29,41 +31,67 @@ export class ViewProductComponent implements OnInit {
   ngOnInit(): void {  
     const storeIdParam = this.urlParam.snapshot.paramMap.get('hardwareStoreId');
     const productIdParam = this.urlParam.snapshot.paramMap.get('productId')
-     
+    const branchIdParam = this.urlParam.snapshot.paramMap.get('branchId')
+
     this.hardwareStoreId = Number(storeIdParam)
+    this.branchId = Number(branchIdParam)
     this.productId = Number(productIdParam)
 
-    this.productService.getProduct(this.hardwareStoreId, this.productId)
-    .subscribe((data)=>{
-      this.product = data 
-      console.log(this.product)
-    }) 
+    if(!!localStorage.getItem('unauthorize_adding_to_cart')){
+      localStorage.removeItem('unauthorize_adding_to_cart')
+    }
+    // this.productService.getProduct(this.branchId, this.productId)
+    // .subscribe((data)=>{
+    //   this.product = data 
+    //   console.log(this.product)
+    // }) 
+    this.loadProduct()
+    
 
+    // this.cartService.getProductsInCart(this.branchId)
+    // .subscribe((data)=>{
+    //   this.cart = data;
+    //   this.cart.forEach((product)=>{
+    //     this.cartCounter += product.productQuantity;
+    //   })
+    // })
+    if(this.accountService.isLoggedIn()){
+      this.loadCustomerInfo()
+      this.loadProductsInCart()
+    }
+  } 
+  loadCustomerInfo() : void {
     this.customerService.getCustomerInfo()
     .subscribe((data)=> {
       this.customer = data
       console.log('customer info')
       console.log(this.customer)
     }, (err)=> console.log(err))
-
-    this.cartService.getProductsInCart(this.hardwareStoreId)
-    .subscribe((data)=>{
-      this.cart = data;
-      this.cart.forEach((product)=>{
-        this.cartCounter += product.productQuantity;
+  }
+  loadProductsInCart() : void {
+    this.cartService.getProductsInCartV2(this.hardwareStoreId, this.branchId)
+      .subscribe((data) => {
+        this.cart = data
+        this.cart.forEach((product) => {
+          this.cartCounter += product.productQuantity;
+        })
       })
-    })
-  } 
+  }
+  
+  loadProduct() : void {
+    this.productService.getHardwareProduct(this.branchId, this.productId)
+      .subscribe((data) => this.product = data) 
+  }
 
   back(){
-    this.route.navigate(['/hardware-store-page',this.product.hardwareStoreId,'products',this.product.hardwareStoreId,'product-category',this.product.categoryId,this.product.hardwareStoreId]).then(()=> window.location.reload())
+    this.route.navigate(['products',this.product.branchId,this.product.hardwareStoreId,'product-category',this.product.categoryId, this.product.branchId,this.product.hardwareStoreId]).then(()=> window.location.reload())
   }
   goToCart(){
-    this.route.navigate(['/cart',this.hardwareStoreId,'vp',this.product.productId])
+    this.route.navigate(['/cart',this.hardwareStoreId, this.branchId,'vp',this.product.hardwareProductId])
     .then(()=> window.location.reload())
   }  
 // test to add to cart for just secure
-  addToCart(product: IProduct){
+  addToCart(product: any){
     if(this.accountService.isLoggedIn()){
       if(product.stockNumber >= 1){
         this.createCart(product)
@@ -71,16 +99,34 @@ export class ViewProductComponent implements OnInit {
         alert('Out of stock')
       }
     }else{
+      localStorage.setItem('unauthorize_adding_to_cart', `${this.hardwareStoreId},${this.branchId},${this.productId}`)
       this.route.navigate(['/login']).then(()=> window.location.reload())
     }
   } 
-  private createCart(product: IProduct){
+
+  onAddToCart(addProductToCart : IAddToCart) : void {
+    this.cartService.addToCart(addProductToCart)
+        .subscribe((res)=>{
+          if(res.success == 1){
+            console.log('With index')
+            console.log(this.cart)
+            this.cartCounter += 1
+            this.product.stockNumber -= 1
+            alert(res.message)
+            this.cartBtnText = 'Add To Cart'
+          }
+        })
+  }
+  private createCart(product: any){
+
+    // console.log(product)
     //reference
     const cart : ICart = {
       cartId : 0,
       hardwareStoreId : product.hardwareStoreId,
+      branchId : product.branchId,
       categoryId : product.categoryId,
-      productId : product.productId,
+      productId : product.hardwareProductId,
       customerId : this.customer.customerId,
       productName : product.name,
       productBrand : product.brand,
@@ -89,10 +135,12 @@ export class ViewProductComponent implements OnInit {
       productQuality : product.quality,
       productQuantity : 1,
     }  
-    //create add to cart object to post to the server
+    // console.log(cart)
+    // //create add to cart object to post to the server
     const addProductToCart : IAddToCart = {
       hardwareStoreId : product.hardwareStoreId,
-      productId : product.productId,
+      branchId : product.branchId,
+      productId : product.hardwareProductId,
       categoryId : product.categoryId,
       productName : product.name,
       productDescription : product.description,
@@ -100,35 +148,44 @@ export class ViewProductComponent implements OnInit {
       productPrice : product.price,
       productQuality : product.quality
     }
+    console.log(addProductToCart)
+    // TODO : fix add to cart bug.
     this.cartBtnText = 'Adding...'
-    const index = this.cart.findIndex(p => p.productId === product.productId
-      && p.hardwareStoreId === product.hardwareStoreId)
+    const index = this.cart.findIndex(p => p.productId === product.hardwareProductId
+      && p.hardwareStoreId === product.hardwareStoreId && p.branchId === product.branchId)
+      console.log(index)
     if(index > -1){
       this.cart[index].productQuantity += 1
-      if(this.cart[index].productQuantity <= product.stockNumber){
-        this.cartService.addToCart(addProductToCart)
-        .subscribe((res)=>{
-          if(res.success == 1){
-            console.log('With index')
-            console.log(this.cart)
-            this.cartCounter += 1
-            alert(res.message)
-            this.cartBtnText = 'Add To Cart'
-          }
-        })
+      if(product.stockNumber > 0){
+       
+        this.onAddToCart(addProductToCart)
+        // this.cartService.addToCart(addProductToCart)
+        // .subscribe((res)=>{
+        //   if(res.success == 1){
+        //     console.log('With index')
+        //     console.log(this.cart)
+        //     this.cartCounter += 1
+        //     this.product.stockNumber -= 1
+        //     alert(res.message)
+        //     this.cartBtnText = 'Add To Cart'
+        //   }
+        // })
       }
     }else{
       this.cart.push(cart)
-      this.cartService.addToCart(addProductToCart)
-        .subscribe((res)=>{
-          if(res.success == 1){
-            console.log('With index')
-            console.log(this.cart)
-            this.cartCounter += 1
-            alert(res.message)
-            this.cartBtnText = 'Add To Cart'
-          }
-        })
+      
+      this.onAddToCart(addProductToCart)
+      // this.cartService.addToCart(addProductToCart)
+      //   .subscribe((res)=>{
+      //     if(res.success == 1){
+      //       console.log('With index')
+      //       console.log(this.cart)
+      //       this.cartCounter += 1
+      //       this.product.stockNumber -= 1
+      //       alert(res.message)
+      //       this.cartBtnText = 'Add To Cart'
+      //     }
+      //   })
     }
 
   }

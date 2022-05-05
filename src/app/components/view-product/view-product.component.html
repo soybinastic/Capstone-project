@@ -28,23 +28,23 @@
            </div>
            <div class="view-product"> 
                 <div class="prod-img"> 
-                    <img src="https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg" alt="" height="328" width="728">
+                    <img [src]="product?.imageFile ? 'https://localhost:44367/' + product?.imageFile :'https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg'" alt="" height="328" width="728">
                 </div>
                 <div class="prod-info"> 
                     <div class="prod-info-1">
                         <small class="text">{{ product.stockNumber <= 10 ? 'Only '+product.stockNumber+' item/s left' : 'Total number of items: '+product.stockNumber }}</small>
-                        <p class="text" id="price"><b>Price:</b> P{{ product.price }}</p>
+                        <p class="text" id="price"><b>Price:</b> {{ product.price | currency : 'PHP'}}</p>
                         <h4 id="prod-name"><b>{{ product.name }}</b></h4>
                     </div>
                     <div class="prod-info-2">
-                        <small id="rate"><b>Rate</b> 5.0</small>
-                        <button (click)="addToCart(product)" class="add-to-cart-btn">{{ cartBtnText }} <i class="far fa-cart-plus"></i></button>
+                        <!-- <small id="rate"><b>Rate</b> 5.0</small> -->
+                        <button (click)="addToCart(product)" class="add-to-cart-btn">{{ cartBtnText }} <i class="fal fa-shopping-cart"></i></button>
                     </div>
                 </div>
             </div>
-            <div class="comments">
+            <!-- <div class="comments">
 
-            </div>
+            </div> -->
        </div>
    </div>
 </div>

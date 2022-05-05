@@ -2,14 +2,15 @@
     <div class="header">
         <h1><i (click)="back()" class="fas fa-chevron-left"></i></h1>
         <h2>Products in Cart</h2>
-        <h2>Total : P{{ total }}</h2>
+        <h2>Total : {{ total | currency : 'PHP' }}</h2>
     </div>
     <div class="products">
         <app-products-in-cart 
         [productsInCart]="productsInCart"
         (incrementEvent)="increment($event)"
         (decrementEvent)="decrement($event)"
-        (removeEvent)="remove($event)">
+        (removeEvent)="remove($event)"
+        (adjustQuantityEvent)="adjustQuantityWithInput($event)">
         </app-products-in-cart>
     </div> 
     <h2 id="alert" *ngIf="productsInCart.length == 0">No Products added in cart.</h2>

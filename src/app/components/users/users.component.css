@@ -1,0 +1,13 @@
+p{
+    margin-top: 150px;
+}
+.main-container{
+    padding: 5px;
+    margin-top: 20px;
+}
+.add-btn{
+    display: flex;
+    justify-content: flex-end;
+    margin: 5px;
+    padding: 5px;
+}

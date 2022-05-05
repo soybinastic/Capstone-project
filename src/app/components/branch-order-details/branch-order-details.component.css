@@ -1,0 +1,125 @@
+.details-container{
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 5fr 5fr;
+}
+.details-wrapper{
+    display: flex;
+    flex-direction: column-reverse;
+    border-radius: 5px;
+    padding: 30px;
+    margin-right: 10px;
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+}
+.order-status-control{
+    padding-top: 10px;
+    padding-bottom: 5px;
+}
+.customer-details{
+    display: flex;
+    flex-direction: column;
+}
+.details{
+    display: flex;
+    flex-direction: column;
+}
+.display-data-wrapper{
+    padding: 5px;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+}
+.flex{
+    display: flex;
+    flex-direction: row;
+}
+.display-data-group{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    width: 100%;
+}
+.ddg-p{
+    padding: 10px;
+}
+.display-data{
+    font-size: 15px;
+    margin-right: 10px;
+    font-weight: 600;
+}
+.order-products{
+    padding: 5px;
+    /* mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    background: rgba(70, 57, 23, 0.08); */
+    overflow-y: scroll;
+    height: 450px;
+}
+h5{
+    color: #F2AA4CFF;
+    padding: 5px;
+}
+.order-nav-header{
+    display: flex;
+    justify-content: space-between;
+}
+.status-span{
+    padding: 7px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-align: center;
+}
+.pending{
+    background-color: #FDD20EFF;
+    color: black;
+} 
+.completed{
+    background-color: rgb(136, 219, 3);
+    color: black;
+}
+.cancelled{
+    background-color: red;
+    color: white;
+}
+.yes{
+    background-color: #51bfb9;
+    color: black;
+}
+.no{
+    background-color: #FDD20EFF;
+    color: black;;
+}
+.customer-order-recieve-images{
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.header-title{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+img{
+    border: 5px solid black;
+    margin: 3px;
+}
+#map{
+    height: 70vh;
+    border-radius: 10px;
+}
+.customer-location{
+    margin-top: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.items{
+    display: flex;
+    flex-direction : row;
+    justify-content: flex-start;
+}

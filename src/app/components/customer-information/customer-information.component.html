@@ -1,0 +1,97 @@
+<div class="container" id="container">
+    <div class="header">
+        <div class="item">
+            <h2>Personal Information</h2>
+        </div>
+        <div class="item">
+            <button [class]="form.disabled ? 'btn btn-warning' : 'btn btn-dark'" (click)="toggle()">{{ form.disabled ? 'Enable' : 'Disable' }}</button>
+        </div>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+            <div class="col">
+                <label for="">First Name</label>
+                <input class="form-control" type="text" formControlName="firstName" placeholder="First Name">
+                <div *ngIf="form.controls['firstName'].invalid && (form.controls['firstName'].pristine || form.controls['firstName'].touched)">
+                    <span *ngIf="form.controls['firstName'].errors?.required" class="error-alert">
+                        This field is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="">Middle Name</label>
+                <input class="form-control" type="text" formControlName="middleName" placeholder="First Name">
+                <div
+                    *ngIf="form.controls['middleName'].invalid && (form.controls['middleName'].pristine || form.controls['middleName'].touched)">
+                    <span *ngIf="form.controls['middleName'].errors?.required" class="error-alert">
+                        This field is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="">Last Name</label>
+                <input class="form-control" type="text" formControlName="lastName" placeholder="Last Name">
+                <div
+                    *ngIf="form.controls['lastName'].invalid && (form.controls['lastName'].pristine || form.controls['lastName'].touched)">
+                    <span *ngIf="form.controls['lastName'].errors?.required" class="error-alert">
+                        This field is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="">Address</label>
+                <input class="form-control" type="text" formControlName="address" placeholder="Address">
+                <div
+                    *ngIf="form.controls['address'].invalid && (form.controls['address'].pristine || form.controls['address'].touched)">
+                    <span *ngIf="form.controls['address'].errors?.required" class="error-alert">
+                        This field is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="">Phone Number</label>
+                <input class="form-control" type="text" formControlName="contactNo" placeholder="Phone Number">
+                <div
+                    *ngIf="form.controls['contactNo'].invalid && (form.controls['contactNo'].pristine || form.controls['contactNo'].touched)">
+                    <span *ngIf="form.controls['contactNo'].errors?.required" class="error-alert">
+                        This field is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <label for="">Age</label>
+                <input type="number" class="form-control" formControlName="age" placeholder="Age"/>
+                <div
+                    *ngIf="form.controls['age'].invalid && (form.controls['age'].pristine || form.controls['age'].touched)">
+                    <span *ngIf="form.controls['age'].errors?.required" class="error-alert">
+                        This field is required
+                    </span>
+                </div>
+            </div>
+            <div class="col">
+                <label for="">Birth Date</label>
+                <input type="date" class="form-control" formControlName="birthDate" value="{{ customer?.birthDate | date : 'yyyy-MM-dd' }}"/>
+                <div *ngIf="form.controls['birthDate'].invalid && (form.controls['birthDate'].pristine || form.controls['birthDate'].touched)">
+                    <span *ngIf="form.controls['birthDate'].errors?.required" class="error-alert">
+                        This field is required
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn btn-success form-control mt-4" [disabled] ="form.disabled" type="submit">{{ btnText }}</button>
+            </div>
+        </div>
+    </form>
+</div>

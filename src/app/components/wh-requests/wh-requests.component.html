@@ -1,0 +1,104 @@
+<div class="request-container">
+    <div class="req-wrapper">
+        <div class="header">
+            <h3>Branch Requests</h3>
+        </div> 
+        <div class="requests-container">
+            <div class="requests" *ngFor="let request of requests">
+                <div class="req-box">
+                    <div class="request-header" (click)="showToggle(request.id)">
+                        <div class="desc">
+                            <h4>{{ request.dateRequest | date : 'mediumDate' }}</h4>
+                            <h4 class="h-text">{{ request?.branch?.name }}</h4>
+                        </div>
+                        <hr>
+                    </div> 
+                    <div class="request-products">
+                        <table class="table table-hover" [id]="request.id" hidden>
+                            <thead>
+                                <tr>
+                                    <td>Item Name</td>
+                                    <td>Quantity</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody *ngFor="let requestProduct of request?.requestProducts">
+                                <tr>
+                                    <td>{{ requestProduct?.hardwareProduct?.name }}</td>
+                                    <td>{{ requestProduct?.quantity }}</td>
+                                    <td *ngIf="!requestProduct.isComplete">
+                                        <button class="btn btn-primary" (click)="deliver('dp'+request.id, requestProduct.hardwareProductId, requestProduct, request.branchId)"><i class="fal fa-truck-loading"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> 
+                <div class="refresher" *ngIf="refreshIdentifier == 'dp' +request.id">
+                    <h4>Refreshing...</h4>
+                </div>
+                <div class="deliver-product" [id]="'dp'+request.id" *ngIf="divId == 'dp' +request.id">
+                    <div class="dp-header">
+                        <button class="btn btn-danger" (click)="closeDeliverComponent('dp'+request.id)">Close</button>
+                    </div>
+                    <app-wh-deliver-product [hardwareProductId]="hardwareProductId" [requestProduct]="requestProduct" [branchId]="branchId" (onDeliver)="onDeliverProduct($event)"></app-wh-deliver-product>
+                </div>
+            </div>
+            <!-- <div class="requests">
+                <div class="req-box">
+                    <div class="request-header" (click)="showToggle(2)">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti molestias unde nesciunt enim repellendus vero facilis labore eaque blanditiis quisquam, iusto quibusdam quas, nobis eius veniam. Hic placeat odit error.</p>
+                        <hr>
+                    </div> 
+                    <div class="request-products">
+                        <table class="table table-hover" id="2" hidden>
+                            <thead>
+                                <tr>
+                                    <td>Item Name</td>
+                                    <td>Quantity</td>
+                                    <td>Action</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Product 1</td>
+                                    <td>20</td>
+                                    <td>
+                                        <button class="btn btn-primary" (click)="deliver('dp'+2,2)"><i class="fal fa-truck-loading"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Product 1</td>
+                                    <td>20</td>
+                                    <td>
+                                        <button class="btn btn-primary"><i class="fal fa-truck-loading"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Product 1</td>
+                                    <td>20</td>
+                                    <td>
+                                        <button class="btn btn-primary"><i class="fal fa-truck-loading"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Product 1</td>
+                                    <td>20</td>
+                                    <td>
+                                        <button class="btn btn-primary" (click)="deliver('dp'+2,0)"><i class="fal fa-truck-loading"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> 
+                <div class="deliver-product" [id]="'dp'+2" *ngIf="divId == 'dp'+2">
+                    <div class="dp-header">
+                        <button class="btn btn-danger" (click)="closeDeliverComponent('dp'+2)">Close</button>
+                    </div>
+                    <app-wh-deliver-product [hardwareProductId]="hardwareProductId"></app-wh-deliver-product>
+                </div>
+            </div> -->
+        </div>
+    </div>
+</div>

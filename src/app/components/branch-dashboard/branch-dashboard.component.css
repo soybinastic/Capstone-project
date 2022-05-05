@@ -1,0 +1,83 @@
+.dashboard-container{
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    padding: 32px;
+}
+.db-box{
+    margin: 10px;
+    padding: 30px;
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    width: 300px;
+    border-radius: 10px;
+}
+.no-data{
+    display: flex;
+    justify-content: center;
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    width: 75%;
+    height: 280px;
+    border-radius: 10px;
+    align-items: center;
+}
+.db-box .output{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+.h-1{
+    height: 20px;
+}
+.monthly-sales-container{
+    display: flex;
+    justify-content: center;
+}
+.sale-bar{
+    padding: 5px;
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 5px;
+    margin-bottom: 15px;
+    background-color: #FCF6F5FF;
+    color: #669DB3FF;
+    height: 80px;
+    border-radius: 5px;
+}
+.sale-bar .total-sales{
+    display: flex;
+    justify-content: center;
+}
+.sale-bar .date{
+    display: flex;
+    justify-content: center;
+}
+.monthly-sales-wrapper{
+    padding: 5px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    background-color: #669DB3FF;
+    width: 75%;
+    height: 300px;
+    border-radius: 10px;
+}
+.revenue{
+    background-color: #FCA311;
+}
+.sales{
+    background-color: #14313D;
+    color: white;
+}
+.pending-orders{
+    background-color: #E5E5E5;
+}

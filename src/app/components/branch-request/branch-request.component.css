@@ -1,0 +1,13 @@
+.req-container{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.req-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.content{
+    padding: 10px;
+}

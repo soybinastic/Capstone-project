@@ -4,8 +4,13 @@
         <div class="title">
             <h1>Check Out</h1>
             <div class="infos">
-                <p><b>Total : </b>P{{ total }}</p> 
-                <p>Cash on Delivery</p>
+                <div class="main-info">
+                  <p><b>Total : </b>{{ total | currency : 'PHP'}}</p> 
+                  <p>Cash on Delivery</p>
+                </div>
+                <div class="main-info" *ngIf="deliver">
+                  <p><b>Note: </b>The delivery fee will notify via SMS</p>
+                </div>
             </div>
         </div>
         <form [formGroup]="orderForm" (ngSubmit)="order()">
@@ -21,10 +26,15 @@
               </div>
             </div> 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <!-- <div class="form-group col-md-6">
                   <label for="email">Email</label>
                   <input type="email"  name="email" class="form-control" id="email"
                   formControlName="email" placeholder="Email">
+                </div> -->
+                <div class="form-group col-md-6">
+                  <label for="contactno">Contact no.</label>
+                  <input type="number"  name="contactNo" class="form-control" id="contactno"
+                  formControlName="contactNo" placeholder="968XXXXXXX">
                 </div>
                 <div class="form-group col-md-6">
                   <label for="address">Address</label>
@@ -32,12 +42,64 @@
                   formControlName="address" placeholder="Address">
                 </div>
             </div>
+            <!-- <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="birthDate">Birth date</label>
+                    <input type="date" class="form-control" (change)="onSetBirthDate($event)">
+                    <input type="hidden" formControlName="birthDate" name="birthDate">
+                    <div *ngIf="isBirthDateValid()">
+                      <span *ngIf="orderForm.controls['birthDate'].errors?.required" class="error-alert">This field is required</span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="birthDate">Age</label>
+                    <input type="number" class="form-control" (change)="setAge($event)">
+                    <input type="hidden" formControlName="age" name="age">
+                    <div *ngIf="isAgeValid()">
+                      <span *ngIf="orderForm.controls['age'].errors?.required" class="error-alert">This field is required</span>
+                    </div>
+                </div>
+            </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="contactno">Contact no.</label>
-                    <input type="number"  name="contactNo" class="form-control" id="contactno"
-                    formControlName="contactNo" placeholder="968XXXXXXX">
+                    <label for="exampleFormControlFile1">NBI</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                    (change)="selectedNbi($event)">
+                    <input type="hidden" formControlName="nbi">
+                    <div *ngIf="nbiIsValid()">
+                        <span *ngIf="orderForm.controls['nbi'].errors?.required" class="error-alert">This field is required</span>
+                    </div>
+                </div> 
+                
+                <div class="form-group col-md-6">
+                  <label for="exampleFormControlFile1">Barangay Clearance</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                  (change)="selectedBrgyClearance($event)">
+                  <input type="hidden" formControlName="barangayClearance">
+                  <div *ngIf="brgyClearanceIsValid()">
+                    <span *ngIf="orderForm.controls['barangayClearance'].errors?.required" class="error-alert">This field is required</span>
+                  </div>
                 </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="exampleFormControlFile1">Government Id</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                    (change)="selectedGovernmentId($event)">
+                    <input type="hidden" formControlName="governmentId">
+                    <div *ngIf="governmentIdIsValid()">
+                      <span *ngIf="orderForm.controls['governmentId'].errors?.required" class="error-alert">This field is required</span>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="exampleFormControlFile1">Bank Satement</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1"
+                    (change)="selectedBankStatement($event)">
+                    <input type="hidden" formControlName="bankStatement"> 
+                </div>
+            </div> -->
+            <div class="form-row">
+            
                 <div class="form-group col-md-6">
                     <div class="form-check" id="my-check-box">
                         <input (change)="isDeliver()" class="form-check-input" type="checkbox" value="" id="deliver">
@@ -46,16 +108,22 @@
                         </label>
                     </div>
                 </div>
+                <div class="form-group col-md-6">
+                    <label for="contactno">Place Order</label>
+                    <button [disabled]="isSuccess" id="submit-btn" type="submit" class="btn sbt-btn form-control" title="Post Order">{{ buttonText }}</button>
+                </div>
                
             </div>
             
               <div *ngIf="!isValid" class="alert alert-warning" role="alert">
                 {{ messageError }}
               </div>
-            <div class="my-btn">
+            <!-- <div class="my-btn">
                 <button [disabled]="isSuccess" id="submit-btn" type="submit" class="btn sbt-btn" title="Post Order">{{ buttonText }}</button>
-            </div>
+            </div> -->
           </form>
-    
+          <div class="my-map" [hidden]="!deliver">
+              <div id="map"></div>
+          </div>
     </div>
 </div>

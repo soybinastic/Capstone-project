@@ -1,0 +1,35 @@
+<div class="main-container">
+        <div class="table-wrapper"> 
+            <div class="header-action">
+                <div class="con-header">
+                    <h2>Warehouses Product Status</h2>
+                    <button class="btn btn-outline-success" [routerLink]="['/ware-house','reports','add-status-product']" *ngIf="getRole() != 'StoreOwner' && getRole() != 'SuperAdmin'">Make Report</button>
+                </div>
+            </div>
+            <div class="scrollable">
+                <table class="table table-hover" *ngIf="!clickAddBtn">
+                    <thead>
+                      <tr>
+                        <th scope="col">Warehouse</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Date Reported</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngFor="let report of reports">
+                      <tr>
+                        <td>{{ report.warehouse.name }}</td>
+                        <td>{{ report.description }}</td>
+                        <td>{{ report.dateReported | date : 'short' }}</td>
+                        <td>
+                            <button class="btn btn-outline-warning" [routerLink]="['/ware-house','reports','product-status-info',report.id]">View</button>
+                            <button class="btn btn-outline-danger" *ngIf="report.warehouseId == warehouseAdmin.warehouseId" (click)="removeReport(report.id)">Remove</button>
+                        </td>
+                      
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+            </div>
+        </div> 
+</div>

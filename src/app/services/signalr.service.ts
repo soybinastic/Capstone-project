@@ -21,6 +21,9 @@ export class SignalrService {
     .then(()=> console.log('Connected successfully.'))
     .catch(()=> console.log('Connection failed.'))
   } 
+  public hubConnectionInstance() : HubConnection{
+    return this._hubConnection;
+  } 
 
   public modifiedOrderToAdmin(orders: IOrder[]){
     

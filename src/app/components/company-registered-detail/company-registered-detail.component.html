@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="header">
+        <h4>Applicant Details</h4>
+    </div>
+    <div class="wrapper">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">First Name</label>
+                <label class="form-control">{{ companyRegister?.firstName}}</label>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Last Name</label>
+                <label class="form-control">{{ companyRegister?.lastName }}</label>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Company Name</label>
+                <label class="form-control">{{ companyRegister?.companyName }}</label>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Address</label>
+                <label class="form-control">{{ companyRegister?.address }}</label>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Zip/Postal Code</label>
+                <label class="form-control">{{ companyRegister?.zipCode }}</label>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Country</label>
+                <label class="form-control">{{ companyRegister?.country }}</label>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Region</label>
+                <label class="form-control">{{ companyRegister?.region }}</label>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Email Address</label>
+                <label class="form-control">{{ companyRegister?.emailAddress }}</label>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="">Phone Number</label>
+                <label class="form-control">{{ companyRegister?.phoneNumber }}</label>
+            </div>
+        </div>
+        <div class="image">
+            <label>Business Permit</label>
+            <img [src]="'https://localhost:44367/' + companyRegister?.businessPermitImageFile" alt="" height="430" width="330">
+        </div>
+        
+    </div>
+</div>

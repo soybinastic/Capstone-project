@@ -1,0 +1,29 @@
+.main-page-container{
+    padding: 32px; 
+    background: rgba(164, 156, 156, 0.12);
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    height: 675px;
+} 
+.content .welcome-text{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+.content .warehouse-name h1{
+    font-size: 60px;
+    border-bottom: 2px black solid;
+    padding: 10px;
+}
+.content{
+    display: flex;
+    flex-direction: 
+    column;
+    padding: 32px;
+}
+.wrapper{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}

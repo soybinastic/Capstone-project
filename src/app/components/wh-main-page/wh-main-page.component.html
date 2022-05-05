@@ -1,0 +1,15 @@
+<div class="main-page-container">
+    <div class="wrapper">
+        <div class="content">
+            <div class="welcome-text">
+                <h3>Welcome To</h3>
+            </div>
+            <div class="warehouse-name">
+                <h1>{{ !!storeDetails?.hardwareStoreName ? storeDetails?.hardwareStoreName + ' Warehouse' : 'Loading...' }}</h1>
+            </div> 
+            <div class="current-date">
+                <h4>{{ currentDate | date : 'mediumDate' }}</h4>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 export interface IRegister{
     firstName: string;
     lastName: string;
-    email: string;
+    // email: string;
     contactNo: string;
     address: string; 
     userName: string;

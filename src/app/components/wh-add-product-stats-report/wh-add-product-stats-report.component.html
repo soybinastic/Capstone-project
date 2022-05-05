@@ -1,0 +1,105 @@
+<div class="main">
+    <div class="make-report-container">
+        <div class="form-container">
+            <form [formGroup]="form" (ngSubmit)="addToList()"> 
+                <div class="add-user-header">
+                    <div class="title">
+                        <h3>Form</h3>
+                    </div> 
+                </div>
+                <div class="form-row">
+                  <label for="commentary">Commentary</label>
+                    <input required type="text" name="commentary" class="form-control" id="commentary" placeholder="Commentary" formControlName="commentary">
+                </div> 
+                <hr>
+                <div class="form-row">
+                    <label for="description">Discription</label>
+                      <input required type="text" name="description" class="form-control" id="description" placeholder="Discription" formControlName="description">
+                  </div> 
+                <div class="custom-form-group-row">
+                    <div class="my-form-row">
+                        <div class="form-row"> 
+                            <label for="category">Status</label>
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Status</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroupSelect01" formControlName="statusType">
+                                        <option selected value="">Choose...</option>
+                                        <!-- <option value="Delete Product">Delete Product</option> -->
+                                        <option value="New Product">New Product</option>
+                                        <option value="Update Stock">Update Stock</option>
+                                        <option value="Made Active">Made Activate</option>
+                                        <option value="Made Inactive">Made Inactive</option>
+                                        <option value="Update Something">Update Something</option>
+                                    </select>
+                            </div>
+                        </div> 
+                        <div class="form-row"> 
+                            <label for="category">Product</label>
+                            <div class="input-group mb-3">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="inputGroupSelect01">Products</label>
+                                    </div>
+                                    <select class="custom-select" id="inputGroupSelect01" formControlName="productId">
+                                        <option selected value="">Choose...</option>
+                                        <option *ngFor="let product of products" [value]="product.hardwareProductId">{{ product.hardwareProduct.name }}</option>
+                                        <!-- <option value="1">Product 1</option>
+                                        <option value="2">Product 2</option> -->
+                                    </select>
+                            </div>
+                        </div> 
+                    </div>
+                    
+                     
+                    <div class="my-form-row">
+                        <div class="form-row my-btn"> 
+                            <label for="active">Add to List</label>
+                            <div class="input-group mb-3">
+                                <button type="submit" class="form-control btn btn-outline-warning" >Add to List</button> 
+                            </div>
+                        </div> 
+                        
+                        <div class="form-row my-btn"> 
+                            <label for="active">Send</label>
+                            <div class="input-group mb-3">
+                                <button type="button" class="form-control btn btn-success" [disabled]="productsInList.length == 0" (click)="sendReport()">Send</button>
+                            </div>
+                        </div> 
+                        
+                    </div>
+                </div>
+                <div *ngIf="!isValid" class="alert alert-warning" role="alert">
+                    {{ errorMessage }}
+                </div>
+              </form> 
+              
+        </div>
+        <div class="report-added"> 
+            <h2>Added Report</h2>
+            <div class="table-report">
+                <table id="report-added-tbl" class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Item Name</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Status Type</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let productInList of productsInList; let i = index;">
+                        <tr>
+                            <td>{{ productName[i] }}</td> 
+                            <td>{{ productInList.description }}</td>
+                            <td>{{ productInList.statusType }}</td>
+                            <td *ngIf="productsInList.length > 0">
+                                <button class="btn btn-danger" (dblclick)="remove(i)">Remove</button>
+                            </td>      
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        
+          </div>
+    </div>
+</div>

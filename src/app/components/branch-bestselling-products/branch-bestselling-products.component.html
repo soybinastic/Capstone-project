@@ -1,0 +1,71 @@
+<div class="bestselling-container">
+    <div class="header-nav">
+        <h4>Best Selling Products</h4>
+        <div class="bs-nav-container">
+            <div class="form-group" *ngIf="isBtnShow">
+                <label for="btnOk">Confirm</label>
+                <button class="btn btn-primary form-control" id="btnOk" (click)="confirm()">OK</button>
+            </div>
+            <div class="form-group">
+                <label for="date">Select Date</label>
+                <input type="date" (input)="setDate($event)" class="form-control" id="date" placeholder="Example input">
+            </div>
+            <div class="form-group">
+                <label>Daily/Monthly</label>
+                <select class="form-control" (change)="selectedFilter($event)" [disabled]="bestSellingReports.length > 0">
+                    <option selected value="daily">Daily</option>
+                    <option value="monthly">Monthly</option>
+                </select>
+            </div>
+        </div>
+        <!-- <ul class="bs-nav-container">
+            <li class="nav-menu-item"><a href="">Daily</a></li>
+            <li class="nav-menu-item"><a href="">Monthly</a></li>
+        </ul> -->
+    </div>
+    <div [class]="bestSellingReports.length > 0 ? 'row' : 'content-container'">
+        <div class="wrapper">
+            <div class="content table-scroll">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Total Sale</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let bestSellingProduct of bestSellingProducts">
+                        <tr>
+                            <td>{{ bestSellingProduct?.hardwareProduct?.name}}</td>
+                            <td>{{ bestSellingProduct?.totalSale | currency : 'PHP' }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h3 *ngIf="bestSellingProducts.length == 0">{{ message }}</h3>
+            </div>
+            <hr>
+            <div class="content controls" *ngIf="bestSellingProducts.length > 0">
+                <div class="control">
+                    <button class="btn btn-outline-dark custom-btn" (click)="addAsReport()"><i class="fal fa-file-plus"></i> ADD AS REPORT</button>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper" *ngIf="bestSellingReports.length > 0">
+            <div class="wrapper table-scroll">
+                <app-branch-add-bestselling-report [bestSellingProducts]="bestSellingReports"></app-branch-add-bestselling-report>
+            </div>
+            <div class="control row-control">
+                <div class="form-group">
+                    <label for="">Select Warehouse</label>
+                    <select name="" id="" class="form-control" (change)="selectedWarehouse($event)">
+                        <option selected value="">Choose</option>
+                        <option *ngFor="let warehouse of warehouses" [value]="warehouse.id">{{ warehouse?.name }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="">Send</label>
+                    <button class="btn btn-primary form-control" (click)="onAddReport()">{{ sendReportBtn }}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

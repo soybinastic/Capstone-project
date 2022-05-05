@@ -1,0 +1,43 @@
+<div class="my-container">
+    <div class="my-header">
+        <div class="item">
+            <h2>Recieved/Purchase Product Reports</h2>
+            <div class="form-row" *ngIf="this.getRole() == 'StoreOwner' || this.getRole() == 'SuperAdmin'"> 
+                <label for="category">Select Warehouse</label>
+                <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Warehouses</label>
+                        </div>
+                        <select class="custom-select" id="inputGroupSelect01" (change)="selectedWarehouse($event)">
+                            <option selected value="">Choose...</option>
+                            <option *ngFor="let warehouse of warehouses" [value]="warehouse.id" [selected]="warehouse.id == selectedWarehouseId">{{ warehouse.name }}</option>
+                            <!-- <option value="1">Product 1</option>
+                            <option value="2">Product 2</option>
+                            <option value="3">Product 3</option>
+                            <option value="4">Product 4</option> -->
+                        </select>
+                </div>
+            </div> 
+        </div>
+        <div class="item" *ngIf="this.getRole() == 'WarehouseAdmin'">
+            <button class="btn btn-primary" [routerLink]="['/ware-house','reports','attach-recieved-product']">Attach New Recieved Product</button>
+        </div>
+    </div> 
+    <div class="reports"> 
+        <div class="report" *ngFor="let recieveProduct of recieveProducts"> 
+            <div class="content">
+                <div class="description">
+                    <p>Description</p>
+                    <small><i>{{ recieveProduct.description }}</i></small>
+                </div> 
+                <div class="date-reported">
+                    <p>Date Reported</p>
+                    <small>{{ recieveProduct.dateReported | date : 'mediumDate' }}</small>
+                </div> 
+                <div class="action">
+                    <button class="btn btn-success" [routerLink]="['/ware-house','reports','recieve-product-info',recieveProduct.id]">View</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

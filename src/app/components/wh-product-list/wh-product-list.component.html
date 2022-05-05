@@ -1,0 +1,79 @@
+<div class="main-container">
+    <div class="title">
+        <h2>Products</h2>
+    </div> 
+    <div class="custom-header">
+          <div class="two-inputs">
+            <div class="the-input" *ngIf="getRole() == 'SuperAdmin' || getRole() == 'StoreOwner'">
+              <div class="input-group mb-3" id="option">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Warehouses</label>
+                    </div>
+                    <select class="custom-select" id="inputGroupSelect01" (change)="selectedWarehouse($event)">
+                        <option selected value="">Choose...</option>
+                        <option *ngFor="let warehouse of warehouses" [value]="warehouse.id" [selected]="warehouse.id == selectedWarehouseId">{{ warehouse.name }}</option>
+                        <!-- <option value="Add New Product">Warehouse B</option> -->
+                    </select>
+              </div>
+          </div>
+        <div class="the-input">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="search" class="search-input" placeholder="Serach product.." (input)="search($event)">
+            </div>
+        </div>
+          </div>
+          <div *ngIf="getRole() == 'WarehouseAdmin'">
+            <button class="btn btn-warning the-input" [routerLink]="['/ware-house','reports','add-status-product']">Add Product State Report</button>
+            <button class="btn btn-outline-primary the-input the-input" [routerLink]="['/ware-house','warehouse-manage-products','add-product']">Add New Product</button>
+
+          </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Product Id</th>
+            <th scope="col">Item Name</th>
+            <!-- <th scope="col">Category</th>
+            <th scope="col">Description</th>
+            <th scope="col">Supplier</th> -->
+            <th scope="col">Stock Number</th>
+            <th scope="col">Cost Price</th> 
+            <th scope="col">Active</th>
+            <th scope="col">Added At</th>
+            <th scope="col">Last Modified</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let product of products">
+          <tr>
+            <th scope="row">{{ product.hardwareProductId }}</th>
+            <td>{{ product.hardwareProduct.name }}</td>
+            <!-- <td>{{ product.hardwareProduct.category.name }}</td>
+            <td>{{ product.hardwareProduct.description }}</td>
+            <td>{{ product.hardwareProduct.supplier }}</td> -->
+            <td>{{ product.stockNumber }}</td>
+            <td>{{ product.hardwareProduct.costPrice | currency : "PHP" }}</td>
+            <td>
+              <i [class]="product.isActive ? 'fal fa-check is-active' : 'fal fa-exclamation-triangle not-active'"></i>
+            </td>
+            <td>{{ product.addedAt | date : 'shortDate' }}</td>
+            <td>{{ product.lastModified | date : 'short'}}</td>
+            <td>
+                <button class="btn btn-success" [routerLink]="['wh-product-info', product.hardwareProductId, product.warehouseId]" title="View">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="btn btn-warning" title="Transfer" [routerLink]="['transfer',product.hardwareProductId]" *ngIf="getRole() == 'WarehouseAdmin'">
+                    <i class="far fa-share-square"></i>
+                </button>
+                <button class="btn btn-outline-primary" title="Deliver to branch" [routerLink]="['deliver-product',product.hardwareProductId]" *ngIf="getRole() == 'WarehouseAdmin'">
+                    <i class="fal fa-truck-loading"></i>
+                </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="no-data-display" *ngIf="products.length == 0">
+        <h1>No Data found.</h1>
+      </div>
+</div>

@@ -1,0 +1,11 @@
+<div class="main-container">
+    <div class="item-choice">
+        <ul class="items">
+            <li><a class="text-color" [routerLink]="['/ware-house','warehouse-manage-products']">Products</a></li>
+            <li><a href="" class="text-color" [routerLink]="['/ware-house','warehouse-manage-products','available-products']">Avialable Stocks</a></li>
+            <li><a href="" class="text-color" [routerLink]="['/ware-house','warehouse-manage-products','transfer-products']">Transfer Products</a></li>
+            <!-- <li><a href="">Product Sends</a></li> -->
+        </ul>
+    </div> 
+    <router-outlet></router-outlet>
+</div>

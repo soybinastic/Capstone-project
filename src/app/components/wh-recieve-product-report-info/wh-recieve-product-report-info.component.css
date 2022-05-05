@@ -1,0 +1,33 @@
+.my-container{
+    padding: 35px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.body{
+    display: flex;
+    flex-direction: row;
+
+}
+.report-details{
+    padding-top: 20px;
+}
+.content{
+    width: 30%;
+    margin-right: 20px;
+}
+.recieve-products-table{
+    width: 70%;
+}
+.action-icons{
+    float: right;
+}
+.action-icons i{
+    font-size: 44px;
+} 
+.action-icons i:hover{
+    transform: translateX(4px);
+    /* transform: translateY(2px); */
+    transition: ease-in-out 400ms;
+    cursor: pointer;
+}

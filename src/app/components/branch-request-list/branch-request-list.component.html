@@ -1,0 +1,33 @@
+<div class="req-scroller">
+    <div class="req-container" *ngFor="let request of requests" (click)="showToggle(''+request.id)">
+        <div class="req-header">
+            <div class="req-info">
+                <small>Date Request</small>
+                <h4>{{ request?.dateRequest | date : 'mediumDate' }}</h4>
+            </div>
+            <div class="req-info">
+                <small>Request to</small>
+                <h4>{{ request?.warehouse?.name }}</h4>
+            </div>
+        </div> 
+        <div class="reqs" hidden [id]="request.id">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>Item Name</td>
+                        <td>Quantity</td>
+                        <td>Status</td>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let requestProduct of request?.requestProducts">
+                    <tr>
+                        <td>{{ requestProduct?.hardwareProduct?.name }}</td>
+                        <td>{{ requestProduct?.quantity }}</td>
+                        <td>{{ requestProduct?.isComplete ? 'Complete' : 'Not Complete' }}</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

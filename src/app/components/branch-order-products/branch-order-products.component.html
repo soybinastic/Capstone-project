@@ -1,0 +1,16 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let product of orderProducts">
+        <tr>
+            <td>{{ product?.productName }}</td>
+            <td>{{ product?.productPrice | currency : 'PHP' }}</td>
+            <td>{{ product?.productQuantity }}</td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,50 @@
+<div class="main-container">
+    <div class="header">
+        <div class="text-title">
+            <div class="title-content-header">
+                <h3>List of Transfer products.</h3>
+                <div class="form-row" *ngIf="getRole() == 'SuperAdmin' || getRole() == 'StoreOwner'"> 
+                    <label for="category">Select Warehouse</label>
+                    <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Warehouses</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01" (change)="selectedWarehouse($event)">
+                                <option selected value="">Choose...</option>
+                                <option *ngFor="let warehouse of warehouses" [value]="warehouse.id" [selected]="warehouse.id == selectedWarehouseId">{{ warehouse.name }}</option>
+                                <!-- <option value="1">Product 1</option>
+                                <option value="2">Product 2</option> -->
+                            </select>
+                    </div>
+                </div> 
+            </div>
+            <hr>
+        </div>
+    </div> 
+    <div class="main-content">
+        <div class="parent-item" *ngFor="let moveProducts of moveProductsDisplay; let i = index"> 
+            <div class="date-header">
+                <h2 class="line">{{ moveProducts[0]?.moveDate  | date : 'mediumDate' }}</h2>
+            </div>
+            <div class="container-item">
+                <div class="child-item" *ngFor="let moveProduct of moveProducts">
+                    <div class="item">
+                        <div class="item-name">
+                            <!-- <p><small>Item Name : </small>{{ moveProduct?.product.name }}</p> -->
+                            <h3>Item Name : {{ moveProduct?.product.name }}</h3>
+                            
+                            <hr>
+                        </div> 
+                        <div class="item-quantity">
+                            <!-- <p><small>Quantity : </small>{{ moveProduct?.quantity }}</p> -->
+                            <h3>Quantity : {{ moveProduct?.quantity }}</h3>
+                        </div>
+                    </div> 
+                    <div class="move-to">
+                        <p><b>To : </b> {{ moveProduct?.toWarehouse.name }}</p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+</div>

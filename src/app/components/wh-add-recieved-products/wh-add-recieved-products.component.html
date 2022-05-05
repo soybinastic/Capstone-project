@@ -1,0 +1,74 @@
+<div class="my-container"> 
+    <div class="my-header">
+        <div class="content-header">
+            <h3>Attach Recieved Products</h3>
+            <button class="btn btn-outline-warning" [routerLink]="['/ware-house','warehouse-manage-products','add-product']">New Product</button>
+        </div>
+        <hr>
+    </div> 
+    <div class="content-container">
+        <div class="main-form">
+            <form [formGroup]="form" (ngSubmit)="addToList()"> 
+                <div class="form-row">
+                    <label for="description">Report Description</label>
+                    <input required type="text" name="description" class="form-control" id="description" placeholder="Recieve product report description" formControlName="description">
+                </div> 
+                <hr>
+                <div class="form-row"> 
+                    <label for="category">Select Product</label>
+                    <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Products</label>
+                            </div>
+                            <select class="custom-select" id="inputGroupSelect01" formControlName="hardwareProductId" (change)="selectProduct($event)">
+                                <option selected value="">Choose...</option>
+                                <!-- <option value="Delete Product">Delete Product</option> -->
+                                <option *ngFor="let product of products" [value]="product.hardwareProductId">{{ product.hardwareProduct.name }}</option>
+                                <!-- <option value="2">Product 2</option>
+                                <option value="3">Product 3</option> -->
+                            </select>
+                    </div>
+                </div> 
+                <div class="my-form-row">
+                    <div class="form-row">
+                        <label for="costPrice">Cost Price</label>
+                        <input required type="number" name="costPrice" class="form-control" id="costPrice" placeholder="Cost Price" formControlName="costPrice">
+                    </div> 
+                    
+                    <div class="form-row">
+                        <label for="quantity">Quantity</label>
+                        <input required type="number" name="quantity" class="form-control" id="quantity" placeholder="Quantity" formControlName="quantity">
+                    </div> 
+                </div>
+               
+                <div *ngIf="!isValid" class="alert alert-warning" role="alert">
+                    {{ errorMessage }}
+                </div> 
+                <div class="form-row" id="form-row">
+                    <button type="submit" class="form-control btn btn-outline-primary my-btn">Add To List</button>
+                    <button type="button" class="form-control btn btn-success my-btn" [disabled]="recievedProducts?.length == 0" (click)="onAttach()">Attach</button>
+                </div>
+              </form> 
+        </div> 
+        <div class="report-added">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <td>Product Name</td>
+                        <td>Cost Price</td>
+                        <td>Quantity</td>
+                        <td>Action</td>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let product of recievedProducts; let i = index;">
+                    <tr>
+                        <td>{{ product.productName}}</td>
+                        <td>{{ product.costPrice }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td><button class="btn btn-danger" (dblclick)="removeToList(i)">Remove</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

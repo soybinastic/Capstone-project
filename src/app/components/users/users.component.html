@@ -1,0 +1,31 @@
+<div class="main-container">
+    <div class="add-btn">
+        <button type="button" [routerLink]="['/ware-house','add-user']" class="btn btn-primary btn-lg">Add User</button>
+    </div>
+    <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Username</th>
+            <th scope="col">Email</th>
+            <th scope="col">User From</th>
+            <th scope="col">Role</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let user of users">
+            <tr>
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.userName}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.userFrom}}</td>
+              <td>{{user.role}}</td>
+              <td><button class="btn btn-outline-success" [routerLink]="['/ware-house','user-details',user.id]">User Details</button></td>
+            </tr>
+          
+        </tbody>
+      </table>
+      
+</div>

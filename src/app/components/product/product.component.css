@@ -2,12 +2,14 @@
     /* height: 460px;
     background-color: blanchedalmond;
     border-radius: 7px; */
+    display: flex;
+    flex-direction: column;
     width: 299px;
-    height: 501px;
+    /* height: 501px; */
 
     background: rgba(70, 57, 23, 0.08);
     box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
-    border-radius: 15px;
+    border-radius: 5px;
     
 }
 .prod-img{
@@ -17,14 +19,18 @@
     font-size: 15px;
 }
 a{
-    text-decoration: none;
+    color: black;
+    font-weight: 600px;
 }
 .prod-content{
-    position: relative;
+    /* position: relative;
     display: grid;
     grid-template-rows: 1fr 1fr 2fr 2fr;
     margin-left: 10px;
-    margin-right: 10px;
+    margin-right: 10px; */
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
 }
 .prod-btn{
     height: 40px;
@@ -38,5 +44,5 @@ a{
     
 }
 img{
-    border-radius: 15px 15px 15px 15px;
+    border-radius: 5px 5px 5px 5px;
 }

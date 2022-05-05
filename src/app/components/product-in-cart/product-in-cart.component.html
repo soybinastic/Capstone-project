@@ -3,7 +3,7 @@
     <i (click)="remove(productInCart)" class="fal fa-times remove-to-cart" title="Remove"></i>
     <div class="product">
         <div class="prod-img">
-            <img src="https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg" alt="" height="293" width="279">
+            <img [src]="product?.imageFile ? 'https://localhost:44367/' + product?.imageFile :'https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg'" alt="" height="293" width="279">
         </div> 
         <div class="content">
             <div class="prod-info">
@@ -12,10 +12,12 @@
                 <p>{{ productInCart.productName }}</p>
             </div>
             <div class="adjust-quantity">
-                <button (click)="increment(productInCart)" class="adjust-btn icrement"><i class="fal fa-plus my-icon"></i></button>
-                <p><b>QTY :</b>{{ productInCart.productQuantity }}</p>
-                <button (click)="decrement(productInCart)" class="adjust-btn decrement"><i class="fal fa-minus my-icon"></i></button>
-            </div>
+                <button *ngIf="showButton" (click)="increment(productInCart)" class="adjust-btn icrement adjust"><i class="fal fa-plus my-icon"></i></button>
+                <!-- <p><b>QTY :</b>{{ productInCart.productQuantity }}</p> -->
+                <input type="number" [value]="productInCart.productQuantity" class="qty-input adjust" (input)="onAdjust($event)">
+                <button *ngIf="showButton" (click)="decrement(productInCart)" class="adjust-btn decrement adjust"><i class="fal fa-minus my-icon"></i></button>
+            </div> 
+            <button *ngIf="!showButton" class="btn btn-dark" (click)="onClickAdjust()">OK</button>
         </div>
     </div>
    </div>

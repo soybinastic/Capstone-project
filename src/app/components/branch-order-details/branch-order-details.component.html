@@ -1,0 +1,150 @@
+<div class="details-container">
+    <div class="details-wrapper">
+        <div class="customer-details">
+            <h5>Customer Details</h5>
+            <div class="details">
+                <div class="display-data-wrapper flex">
+                    <div class="display-data-group">
+                        <small>First Name</small>
+                        <small class="display-data">{{ customerOrderDetails?.firstName }}</small>
+                    </div>
+                    <div class="display-data-group">
+                        <small>Last Name</small>
+                        <small class="display-data">{{ customerOrderDetails?.lastName }}</small>
+                    </div>
+                </div>
+                <div class="display-data-wrapper flex">
+                    <div class="display-data-group">
+                        <small>Contact No.</small>
+                        <small class="display-data">{{ customerOrderDetails?.contactNo }}</small>
+                    </div>
+                    <!-- <div class="display-data-group">
+                        <small>Email</small>
+                        <small class="display-data">{{ customerOrderDetails?.email }}</small>
+                    </div> -->
+                    <div class="display-data-group">
+                        <small>Addres</small>
+                        <small class="display-data">{{ customerOrderDetails?.address }}</small>
+                    </div>
+                </div>
+                <!-- <div class="display-data-wrapper flex">
+                    <div class="display-data-group">
+                        <small>Birth Date</small>
+                        <small class="display-data">{{ customerOrderDetails?.birthDate | date : 'mediumDate'}}</small>
+                    </div>
+                   
+                    <div class="display-data-group">
+                        <small>Age</small>
+                        <small class="display-data">{{ customerOrderDetails?.age }}</small>
+                    </div>
+                </div> -->
+                <!-- <div class="display-data-wrapper">
+                    <div class="display-data-group">
+                        <small>Addres</small>
+                        <small class="display-data">{{ customerOrderDetails?.address }}</small>
+                    </div>
+                </div> -->
+                <div class="display-data-wrapper order-status-control">
+                    <div class="display-data-group ddg-p">
+                        <small>Order Status</small>
+                        <select class="custom-select" id="inputGroupSelect01" (change)="orderStatusSelected($event)">
+                            <option selected value="">Choose...</option>
+                            <option value="1">Cancelled</option>
+                            <option value="2">Done</option>
+                            <!-- <option value="2">Two</option>
+                            <option value="3">Three</option> -->
+                          </select>
+                    </div>
+                    <div class="display-data-group ddg-p">
+                        <small>Submit</small>
+                        <button class="btn btn-dark" (click)="onUpdateOrder()" [disabled]="order?.status != 'Pending' || !order?.isApproved">{{ buttonText }}</button>
+                    </div>
+                    <div class="display-data-group ddg-p" *ngIf="getRole() == 'StoreAdmin'">
+                        <small>Order Approval</small>
+                        <button [class]="order?.isApproved ? 'btn btn-primary' : 'btn btn-warning'" [disabled]="order?.isApproved
+                        " (click)="approveOrder()">{{ order?.isApproved ? 'Approved' : approveBtnText }}</button>
+                    </div>
+                    <div class="display-data-group ddg-p" *ngIf="getRole() == 'StoreAdmin' && completedOrder != null">
+                        <small>Order Confirmation</small>
+                        <button [class]="completedOrder?.isConfirmed ? 'btn btn-success' : 'btn btn-primary'" [disabled]="completedOrder?.isConfirmed
+                        " (click)="confirmOrder()">{{ completedOrder?.isConfirmed ? 'Confirmed' : confirmBtnText }}</button>
+                    </div>
+                    <div class="display-data-group ddg-p" *ngIf="order?.status == 'Completed'">
+                        <small class="form-label">Select Images</small>
+                        <input type="file" name="" id="" class="form-control" multiple (change)="selectedImages($event)">
+                    </div>
+                    <div class="display-data-group ddg-p" *ngIf="attachBtnIsShow">
+                        <small class="form-label">Submit</small>
+                        <button class="btn btn-primary" (click)="attachImages()">{{ attachBtnText }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="order-details">
+            <div class="order-nav-header">
+                <h5>Order Details</h5>
+                <small class="date-confirmed-text" *ngIf="order?.status != 'Pending'">Date Confirmed {{ order?.dateConfirmed | date : 'mediumDate'}}</small>
+            </div>
+            <div class="display-data-wrapper flex">
+                <div class="display-data-group">
+                    <small>Date Ordered</small>
+                    <small class="display-data">{{ order?.orderDate | date : 'mediumDate' }}</small>
+                </div>
+                <div class="display-data-group">
+                    <small>Total</small>
+                    <small class="display-data">{{ order?.total | currency : 'PHP' }}</small>
+                </div>
+            </div>
+            <div class="display-data-wrapper flex">
+                <div class="display-data-group">
+                    <small>Status</small>
+                    <small [class]="statusClasses(order?.status) + ' display-data'">{{ order?.status }}</small>
+                </div>
+                <div class="display-data-group">
+                    <small>Is Deliver</small>
+                    <small [class]="isDeliverClasses(order.deliver) + ' display-data'">{{ order?.deliver ? 'YES' : 'NO' }}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="order-products">
+        <h5>Order Products</h5>
+        <app-branch-order-products [orderProducts]="orderProducts"></app-branch-order-products>
+    </div>
+</div>
+<!-- <div class="customer-location">
+    <div class="header-title">
+        <h4>Verifications Data</h4>
+    </div>
+    <div class="items">
+        <div class="img-item">
+            <img [src]="'https://localhost:44367/' + customerOrderDetails?.nbi" alt="" height="300" width="300">
+        </div>
+        <div class="img-item">
+            <img [src]="'https://localhost:44367/' + customerOrderDetails?.barangayClearance" alt="" height="300" width="300">
+        </div>
+        <div class="img-item">
+            <img [src]="'https://localhost:44367/' + customerOrderDetails?.governmentId" alt="" height="300" width="300">
+        </div>
+        <div class="img-item">
+            <img [src]="'https://localhost:44367/' + customerOrderDetails?.bankStatement" alt="" height="300" width="300">
+        </div>
+    </div>
+
+</div> -->
+<div class="customer-location">
+    <div class="header-title">
+        <h4>Location</h4>
+    </div>
+    <div id="map"></div>
+</div>
+<div class="customer-order-recieve-images">
+    <div class="header-title">
+        <h4>Customer Images</h4>
+    </div>
+    <div class="content">
+        <img *ngFor="let image of imageFiles" [src]="'https://localhost:44367/' + image" alt="" height="300" width="300">
+       
+        <h2 *ngIf="imageFiles.length == 0" style="text-align: center;">No Images Uploaded</h2>
+    </div>
+</div>

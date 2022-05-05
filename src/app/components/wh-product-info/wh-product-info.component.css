@@ -1,0 +1,33 @@
+p{
+    /* margin-top: 100px; */
+}
+.main-container{
+    padding: 5px;
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+.add-user-header{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+.product-image{
+    margin-right: 10px;
+}
+#submit-btn{
+    margin: 5px;
+    padding: 3px;
+    width: 50%;
+    /* height: 50px; */
+}
+.btn-add{
+    display: flex;
+    justify-content: space-between;
+}
+.dd-role{
+    display: flex;
+    justify-content: center;
+}

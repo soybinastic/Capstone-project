@@ -1,0 +1,105 @@
+<div class="container">
+    <div class="header">
+        <h2>Register your business</h2>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="register()">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Business Owner First name</label>
+                <input type="text" class="form-control" placeholder="First Name" formControlName="firstName">
+                <div *ngIf="firstNameIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['firstName'].errors?.required">This field is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Business Owner Last name</label>
+                <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName">
+                <div *ngIf="lastNameIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['lastName'].errors?.required">This field is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Company Name</label>
+                <input type="text" class="form-control" placeholder="Company Name" formControlName="companyName">
+                <div *ngIf="companyNameIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['companyName'].errors?.required">This field is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Address</label>
+                <input type="text" class="form-control" placeholder="Address" formControlName="address">
+                <div *ngIf="addressIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['address'].errors?.required">This field is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Zip/Postal Code</label>
+                <input type="text" class="form-control" placeholder="Zip/Postal Code" formControlName="zip">
+                <div *ngIf="zipIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['zip'].errors?.required">This field is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Country</label>
+                <input type="text" class="form-control" placeholder="Country" formControlName="country">
+                <div *ngIf="countryIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['country'].errors?.required">This field is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Region</label>
+                <input type="text" class="form-control" placeholder="Region" formControlName="region">
+                <div *ngIf="regionIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['region'].errors?.required">This field is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Phone Number</label>
+                <input type="tel" class="form-control" placeholder="09XXXXXXXXX" formControlName="phoneNumber">
+                <div *ngIf="phoneNumberIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['phoneNumber'].errors?.required">This field is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Email Address</label>
+                <input type="text" class="form-control" placeholder="Email Address"
+                formControlName="email">
+                <div *ngIf="emailIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['email'].errors?.required">
+                        This field is required
+                    </span>
+                    <span class="error-alert" *ngIf="form.controls['email'].errors?.email">
+                        Not a valid email address
+                    </span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>Business Permit</label>
+                <input type="file" class="form-control-file" placeholder="Address" (change)="selectedFile($event)">
+                <input type="hidden" formControlName="businessPermit">
+                <div *ngIf="businessPermitIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['businessPermit'].errors?.required">This field is required</span>
+                </div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <!-- <div class="form-check" id="my-check-box">
+                    <input class="form-check-input" type="checkbox" value="" id="privacyAccept">
+                    <label class="form-check-label" for="deliver" id="my-label">
+                        
+                    </label>
+                </div> -->
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" (change)="setPrivacy($event)" [checked]="isAcceptedTermsAndConditions">
+                    <label class="form-check-label" for="gridCheck">
+                        Accept <a target="_blank" [routerLink]="['/privacy-and-termconditions']">Privacy and (Terms and Conditions)</a>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="submit" class="btn btn-primary form-control" [disabled]="!isAcceptedTermsAndConditions || !form.valid">{{ btnText }}</button>
+            </div>
+        </div>
+    </form>
+</div>

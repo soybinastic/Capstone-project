@@ -1,0 +1,19 @@
+<div class="sale-report-container">
+    <div class="header">
+        <h3>Sale Reports</h3>
+    </div>
+    <div class="content">
+        <div class="data-container" *ngFor="let saleReport of saleReports">
+            <div class="data-header">
+                <p>Date Reported : {{ saleReport?.dateReported | date : 'mediumDate' }}</p>
+                <p>{{ saleReport?.saleType | titlecase }} Sale</p>
+            </div>
+            <div class="data-wrapper">
+                <div class="data">
+                    <h3 class="data-val">Date Sale: {{ saleReport?.saleType == 'daily' ? (saleReport?.dateSale | date : 'mediumDate') : (saleReport?.dateSale | date : 'MMMM') }}</h3>
+                    <h3 class="data-val">Total Sale: {{ saleReport?.totalSales | currency : 'PHP' }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,6 +15,34 @@ export class ProductService {
 
   constructor(private http : HttpClient, private accountService : AccountService) { } 
 
+  getHardwareProducts(branchId : number) : Observable<any[]>{
+    // /api/Product/get-hardwareproducts/{branchId}
+    const httpHeader = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+    } 
+
+    return this.http.get<any[]>(this.url + 'api/Product/get-hardwareproducts/' + branchId, httpHeader)
+  }
+  getHardwareProductByCategory(branchId : number, categoryId : number) : Observable<any[]>{
+    // /api/Product/get-hardwareproduct-by-category/{branchId}/{categoryId}
+    const httpHeader = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+    } 
+    return this.http.get<any[]>(this.url + 'api/Product/get-hardwareproduct-by-category/' + branchId + '/' + categoryId, httpHeader)
+  } 
+
+  getHardwareProduct(branchId : number, productId : number) : Observable<any>{
+    // /api/Product/get-hardwareproduct/{branchId}/{productId}
+    const httpHeader = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+    } 
+
+    return this.http.get<any>(this.url + 'api/Product/get-hardwareproduct/' + branchId + '/' + productId, httpHeader)
+  }
+
   getProductsByCategory(hardwareStoreId:number, categoryId:number) : Observable<IProduct[]>{
     const httpHeader = {
       headers: new HttpHeaders()

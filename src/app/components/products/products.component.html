@@ -1,6 +1,11 @@
 <div class="main-products"> 
     <div class="categ-header">
         <ul class="items scrollable">
+            <li class="item">
+                <form [formGroup]="form" (ngSubmit)="onSearch()">
+                    <input type="search" class="categ-btn" placeholder="Search a product" formControlName="searchItem"/>
+                </form>
+            </li>
             <li class="item"><button (click)="navigate()" class="categ-btn">All</button></li>
             <div *ngFor="let category of categories">
                 <li class="item"><button (click)="navigate(category.categoryId)" class="categ-btn">{{ category.categoryName }}</button></li>

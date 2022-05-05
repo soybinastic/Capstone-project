@@ -1,0 +1,15 @@
+#warehouse-nav{
+    margin-top: 50px;
+    background: rgba(164, 156, 156, 0.12);
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    /* font-size: 22px; */
+    font-weight: 600;
+}
+li a{
+    padding-left: 10px;
+}
+.notif{
+    float: right;
+}

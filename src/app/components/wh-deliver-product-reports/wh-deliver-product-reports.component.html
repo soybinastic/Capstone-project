@@ -1,0 +1,48 @@
+<div class="report-container">
+    <div class="header">
+        <h3>Delivered Products in Branch</h3>
+        <div class="the-input" *ngIf="getRole() == 'SuperAdmin' || getRole() == 'StoreOwner'">
+            <div class="input-group mb-3" id="option">
+                  <div class="input-group-prepend">
+                      <label class="input-group-text" for="inputGroupSelect01">Warehouses</label>
+                  </div>
+                  <select class="custom-select" id="inputGroupSelect01" (change)="selectedWarehouse($event)">
+                      <option selected value="">Choose...</option>
+                      <option *ngFor="let warehouse of warehouses" [value]="warehouse.id" [selected]="warehouse.id == selectedWarehouseId">{{ warehouse.name }}</option>
+                      <!-- <option value="Add New Product">Warehouse B</option> -->
+                  </select>
+            </div>
+        </div>
+    </div> 
+    <div class="reports-wrapper">
+        <div class="deliver-product-container">
+            <div class="report" *ngFor="let deliverProductReport of deliverProducts" (click)="showToggle(deliverProductReport?.reportDetails?.id)">
+                <div>
+                    <div class="report-info">
+                        <h2>{{ deliverProductReport?.reportDetails?.dateReported | date : 'mediumDate'}}</h2>
+                        <h3>Delivered Products</h3>
+                    </div>
+                    <hr>
+                </div> 
+                <div class="deliver-products" hidden [id]="deliverProductReport?.reportDetails?.id">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <td>Item Name</td>
+                                <td>Delivered to</td>
+                                <td>Quantity</td>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let deliverProduct of deliverProductReport?.deliverProducts">
+                            <tr>
+                                <td>{{ deliverProduct?.warehouseProduct?.hardwareProduct?.name }}</td>
+                                <td>{{ deliverProduct?.branch?.name }}</td>
+                                <td>{{ deliverProduct?.quantity}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

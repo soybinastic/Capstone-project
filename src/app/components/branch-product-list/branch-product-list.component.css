@@ -1,0 +1,26 @@
+.list-product{
+    display: flex;
+    flex-direction: column;
+}
+.list-product-header{
+    display: flex;
+    justify-content: space-between;
+}
+.search-input{
+    height: 38px;
+    width: 60vh;
+    font-size: 19px;
+    padding: 12px;
+    border-width: 0px;
+    border: 0;
+    outline: 0;
+}
+.header-item{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+}
+.with-line{
+    border-bottom: 2px solid black;
+}

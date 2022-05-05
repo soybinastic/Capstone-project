@@ -1,0 +1,43 @@
+
+.main-container{
+    padding: 5px;
+}
+.form-container{
+    display: flex;
+    justify-content: center;
+    
+}
+.add-form{
+    margin-top: 3%;
+    padding: 30px;
+    background: rgba(164, 156, 156, 0.12);
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    border-radius: 11px;
+    width: 50%;
+    height: auto;
+    min-height: 100%;
+}
+.invalid{
+    margin-top: 0%;
+}
+.add-user-header{
+    display: flex;
+    justify-content: space-evenly;
+    padding: 15px;
+}
+#submit-btn{
+    margin: 5px;
+    padding: 3px;
+    width: 50%;
+    /* height: 50px; */
+}
+.btn-add{
+    display: flex;
+    justify-content: space-between;
+}
+.dd-role{
+    display: flex;
+    justify-content: center;
+}

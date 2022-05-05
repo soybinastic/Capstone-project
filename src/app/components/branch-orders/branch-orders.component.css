@@ -1,0 +1,21 @@
+.orders-container{
+    padding : 20px;
+    display: flex;
+    flex-direction: column;
+}
+.orders-header{
+    display: flex;
+    justify-content: flex-start;
+}
+.order-text{
+    padding: 5px;
+    border-bottom: 3px black solid;
+}
+a{
+    margin-right: 15px;
+    margin-bottom: 20px;
+    color: black;
+    font-weight: 600;
+    font-size: 24px;
+}
+

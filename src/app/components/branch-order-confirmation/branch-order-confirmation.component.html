@@ -1,0 +1,23 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Customer</th>
+            <th>Confirmed by</th>
+            <th>Date Confirmed</th>
+            <th>Order Date</th>
+            <th>Total Amount</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody *ngFor="let completedOrder of completedOrders">
+        <tr>
+            <td>{{ completedOrder?.customer?.firstName + ', ' + completedOrder?.customer?.lastName }}</td>
+            <td>{{  completedOrder?.confirmedBy?.firstName + ', ' + completedOrder?.confirmedBy?.lastName}} <small>({{ completedOrder?.confirmedBy?.role }})</small></td>
+            <td>{{ completedOrder?.dateConfirmed | date : 'medium' }}</td>
+            <td>{{ completedOrder?.order?.orderDate | date : 'medium' }}</td>
+            <td>{{ completedOrder?.order?.total | currency : 'PHP' }}</td>
+            <td><button [class]="completedOrder?.isConfirmed ? 'btn btn-success' : 'btn btn-primary'" [disabled]="completedOrder?.isConfirmed" (click)="confirmOrder(completedOrder.orderId)"><i [class]="completedOrder?.isConfirmed ? 'fal fa-check' : 'fal fa-box-check'"></i> {{ completedOrder?.isConfirmed ? 'Confirmed' : 'Confirm Order' }}</button></td>
+        </tr>
+        
+    </tbody>
+</table>

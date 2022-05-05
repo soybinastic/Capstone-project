@@ -1,0 +1,38 @@
+.report-container{
+    padding: 42px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.reports-wrapper{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+.deliver-products{
+    margin: 30px;
+    padding: 20px;
+}
+.h2-text{
+    border-bottom: 3px black solid;
+    padding: 10px;
+}
+.report{
+    padding: 20px;
+    mix-blend-mode: darken;
+    box-sizing: border-box;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    margin: 10px;
+    border-radius : 10px;
+    width: 1000px;
+}
+.report-info{
+    display: flex;
+    justify-content: space-between;
+}
+.report:hover{
+    cursor : pointer;
+    background: rgba(164, 156, 156, 0.12);
+    transform: translateY(3px);
+    transition: ease-in 330ms;
+}
