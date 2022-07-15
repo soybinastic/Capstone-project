@@ -38,13 +38,15 @@ export class BranchSaleItemYearlyComponent implements OnInit {
     console.log(this.source)
     console.log(this.saleItems)
   }
-  download(id : number) {
-    this.saleService.download(id)
-      .subscribe((data) => {
-        console.log(data)
-      }, (err) => {
-        console.log(err)
-      })
+  download(id : number, orderRefNo : string) {
+    // this.saleService.download(id, orderRefNo)
+    //   .subscribe((data) => {
+    //     console.log(data)
+    //   }, (err) => {
+    //     console.log(err)
+    //     alert("Something went wrong!.");
+    //   })
+    this.saleService.dowloadOr(id, orderRefNo);
   }
   onSearch(event : any) : void {
     const value : string = event.target.value.toString()

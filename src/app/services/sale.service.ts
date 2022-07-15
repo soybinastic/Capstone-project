@@ -117,13 +117,17 @@ export class SaleService {
     return this.http.get<any[]>(this.url + 'api/Sale/get-sale-item?date=' + date + '&filterBy=' + filterBy, httpOptions)
   }
 
-  download(id : number) : Observable<any> {
-    const httpOptions = {
-      headers: new HttpHeaders()
-        .set('Content-Type', 'application/json')
-        .set('Authorization', 'Bearer ' + this.accountService.getToken())
-    }
+  download(id : number, or : string) : Observable<any> {
+    // const httpOptions = {
+    //   headers: new HttpHeaders()
+    //     .set('Content-Type', 'application/json')
+    //     .set('Authorization', 'Bearer ' + this.accountService.getToken())
+    // }
 
-    return this.http.post<any>(this.url + 'api/Sale/download/' + id, {}, httpOptions)
+    return this.http.get<any>(this.url + 'api/Sale/download/' + id + '?order_ref=' + or)
+  } 
+
+  dowloadOr(id: number, or : string){
+    window.location.href = this.url + 'api/Sale/download/' + id + '?order_ref=' + or
   }
 }

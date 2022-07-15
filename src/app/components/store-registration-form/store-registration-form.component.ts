@@ -10,7 +10,7 @@ import { CompanyRegisteredService } from 'src/app/services/company-registered.se
 export class StoreRegistrationFormComponent implements OnInit {
 
   isAcceptedTermsAndConditions : boolean = false
-  btnText : string = 'Register'
+  btnText : string = 'Submit'
   form : FormGroup;
   constructor(private fb : FormBuilder, private companyRegisterService : CompanyRegisteredService) {
     //this.formInit()
@@ -93,7 +93,7 @@ export class StoreRegistrationFormComponent implements OnInit {
     this.companyRegisterService.register(data)
       .subscribe((res) => {
         alert(res.message)
-        this.btnText = 'Register'
+        this.btnText = 'Processing...'
       }, (err) => {
         alert('Something went wrong.')
       })
