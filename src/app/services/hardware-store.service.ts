@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { IHardwareStore } from '../models/hardware-store-models/hardwarestore';
 import { IRegisterHardware } from '../models/hardware-store-models/registerhardwarestore';
 import { AccountService } from './account.service';
+import { environment } from 'src/environments/environment';
 
 const httpHeaders = {
   headers: new HttpHeaders(
@@ -16,7 +17,8 @@ const httpHeaders = {
   providedIn: 'root'
 })
 export class HardwareStoreService {
-  private url = "https://localhost:44367/";
+  private url = environment.apiUrl
+  // private url = "https://localhost:44367/";
 
   constructor(private http: HttpClient, private accountService: AccountService) { }  
 

@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 import { ICategory } from '../models/category-models/category';
 import { ICreateCategory } from '../models/category-models/createcategory';
 import { AccountService } from './account.service';
-
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoryService {
-  private url = "https://localhost:44367/";
+  private url = environment.apiUrl;
+  //private url = "https://localhost:44367/";
   constructor(private http : HttpClient, private accountService : AccountService) { } 
 
   createCategory(createCat : ICreateCategory) : Observable<any>{

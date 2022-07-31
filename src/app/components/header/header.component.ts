@@ -9,14 +9,22 @@ import { AccountService } from 'src/app/services/account.service';
 })
 export class HeaderComponent implements OnInit {
 
+  currentRoute : string
   isLogin : boolean;
   role: string;
-  constructor(private accountService: AccountService, private route: Router) { }
+  constructor(private accountService: AccountService, private route: Router) {
+      route.events.subscribe(() => {
+        this.currentRoute = route.url
+        //console.log(route.url)
+      })
+   }
 
   ngOnInit(): void { 
     this.isLogin = this.accountService.isLoggedIn();
-    if(this.isLogin)
+    if(this.isLogin){
       this.role = this.accountService.getUserRole();
+    }
+    
   } 
 
   logOut(){

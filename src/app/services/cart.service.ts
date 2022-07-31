@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { IAddToCart } from '../models/cart-model/addtocart';
 import { ICart } from '../models/cart-model/cart';
 import { AccountService } from './account.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  private url = "https://localhost:44367/";
+  private url = environment.apiUrl;
+  //private url = "https://localhost:44367/";
   constructor(private http : HttpClient ,private accountService : AccountService) { } 
 
   addToCart(addToCart : IAddToCart) : Observable<any>{

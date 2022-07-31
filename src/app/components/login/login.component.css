@@ -88,10 +88,10 @@ i{
     color: #F4DF4EFF;
     font-size: 45px;
 }
-.title{
+/* .title{
     font-size: 25px;
     color: rgb(145, 116, 116);
-}
+} */
 .my-btn:hover{
     transform: translateY(2px);
     transition: cubic-bezier(1, 0, 0, 1) 350ms;
@@ -100,4 +100,61 @@ i{
     background-color: #fcfcfc;
     transform: translateY(4px);
     transition: ease-out 350ms;
-}  */
+}  */ 
+
+.container-login{
+    padding: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-ctrl-container{
+    /* padding: 1vh; */
+    justify-content: center;
+    align-items: center;
+}
+.form-ctrl{
+    font-size: 12px;
+    padding: 1vh;
+    width: 300px;
+    outline: 1px;
+    margin: 3px;
+    /* width: 200%; */
+} 
+.login-btn{
+    padding: 1.5vh;
+    margin-top: 2vh;
+    border-radius: 30px;
+    font-weight: 800;
+    border: 0;
+    background-color: #f5d020;
+    background-image: linear-gradient(315deg, #f5d020 0%, #f33918 74%);
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    padding-left: 5vh;
+    padding-right: 5vh;
+    padding-bottom: 5vh;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+.bottom-text{
+    margin: 5vh;
+}
+
+.header-title{
+    padding: 4vh;
+}
+.title{
+    font-size: 23px;
+    font-weight: 900;
+} 
+.error-message{
+    color: red;
+    margin: 5px;
+}

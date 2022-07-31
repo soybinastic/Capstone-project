@@ -1,4 +1,4 @@
-<div class="main"> 
+<!-- <div class="main"> 
     <div class="details"> 
         <h1 id="store-title">Fast Online Hardware</h1>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, assumenda.</p>
@@ -27,5 +27,24 @@
         <div id="mess-alert" *ngIf="!isValid" class="alert alert-warning" role="alert">
             {{ message }}
           </div>
+    </div>
+</div> --> 
+
+<div class="container-login">
+    <div class="login-form">
+        <div class="header-title">
+            <p class="title">Fastline Hardware</p>
+        </div>
+        <form [formGroup]="form" (ngSubmit)="logIn()">
+            <div class="form-ctrl-container">
+                <input type="text" placeholder="Username" class="form-ctrl" formControlName="username">
+            </div>
+            <div class="form-ctrl-container">
+                <input type="password" placeholder="Password" class="form-ctrl" formControlName="password">
+            </div> 
+            <button type="submit" class="form-ctrl login-btn" [disabled]="invalidInput()">{{ btnText }}</button>
+        </form>
+        <small *ngIf="!isValid" class="error-message">{{ message }}</small>
+        <small class="bottom-text">Don't have an account? <a [routerLink]="['/register']">Sign Up</a></small>
     </div>
 </div>

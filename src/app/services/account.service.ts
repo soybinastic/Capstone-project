@@ -2,6 +2,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ILogIn } from '../models/accountmodels/login';
+import { environment } from 'src/environments/environment';
 
 const httpHeaders = {
   headers: new HttpHeaders(
@@ -16,7 +17,7 @@ const httpHeaders = {
 })
 export class AccountService {
 
-  private url = "https://localhost:44367/";
+  private url = environment.apiUrl;
   private token : any;
 
   constructor(private http : HttpClient) { }

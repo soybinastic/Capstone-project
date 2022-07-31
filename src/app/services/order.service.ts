@@ -8,12 +8,14 @@ import { IOrderProduct } from '../models/order-models/orderproducts';
 import { IPostOrder } from '../models/order-models/postorder';
 import { IUpdateOrder } from '../models/order-models/updateorder';
 import { AccountService } from './account.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private url = "https://localhost:44367/";
+  private url = environment.apiUrl
+  // private url = "https://localhost:44367/";
   constructor(private http: HttpClient, private accountService: AccountService) { } 
 
   getAllOrders():Observable<IOrder[]>{

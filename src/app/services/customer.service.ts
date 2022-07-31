@@ -4,12 +4,14 @@ import { Observable } from 'rxjs';
 import { ICustomer } from '../models/customer/customer';
 import { IRegister } from '../models/customer/register';
 import { AccountService } from './account.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CustomerService {
-  private url = "https://localhost:44367/";
+  private url = environment.apiUrl
+  // private url = "https://localhost:44367/";
   constructor(private http: HttpClient, private accountService : AccountService) { } 
 
   register(customer:IRegister): Observable<any>{

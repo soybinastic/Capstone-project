@@ -81,6 +81,23 @@
                     <span class="error-alert" *ngIf="form.controls['businessPermit'].errors?.required">This field is required</span>
                 </div>
             </div>
+
+            <div class="form-group col-md-6">
+                <label>Bureau of Internal Revenue (BIR)</label>
+                <input type="file" class="form-control-file" placeholder="Address" (change)="birSelectedFile($event)">
+                <input type="hidden" formControlName="bir">
+                <div *ngIf="birIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['bir'].errors?.required">This field is required</span>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label>DTI</label>
+                <input type="file" class="form-control-file" placeholder="Address" (change)="dtiSelectedFile($event)">
+                <input type="hidden" formControlName="dti">
+                <div *ngIf="dtiIsValid()">
+                    <span class="error-alert" *ngIf="form.controls['dti'].errors?.required">This field is required</span>
+                </div>
+            </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">

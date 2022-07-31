@@ -6,12 +6,14 @@ import { IAddProduct } from '../models/product-models/addproduct';
 import { IProduct } from '../models/product-models/products';
 import { IUpdateProduct } from '../models/product-models/updateproduct';
 import { AccountService } from './account.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private url = "https://localhost:44367/";
+  private url = environment.apiUrl
+  // private url = "https://localhost:44367/";
 
   constructor(private http : HttpClient, private accountService : AccountService) { } 
 

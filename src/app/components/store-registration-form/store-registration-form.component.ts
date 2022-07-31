@@ -24,7 +24,9 @@ export class StoreRegistrationFormComponent implements OnInit {
       region: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       email: ['', [Validators.email, Validators.required]],
-      businessPermit: [this.businessPermitImageFile, Validators.required]
+      businessPermit: [this.businessPermitImageFile, Validators.required],
+      dti : [this.dtiImageFile, Validators.required],
+      bir : [this.birImageFile, Validators.required]
     })
    }
 
@@ -34,6 +36,9 @@ export class StoreRegistrationFormComponent implements OnInit {
     this.isAcceptedTermsAndConditions = !this.isAcceptedTermsAndConditions
   }
   businessPermitImageFile : File
+  birImageFile : File
+  dtiImageFile : File 
+
   formInit() : void {
     this.form = this.fb.group({
       firstName : ['', Validators.required],
@@ -45,13 +50,30 @@ export class StoreRegistrationFormComponent implements OnInit {
       region : ['', Validators.required],
       phoneNumber : ['', Validators.required],
       email : ['', Validators.email, Validators.required],
-      businessPermit : [this.businessPermitImageFile, Validators.required]
+      businessPermit : [this.businessPermitImageFile, Validators.required],
+      
     })
   }
   selectedFile(event : any) : void {
     const file = <File>event.target.files[0];
     this.businessPermitImageFile = file
     this.form.controls['businessPermit'].setValue(this.businessPermitImageFile)
+  } 
+  dtiSelectedFile(event : any) : void{
+    const file = <File>event.target.files[0];
+    this.dtiImageFile = file;
+    this.form.controls['dti'].setValue(this.dtiImageFile);
+  } 
+  birSelectedFile(event : any) : void {
+    const file = <File> event.target.files[0];
+    this.birImageFile = file;
+    this.form.controls['bir'].setValue(this.birImageFile);
+  }
+  dtiIsValid() : boolean {
+    return (this.form.controls['dti'].invalid && (this.form.controls['dti'].pristine || this.form.controls['dti'].touched))
+  }
+  birIsValid() : boolean {
+    return (this.form.controls['bir'].invalid && (this.form.controls['bir'].pristine || this.form.controls['bir'].touched))
   }
   businessPermitIsValid(): boolean {
     return (this.form.controls['businessPermit'].invalid && (this.form.controls['businessPermit'].pristine || this.form.controls['businessPermit'].touched))
@@ -93,7 +115,7 @@ export class StoreRegistrationFormComponent implements OnInit {
     this.companyRegisterService.register(data)
       .subscribe((res) => {
         alert(res.message)
-        this.btnText = 'Processing...'
+        this.btnText = 'Submit'
       }, (err) => {
         alert('Something went wrong.')
       })
@@ -111,8 +133,11 @@ export class StoreRegistrationFormComponent implements OnInit {
       formData.append('phoneNumber', this.form.controls['phoneNumber'].value)
       formData.append('emailAddress', this.form.controls['email'].value)
       formData.append('businessPermitImageFile', this.businessPermitImageFile, this.businessPermitImageFile.name)
+      formData.append('dtiImageFile', this.dtiImageFile, this.dtiImageFile.name)
+      formData.append('birImageFile', this.birImageFile, this.birImageFile.name)
 
       this.onRegister(formData)
+
       // const register = new RegisterModel();
       // register.firstName = this.form.controls['firstName'].value
       // register.lastName = this.form.controls['lastName'].value
@@ -124,8 +149,9 @@ export class StoreRegistrationFormComponent implements OnInit {
       // register.phoneNumber = this.form.controls['phoneNumber'].value
       // register.emailAddress = this.form.controls['email'].value
       // register.businessPermitImageFile = this.businessPermitImageFile
-
-      //console.log(register)
+      // register.birImageFile = this.birImageFile;
+      // register.dtiImageFile = this.dtiImageFile
+      // console.log(register)
     }
   }
 }
@@ -139,5 +165,7 @@ export class RegisterModel{
   region : string;
   phoneNumber : string;
   emailAddress : string;
-  businessPermitImageFile : File
+  businessPermitImageFile : File;
+  dtiImageFile : File;
+  birImageFile : File;
 }

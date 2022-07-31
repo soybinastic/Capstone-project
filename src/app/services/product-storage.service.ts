@@ -2,12 +2,14 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AccountService } from './account.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductStorageService {
-  private url = "https://localhost:44367/";
+  private url = environment.apiUrl;
+  // private url = "https://localhost:44367/";
   constructor(private http : HttpClient, private accountService : AccountService) { } 
 
   add(data : any) : Observable<any>{
