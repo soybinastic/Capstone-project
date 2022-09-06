@@ -43,6 +43,28 @@ a{
     transition: ease-in 340ms;
     
 }
-img{
-    border-radius: 5px 5px 5px 5px;
+.card{
+    margin: 2px;
+}
+.card-title{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.card-body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.visit{
+    width: 100%;
+    padding: 3px;
+    text-align: center;
+    border: 1px #f33918 solid;
+    color: #f33918;
+}
+.visit:hover{
+    background-color: #f33918;
+    color: white;
 }

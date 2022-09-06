@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+    justify-content: center;
+    padding: 5vh;
+}
+#map{
+    width: 140vh;
+    height: 80vh;
+}

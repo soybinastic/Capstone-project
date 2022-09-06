@@ -85,10 +85,28 @@ import { CustomerVerificationListComponent } from './components/customer-verific
 import { CustomerVerificationDetailsComponent } from './components/customer-verification-details/customer-verification-details.component';
 import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
 import { CustomerInformationComponent } from './components/customer-information/customer-information.component';
+import { DashboardDetailsComponent } from './components/list-stores-in-main-admin/dashboard-details/dashboard-details.component';
+import { BillsSummaryComponent } from './components/branch-dashboard/bills-summary/bills-summary-page.component';
+import { BillDetailsPageComponent } from './components/branch-dashboard/bill-details/bill-details-page.component';
+import { SucessComponent } from './components/redirections/success-checkout/success.component';
+import { CancelComponent } from './components/redirections/cancel-checkout/cancel.component';
+import { CustomerMain } from './components/customer-main-page/customer-main.component';
+import { NearbyStoresMap } from './components/nearby-stores-map/nearby-stores-map.component';
 // import { OrderRefComponent } from './components/customer-information/customer-information.component';
 
 const routes: Routes = [
-  {path:'', redirectTo:'/welcome', pathMatch:'full'},
+  // {path:'', redirectTo:'/hardware-stores', pathMatch:'full'},
+  { path: '', component : CustomerMain, children :[
+    { path : '', redirectTo: '/stores', pathMatch: 'full' },
+    { path : 'stores', component : HardwareStoresComponent },
+    { path : 'store/:branchId/:hardwareStoreId', component : StoreLandingPageComponent, children : [
+      { path : 'products/:branchId', component : ProductsComponent }
+    ] },
+    {path : 'view-product/:hardwareStoreId/:productId/:branchId', component: ViewProductComponent},
+    {path : 'cart/:hardwareStoreId/:branchId/:from/:productId', component : CartComponent},
+    {path : 'check-out/:hardwareStoreId/:branchId', component: CheckOutComponent, canActivate : [CheckOutAccessGuard]},
+    { path : 'nearby-stores', component : NearbyStoresMap, canActivate : [CustomerAccessGuard] }
+  ] },
   {path : 'ware-house', redirectTo:'/ware-house/main-page', pathMatch: 'full'},
   {path : 'branch', redirectTo: '/branch/dashboard', pathMatch: 'full'},
   {path : 'branch/products', redirectTo : '/branch/products/list', pathMatch : 'full'},
@@ -98,6 +116,7 @@ const routes: Routes = [
   {path : 'home', component: HomeComponent},
   {path: 'main-admin', component: MainAdminComponent, canActivate:[MainAdminGuard], children :[
     { path: 'store-list', component: ListStoresInMainAdminComponent },
+    { path : 'dashboard-details/:id/:branchId', component : DashboardDetailsComponent },
     { path: 'register-store', component: RegisterStoreComponent },
     { path: 'company-registered-list', component: CompanyRegisteredListComponent },
     { path: 'details/:id', component: CompanyRegisteredDetailComponent },
@@ -111,8 +130,6 @@ const routes: Routes = [
   {path:'products/:branchId/:hardwareStoreId', component: ProductsComponent, children:[
     {path: 'product-category/:categoryId/:branchId/:hardwareStoreId', component: ProductListComponent}
   ]},
-  {path : 'view-product/:hardwareStoreId/:productId/:branchId', component: ViewProductComponent},{path : 'cart/:hardwareStoreId/:branchId/:from/:productId', component : CartComponent},
-  {path : 'check-out/:hardwareStoreId/:branchId', component: CheckOutComponent, canActivate : [CheckOutAccessGuard]},
   {path : 'ware-house', component : WarehouseComponent, canActivate: [WarehouseAccessGuard],children:[
     {path : 'main-page', component : WhMainPageComponent},
     {path : 'users', component : UsersComponent},
@@ -172,7 +189,9 @@ const routes: Routes = [
       {path : 'best-selling', component : BranchBestsellingReportsComponent},
       {path : 'sales', component : BranchSaleReportsComponent},
       {path : 'journal', component : BranchJournalComponent}
-    ]}
+    ]},
+    { path : 'bills', component : BillsSummaryComponent, canActivate : [StoreAdminAccessGuard] },
+    { path : 'bill-details/:dashboardId', component : BillDetailsPageComponent, canActivate : [StoreAdminAccessGuard] }
   ]},
   {path : 'registration', component : StoreRegistrationFormComponent},
   {path : 'privacy-and-termconditions', component : PrivacyTermAndConditionsComponent},
@@ -180,6 +199,8 @@ const routes: Routes = [
   {path : 'account', component : CustomerProfileComponent, 
   canActivate : [CustomerAccessGuard]},
   {path : 'my-information', component : CustomerInformationComponent, canActivate : [CustomerAccessGuard]},
+  { path : 'success', component : SucessComponent },
+  { path : 'cancel', component : CancelComponent }
   // {path : 'order-refs', component : OrderRefComponent}
 ];
 

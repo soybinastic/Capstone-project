@@ -1,6 +1,7 @@
 #container{
     margin-top: 120px;
-    width: 50%;
+    width: auto;
+    margin-bottom: 10vh;
 }
 .header{
     display: flex;
@@ -11,4 +12,14 @@
 .error-alert{
     font-size: 16px;
     color : red;
+}
+#map{
+    height: auto;
+    width: 85vh;
+    border-radius: 10px;
+}
+.info-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

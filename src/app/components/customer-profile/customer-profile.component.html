@@ -26,6 +26,15 @@
                 </div>
             </div>
             <hr>
+            <div class="row-item" (click)="logOut()">
+                <div class="item">
+                    <i class="fal fa-sign-out"></i>
+                </div>
+                <div class="item">
+                    <h4>{{ logoutText }}</h4>
+                </div>
+            </div>
+            <hr>
             <!-- <div class="row-item">
                 <div class="item">
                     <i [class]="customer.isVerified ? 'fad fa-badge-check verified' : 'fal fa-badge-check not-verified'"></i>

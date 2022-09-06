@@ -1,0 +1,32 @@
+<div class="content-container">
+    <div class="header">
+        <h3 class="header-title">Summary of Bills</h3>
+        <a [routerLink]="['/branch']" class="back-btn">Back</a>
+    </div>
+    <div class="content">
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>Months</th>
+                    <th>Sales</th>
+                    <th>Profit(3%)</th>
+                    <th>Platform fee(PHP1,000)</th>
+                    <th>Total Amount</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody *ngFor="let dashboard of dashboards">
+                <tr>
+                    <td><span [class]="checkStatus(dashboard)">{{ dashboard?.status }}</span></td>
+                    <td><small>{{ dashboard?.date | date : 'mediumDate' }} - {{ dashboard?.dueDate | date : 'mediumDate' }}</small></td>
+                    <td>{{ dashboard?.salesOfMonth | currency : 'PHP'}}</td>
+                    <td>{{ dashboard?.profit | currency : 'PHP' }}</td>
+                    <td>{{ dashboard?.platformFee | currency : 'PHP'}}</td>
+                    <td>{{ (dashboard?.profit + dashboard?.platformFee) | currency : 'PHP'}}</td>
+                    <td><a class="custom-btn" [routerLink]="['/branch', 'bill-details', dashboard?.id]" [queryParams]="{ prev_url : url }">View</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

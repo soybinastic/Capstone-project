@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  // apiUrl : 'https://localhost:44367/',
+  // apiUrl : 'https://localhost:44367/'
   apiUrl : 'http://fastline-001-site1.dtempurl.com/'
 };
 

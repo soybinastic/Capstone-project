@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AccountService } from 'src/app/services/account.service';
 import { CustomerService } from 'src/app/services/customer.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class CustomerProfileComponent implements OnInit {
   customer : any = {}
   isLoaded : boolean = false
   message : string = 'Processing...'
-  constructor(private customerService : CustomerService, private route : Router) { }
+  logoutText : string = "Logout"
+  constructor(private customerService : CustomerService, private route : Router, 
+    private accountService : AccountService) { }
 
   ngOnInit(): void {
     this.loadCustomer()
@@ -38,5 +41,19 @@ export class CustomerProfileComponent implements OnInit {
     }else{
       this.route.navigate([path])
     }
+  }
+
+  logOut(){
+    this.logoutText = "Logging out..."
+    this.accountService.logOut(this.accountService.getToken()).subscribe((res)=>{
+      if(res.success == 1)
+      {
+        alert(res.message)
+        this.logoutText = "Logout"
+        this.accountService.removeToken()
+        localStorage.clear()
+        this.route.navigate(['/login']).then(()=> window.location.reload())
+      }
+    })
   }
 }

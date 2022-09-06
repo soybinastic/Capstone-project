@@ -1,0 +1,11 @@
+<div class="dialog-container">
+    <div class="dialog">
+        <div class="title">
+            <h2 class="alert-title">{{ props?.title }}</h2>
+        </div>
+        <div class="content">
+            <h3 class="alert-message">{{ props?.message }}</h3>
+            <button [class]="props?.btnClass" (click)="onClick()">CONTINUE</button>
+        </div>
+    </div>
+</div>

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { BranchService } from 'src/app/services/branch.service';
 
+declare const L : any
 @Component({
   selector: 'app-branch-details',
   templateUrl: './branch-details.component.html',
@@ -10,7 +11,10 @@ import { BranchService } from 'src/app/services/branch.service';
 })
 export class BranchDetailsComponent implements OnInit {
 
+  branch : any
   branchId : any
+  isBtnDisabled : boolean
+  btnText : string = "Update"
   errorMessage : string = ''
   isInputValid : boolean = true
   isCheck : boolean = true
@@ -20,13 +24,53 @@ export class BranchDetailsComponent implements OnInit {
       id : ['',Validators.required],
       branchName : ['',Validators.required],
       address : ['', Validators.required],
-      isActive : [this.isCheck]
+      isActive : [this.isCheck],
+      lat : ['', Validators.required],
+      lng : ['', Validators.required]
     })
   }
 
   ngOnInit(): void {
     this.branchId = this.urlParam.snapshot.paramMap.get('branchId')
     this.loadBranchToInput(Number(this.branchId))
+    //this.initMap();
+  }
+  initMap(lat : number = 51.505, lng : number = -0.09) : void {
+    navigator.geolocation.getCurrentPosition((data) => {
+      console.log(data.coords)
+    });
+    var map = L.map('map').setView([lat, lng], 13);
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic295YmkyMiIsImEiOiJjbDFkM3phOWYwZHZqM2pvMGNnejBmc2M4In0.dmFiv4Ss4Nd44nJ9X4xxeA', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox/streets-v11',
+      tileSize: 512,
+      zoomOffset: -1,
+      accessToken: 'your.mapbox.access.token'
+    }).addTo(map);
+
+    var marker = L.marker([lat, lng]).addTo(map);
+    //let prevMarked : any = {}
+    map.on('click', (event : any) => {
+      // let lat = event.latlang.lat;
+      // let lng = event.latlang.lng;
+      // this.latitude = event.latlng.lat.toString();
+      // this.longtitude = event.latlng.lng.toString();
+      this.form.controls["lat"].setValue(Number(event.latlng.lat));
+      this.form.controls["lng"].setValue(Number(event.latlng.lng));
+      //console.log(lat + ' - ' + lng)
+      if(marker != undefined){
+        map.removeLayer(marker)
+      }
+
+      marker = L.marker(event.latlng).addTo(map);
+    })
+
+    L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    let obj = L.Control.geocoder().addTo(map);
+    console.log(obj)
   }
   update(){
     if(this.isValid()){
@@ -42,16 +86,25 @@ export class BranchDetailsComponent implements OnInit {
   loadBranchToInput(branchId : number){
     this.branchService.getBranch(branchId)
       .subscribe((data)=>{
+        this.branch = data;
+        this.initMap(Number(this.branch.latitude) !== 0 ? Number(this.branch.latitude) : 51.505,
+           Number(this.branch.longitude) !== 0 ? Number(this.branch.longitude) : -0.09);
         console.log(data)
         this.form.controls['id'].setValue(data.id)
         this.form.controls['branchName'].setValue(data.name)
         this.form.controls['address'].setValue(data.address)
         this.form.controls['isActive'].setValue(data.isActive)
+        this.form.controls['lat'].setValue(data.latitude)
+        this.form.controls['lng'].setValue(data.longitude)
       })
   }
   updateBranch(data : any, branchId : number){
+    this.isBtnDisabled = true;
+    this.btnText = "Updating..."
     this.branchService.updateBranch(data, branchId)
     .subscribe((res)=>{
+      this.isBtnDisabled = false;
+      this.btnText = "Updated"
       if(res.success == 1){
         alert(res.message)
         this.isInputValid = true;
@@ -60,6 +113,7 @@ export class BranchDetailsComponent implements OnInit {
     }, (err)=>{
       this.isInputValid = false
       this.errorMessage = JSON.stringify(err).toString();
+      this.btnText = "Update"
     })
   }
   onChange(event : any){

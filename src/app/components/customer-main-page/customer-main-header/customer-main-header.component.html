@@ -1,0 +1,19 @@
+<div class="header">
+    <div class="header-row">
+        <div class="header-items-flex">
+            <a href="#" class="logo">
+                <img src="../../../../assets/images/fastline_logo.png" alt="" class="logo-image">
+                <p class="logo-text">fastLinehardware</p>
+            </a>
+            <div class="search-bar">
+                <input type="text" name="searchStore" id="searchStore" placeholder="Serach a store">
+                <p class="search-text">Search</p>
+            </div>
+            <div class="header-items">
+                <a routerLink="/login" class="header-text" *ngIf="!isLoggedIn()">LOGIN</a>
+                <a routerLink="/register" class="header-text" *ngIf="!isLoggedIn()">SIGN UP</a>
+                <a routerLink="/account" class="header-text" *ngIf="isLoggedIn() && isCustomer()"><i class="fal fa-user-circle"></i> Account</a>
+            </div>
+        </div>
+    </div>
+</div>

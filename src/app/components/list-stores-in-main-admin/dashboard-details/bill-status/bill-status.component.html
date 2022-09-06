@@ -1,0 +1,38 @@
+<div class="bill-container">
+    <div class="header">
+        <small class="date">{{ dashboard?.date | date : 'mediumDate' }} - {{ dashboard?.dueDate | date : 'mediumDate' }}</small>
+        
+        <div class="option-container">
+            <span [class]="checkStatus(dashboard)">{{ dashboard?.status }}</span>
+            <select *ngIf="isShow" class="form-select" aria-label="Default select example" (change)="showSalesOfMonthToggle($event)">
+                <option value="1">(w) Profit</option>
+                <option value="2">(w/o) Profit</option>
+            </select>
+            <button *ngIf="viewIsShow" class="custom-btn" (click)="onClick()">View</button>
+        </div>
+    </div>
+    <div class="content-container">
+        <div class="con">
+            <div class="data-wrapper">
+                <label class="label">Profit(3%):</label>
+                <label class="data">{{ dashboard?.profit | currency : 'PHP'}}</label>
+            </div>
+            <div class="data-wrapper">
+                <label class="label">Platform Fee (PHP1,000):</label>
+                <label class="data">{{ dashboard?.platformFee | currency : 'PHP'}}</label>
+            </div>
+        </div>
+        <div class="left-side">
+            <div class="data-wrapper">
+                <label for="" class="label">{{ selectedOption == '1' ? 'Sales' : 'Original Sales' }}:</label>
+                <label for="" class="data">{{ (selectedOption == '1' ? dashboard?.salesOfMonth : dashboard?.originalSales) | currency : 'PHP' }}</label>
+            </div>
+        </div>
+    </div>
+    <div class="content-footer">
+        <div class="data-wrapper-2">
+            <label for="" class="label">TOTAL:</label>
+            <label for="" class="data">{{ (dashboard?.total + dashboard?.platformFee) | currency : 'PHP' }}</label>
+        </div>
+    </div>
+</div>

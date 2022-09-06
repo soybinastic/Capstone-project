@@ -1,32 +1,37 @@
 <div class="main-view-product"> 
    <div class="main-container">
         <div class="item-header"> 
-            <button (click)="back()" class="btn-item"><i class="fas fa-arrow-left"></i> Back</button>
-            <button (click)="goToCart()" class="btn-item cart">Cart <i class="fal fa-shopping-cart"></i> <span class="prod-count">{{ cartCounter > 0 ? cartCounter : '' }}</span></button>
+            <!-- <button  class="btn-item"> Back</button> -->
+            <a routerLink="{{ prevUrl }}" class="back"><i class="fas fa-arrow-left"></i></a>
+            <!-- <button (click)="goToCart()" class="btn-item cart">Cart  </button> -->
+            <a href="#"  class="cart"><i class="fal fa-shopping-cart"></i><span class="prod-count">{{ cartCounter > 0 ? cartCounter : '' }}</span></a>
         </div> 
 
        <div class="product-info">
            <div class="description">
-                <div class="description-container">
-                    <h3 class="text-color-title">Information</h3> 
-                    <div class="product-details">
+                <ul class="list-group">
+                    <li class="list-group-item bg-warning"><h3 class="text-color-title">Information</h3> </li>
+                    <li class="list-group-item">
                         <div class="desc">
                             <h4>Decription</h4>
                             <small>{{ product.description }}</small>
                         </div>
+                    </li>
+                    <li class="list-group-item">
                         <div class="quality">
                             <h4>Quality</h4>
                             <p>{{ product.quality }}</p>
                         </div>
+                    </li>
+                    <li class="list-group-item">
                         <div class="brand">
                             <h4>Brand</h4>
                             <p>{{ product.brand }}</p>
                         </div>
-                        
-                    </div>
-                </div>
+                    </li>
+                </ul>
            </div>
-           <div class="view-product"> 
+           <div class="view-product card"> 
                 <div class="prod-img"> 
                     <img [src]="product?.imageFile ? 'https://localhost:44367/' + product?.imageFile :'https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg'" alt="" height="328" width="728">
                 </div>
@@ -37,14 +42,11 @@
                         <h4 id="prod-name"><b>{{ product.name }}</b></h4>
                     </div>
                     <div class="prod-info-2">
-                        <!-- <small id="rate"><b>Rate</b> 5.0</small> -->
+                        
                         <button (click)="addToCart(product)" class="add-to-cart-btn">{{ cartBtnText }} <i class="fal fa-shopping-cart"></i></button>
                     </div>
                 </div>
             </div>
-            <!-- <div class="comments">
-
-            </div> -->
        </div>
    </div>
 </div>

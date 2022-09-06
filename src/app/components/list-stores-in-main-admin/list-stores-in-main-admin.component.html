@@ -1,7 +1,44 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row" *ngFor="let store of stores">
         <app-store-in-admin [hardwareStore]="store"></app-store-in-admin>
     </div>
     <h2 *ngIf="stores.length == 0" id="load-p">Loading...</h2>
-</div> 
-
+</div>  -->
+<!-- <div id="main" class="col-sm">
+    <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{ hardwareStore.hardwareStoreName }}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{ hardwareStore.isOpen ? 'Open' : 'Close'}}</h5>
+          <p class="card-text">{{ hardwareStore.hardwareStoreId }}</p>
+        </div>
+    </div>
+</div>  -->
+<table class="table table-hover table-sm">
+    <caption>Stores</caption>
+  <thead>
+    <tr>
+      <th>Status</th>
+      <th>Branch</th>
+      <th>Address</th>
+      <th>Date Registered</th>
+      <th>Monthly Sales</th>
+      <th>Profit(3%)</th>
+      <th>Platform fee(PHP1,000)</th>
+      <th>Total</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let dashboard of dashboards">
+    <tr>
+        <td><span [class]="checkStatus(dashboard)">{{ dashboard.status }}</span></td>
+        <td>{{ dashboard?.branch?.name }}</td>
+        <td><small>({{ dashboard?.branch?.address }})</small></td>
+        <td>{{ dashboard?.branch?.dateRegistered | date : 'shortDate' }}</td>
+        <td>{{ dashboard?.salesOfMonth | currency : 'PHP'}}</td>
+        <td>{{ dashboard?.profit | currency : 'PHP' }}</td>
+        <td>{{ dashboard?.platformFee | currency : 'PHP' }}</td>
+        <td>{{ getTotal(dashboard) | currency : 'PHP' }}</td>
+        <td><button class="btn btn-primary" [routerLink]="['/main-admin','dashboard-details',dashboard?.id, dashboard?.branchId]">Details</button></td>
+    </tr>
+  </tbody>
+</table>

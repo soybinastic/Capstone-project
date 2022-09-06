@@ -1,0 +1,102 @@
+.bill-container{
+    padding: 2vh;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    width: auto;
+    border-radius: 10px;
+    border-bottom: 4px #f33918 solid;
+    margin-bottom: 1.5vh;
+    background-color: white;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.date{
+    font-size: 10px;
+    font-weight: 700;
+}
+.content-container{
+    margin-top: 2vh;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+}
+.left-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 3px #f33918 solid;
+}
+.label{
+    font-size: 11px;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+}
+.data{
+    font-size: 13px;
+    font-weight: 700;
+    margin: 0;
+    padding: 0;
+}
+.data-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1vh;
+}
+.data-wrapper-2{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.data-wrapper-2 .label{
+    margin-right: 1vh;
+}
+.content-footer{
+    margin-top: 1vh;
+    display: flex;
+    justify-content: flex-end;
+}
+.option-container{
+    display: flex;
+    flex: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.form-select{
+    font-size: 11px;
+    font-weight: 600;
+    margin-left: 1vh;
+    color: white;
+    background-color: black;
+    border-radius: 30px;
+}
+
+.hover{
+    cursor: pointer;
+}
+
+.custom-btn{
+    padding: 0.3vh;
+    padding-left: 1.5vh;
+    padding-right: 1.5vh;
+    border: 0;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 11px;
+    /* background-image: linear-gradient(315deg, #f5d020 0%, #f33918 74%); */
+    background-color: #f33918;
+    color: white;
+    text-decoration: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    margin-left: 1vh;
+    outline: none;
+} 
+
+.custom-btn:hover{
+    /* color: #FCA311; */
+    color: black;
+}
+
+/* background-image: linear-gradient(315deg, #f5d020 0%, #f33918 74%); */

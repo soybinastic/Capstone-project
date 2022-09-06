@@ -1,12 +1,25 @@
-<div id="main-cantainer" class="container"> 
+<!-- <div id="main-cantainer" class="container"> 
     <nav class="nav nav-pills nav-justified">
-        <!-- <a class="nav-item nav-link my-nav" (click)="click('store')">Stores</a> -->
-        <button class="nav-item nav-link my-nav" [routerLink]="['/main-admin','store-list']">Stores</button>
+        <button class="nav-item nav-link my-nav" [routerLink]="['/main-admin','store-list']">Stores()</button>
         <button class="nav-item nav-link my-nav" [routerLink]="['/main-admin','register-store']">Register Store</button>
-        <!-- <a class="nav-item nav-link my-nav" (click)="click('register')">Register Store</a> -->
         <a class="nav-item nav-link my-nav" [routerLink]="['/main-admin','company-registered-list']">Registers</a>
         <a class="nav-item nav-link my-nav" [routerLink]="['/main-admin','user-verification-list']">Users to be verify</a>
     </nav>  
     <router-outlet></router-outlet>
-</div> 
-
+</div>  -->
+<div class="header">
+    <div class="nav-header">
+        <a [routerLink]="['/main-admin','store-list']" class="anchor nav-menu-item">Stores</a>
+        <a [routerLink]="['/main-admin','register-store']" class="anchor nav-menu-item">Registration</a>
+        <a [routerLink]="['/main-admin','company-registered-list']" class="anchor nav-menu-item">Submits</a>
+        <a [routerLink]="['/main-admin','user-verification-list']" class="anchor nav-menu-item">Users</a>
+    </div>
+    <div class="nav-header">
+        <a href="#" class="anchor">
+            <i class="fal fa-bells"></i>
+        </a>
+    </div>
+</div>
+<div class="content">
+    <router-outlet></router-outlet>
+</div>

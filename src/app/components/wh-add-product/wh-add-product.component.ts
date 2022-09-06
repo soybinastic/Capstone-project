@@ -31,7 +31,7 @@ export class WhAddProductComponent implements OnInit {
       description : ['',Validators.required],
       supplier : ['',Validators.required],
       stockNumber : ['',Validators.required],
-      costPrice : ['',Validators.required],
+      initialPrice : ['',Validators.required],
       isActive : [this.isActive]
     })
   }

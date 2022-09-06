@@ -1,4 +1,4 @@
-.dashboard-container{
+.dashbord-container{
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -6,7 +6,7 @@
 .wrapper{
     display: flex;
     justify-content: center;
-    padding: 32px;
+    padding-bottom: 32px;
 }
 .db-box{
     margin: 10px;
@@ -14,7 +14,7 @@
     mix-blend-mode: darken;
     box-sizing: border-box;
     box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
-    width: 300px;
+    width: 280px;
     border-radius: 10px;
 }
 .no-data{
@@ -60,16 +60,20 @@
     justify-content: center;
 }
 .monthly-sales-wrapper{
-    padding: 5px;
+    /* padding: 5px; */
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     mix-blend-mode: darken;
     box-sizing: border-box;
     box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
     background-color: #669DB3FF;
-    width: 75%;
+    width: 100%;
     height: 300px;
     border-radius: 10px;
+}
+.val{
+    font-size: 23px;
+    font-weight: 700;
 }
 .revenue{
     background-color: #FCA311;
@@ -78,6 +82,58 @@
     background-color: #14313D;
     color: white;
 }
+.dashboard-content-container{
+    padding-left: 20vh;
+    padding-right: 20vh;
+}
 .pending-orders{
     background-color: #E5E5E5;
+}
+.data-wrapper{
+    margin-top: 5vh;
+    /* padding-left: 20vh;
+    padding-right: 20vh; */
+    background: #f33918;
+    
+    margin-bottom: 5vh;
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+}
+.bill-wrapper{
+    background: #f33918;
+    padding: 5vh;
+}
+.bill-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    align-items: center;
+    margin-bottom: 2vh;
+    background-color: black;
+    padding: 5vh;
+}
+
+.custom-btn{
+    padding: 1vh;
+    padding-left: 4vh;
+    padding-right: 4vh;
+    border: 0;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 15px;
+    /* background-image: linear-gradient(315deg, #f5d020 0%, #f33918 74%); */
+    background-color: #f33918;
+    color: white;
+    text-decoration: none;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+} 
+
+.custom-btn:hover{
+    /* color: #FCA311; */
+    color: black;
+}
+.header-title-white{
+    font-weight: 700;
+    color: white;
 }

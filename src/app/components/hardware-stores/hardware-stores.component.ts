@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IHardwareStore } from 'src/app/models/hardware-store-models/hardwarestore';
+import { BranchService } from 'src/app/services/branch.service';
 import { HardwareStoreService } from 'src/app/services/hardware-store.service';
 import { SignalrService } from 'src/app/services/signalr.service';
 
@@ -10,8 +11,15 @@ import { SignalrService } from 'src/app/services/signalr.service';
   styleUrls: ['./hardware-stores.component.css']
 })
 export class HardwareStoresComponent implements OnInit {
+  branches : any[] = []
   hardwareStores: IHardwareStore[] = []
-  constructor(private hardwareStoreService : HardwareStoreService, private signalRService : SignalrService, private route : Router) { }
+  customerLat : number
+  customerLng : number
+  constructor(private hardwareStoreService : HardwareStoreService, private signalRService : SignalrService,
+     private route : Router, private branchService : BranchService) {
+        this.customerLat = Number(localStorage.getItem("customer_lat"));
+        this.customerLng = Number(localStorage.getItem("customer_lng"));
+      }
 
   ngOnInit(): void { 
     this.signalRService.createConnection();
@@ -21,10 +29,20 @@ export class HardwareStoresComponent implements OnInit {
       this.signalRService.hardwareStoreStatus(this.hardwareStores)
       console.log(this.hardwareStores)
     })
+
+    this.loadAllBranches(this.customerLat, this.customerLng);
   } 
 
-  go(hardwareStore : IHardwareStore){
-    this.route.navigate(['/hardware-store-page/'+hardwareStore.hardwareStoreId])
+  go(hardwareStore : any){
+    // this.route.navigate(['/hardware-store-page/'+hardwareStore.hardwareStoreId])
+    this.route.navigate(['/store', hardwareStore.id, hardwareStore.hardwareStoreId, 'products', hardwareStore.id])
   }
+
+  loadAllBranches(lat : number = 0, lng : number = 0) : void{
+    this.branchService.getAllBranches(lat, lng)
+      .subscribe(data => {
+        this.branches = data;
+      })
+  } 
 
 }

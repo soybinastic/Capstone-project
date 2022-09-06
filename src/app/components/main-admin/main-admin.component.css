@@ -8,9 +8,41 @@
 }
 #main-cantainer{
     margin-top: 80px;
+    background-color: bisque;
 }
 .my-nav:hover{
     background-color: black;
     color: white;
     cursor: pointer;
+}
+.header{
+    margin-top: 7vh;
+    /* background-image: linear-gradient(315deg, #f5d020 0%, #f33918 74%); */
+    background-color: white;
+    padding: 5vh;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+.anchor{
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.nav-menu-item{
+    padding: 2vh;
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+}
+.content{
+    position: relative;
+    top: 200px;
+    padding-left: 5vh;
+    padding-right: 5vh;
 }

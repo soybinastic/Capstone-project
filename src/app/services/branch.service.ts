@@ -19,7 +19,18 @@ export class BranchService {
       .set('Authorization','Bearer '+this.accountService.getToken())
     } 
     return this.http.post<any>(this.url+'api/Branch/add-branch', data, httpHeader)
-  } 
+  }
+  
+  getAllBranches(lat : number = 0, lng : number = 0) : Observable<any[]>{
+    const httpHeader = {
+      headers : new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('lat', lat.toString())
+      .set('lng', lng.toString())
+    }
+
+    return this.http.get<any[]>(this.url + 'api/Branch/all-branches', httpHeader);
+  }
 
   getBranches(): Observable<any[]>{
     const httpHeader = {

@@ -8,13 +8,13 @@ import { IHardwareStore } from 'src/app/models/hardware-store-models/hardwaresto
 })
 export class HardwareStoreComponent implements OnInit {
 
-  @Input() hardwareStore : IHardwareStore
-  @Output() goEvent : EventEmitter<IHardwareStore> = new EventEmitter()
+  @Input() hardwareStore : any
+  @Output() goEvent : EventEmitter<any> = new EventEmitter()
   constructor() { }
 
   ngOnInit(): void {
   }
-  go(hardwareStore : IHardwareStore){
+  go(hardwareStore : any){
     this.goEvent.emit(hardwareStore)
   }
 

@@ -1,4 +1,4 @@
-<div class="main-products"> 
+<!-- <div class="main-products"> 
     <div class="categ-header">
         <ul class="items scrollable">
             <li class="item">
@@ -13,24 +13,13 @@
         </ul>
         <button (click)="goToCart()" class="btn btn-danger cart">Cart  <i class="fal fa-shopping-cart"></i> <span class="prod-count">{{ cartCounter > 0 ? cartCounter : '' }}</span></button>
     </div>
-    <!-- <div class="products"> 
-        <h2 id="categ-name" >Category Name</h2>
-        <div class="prod-container"> 
-            <div class="product-list"> 
-                <div class="product-loop"> 
-                    <app-product></app-product>
-                </div>
-                <div class="product-loop"> 
-                    <app-product></app-product>
-                </div>
-                <div class="product-loop"> 
-                    <app-product></app-product>
-                </div>
-                <div class="product-loop"> 
-                    <app-product></app-product>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    helloo
     <router-outlet></router-outlet>
+</div> -->
+
+<div class="products-container">
+    <app-product 
+        *ngFor="let product of products"
+        [product]="product">
+    </app-product>
 </div>

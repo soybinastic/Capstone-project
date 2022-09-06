@@ -1,24 +1,42 @@
-.main{
+/* .main{
     margin: 10px;
     padding: 25px;
-    width: 390px;
+    width: 220px;
     display: flex;
     justify-content: center;
     border-radius: 10px;
-    background-color: #F4DF4EFF;
     box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
-}
-.img{
-    text-align: center;
-    margin: 5px 3px 5px 1px;
-}
-img{
+} */
+/* .hardware-store{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px #f33918 solid;
+    width: 220px;
     box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
-    border-radius: 11px 11px 11px 11px;
+    border-radius: 5px;
+    padding: 2vh;
+    margin: 2px;
+} */
+.hardware-store{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px #f33918 solid;
+    width: 220px; */
+    /* box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37); */
+    /* border-radius: 5px;
+    padding: 2vh;
+    margin: 2px; */
+    margin: 2px; 
 }
+
 .content{
-    margin: 5px 3px 5px 3px;
-    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .my-btn{
     width: 350px;
@@ -48,4 +66,23 @@ img{
 }
 .close{
     color: #020509;
+}
+.card-text{
+    font-weight: 600;
+}
+.card-body{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.visit{
+    width: 100%;
+    padding: 1vh;
+    text-align: center;
+    border: 1px #f33918 solid;
+    color: #f33918;
+}
+.visit:hover{
+    background-color: #f33918;
+    color: white;
 }

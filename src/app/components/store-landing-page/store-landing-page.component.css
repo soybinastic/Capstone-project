@@ -65,3 +65,103 @@ li a{
     padding: 5px;
     border-bottom: 4px black solid;
 }
+
+.cat{
+    color: #020509;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    border: 1px #f33918 solid;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    margin-right: 2px;
+}
+.cart{
+    margin: 3vh;
+    display: flex;
+    text-decoration: none;
+}
+.cart i{
+    font-size: 30px;
+}
+.header{
+    margin-top: 2vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-top: 3vh;
+    padding-bottom: 2vh;
+    padding-left: 2vh;
+    padding-right: 2vh;
+    background-color: #f33918;
+    width: fit-content;
+    box-shadow: 0px 4px 9px rgba(0, 0, 0, 0.37);
+}
+.categories{
+    width: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    overflow-x: scroll;
+    scrollbar-width: 2px;
+    /* width: 200px; */
+    margin-right: 3vh;
+    padding: 2px;
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5vh;
+}
+.branch-board{
+    padding: 2vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 820px;
+    height: 310px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.branch-info{
+    z-index: 1;
+}
+
+.base-title{
+    font-size: 25px;
+    font-weight: 800;
+    color: white;
+}
+.small-title{
+    font-size:17px;
+    font-weight: 600;
+    color: white;
+}
+::-webkit-scrollbar {
+    width: 4px;
+}
+::-webkit-scrollbar-track {
+    border-radius: 20px;
+}
+::-webkit-scrollbar-thumb {
+    scrollbar-width: thin;
+    background: #020202;
+    border-radius: 1px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+} 
+.content-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 7vh;
+}

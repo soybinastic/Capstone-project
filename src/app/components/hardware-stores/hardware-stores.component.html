@@ -1,12 +1,16 @@
 <div class="main"> 
     <div class="hardware-stores-container"> 
+        <div class="header">
+            <a routerLink="/nearby-stores">View Nearby Stores in map</a>
+        </div>
         <div class="store-list"> 
-            <div *ngFor="let hardwareStore of hardwareStores">
-                <app-hardware-store 
+            <app-hardware-store 
+                *ngFor="let hardwareStore of branches"
                 [hardwareStore]="hardwareStore"
                 (goEvent)="go(hardwareStore)">
                 </app-hardware-store>
-            </div>
         </div>
+        <h1 *ngIf="branches.length === 0 && (customerLat !== 0 || customerLng !== 0)">There's no stores near at you!</h1>
+        <!-- <h1 *ngIf="branches.length === 0 && (customerLat == 0 || customerLng == 0)">There's no stores near at you!</h1> -->
     </div>
 </div>

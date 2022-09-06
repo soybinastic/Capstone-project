@@ -1,8 +1,8 @@
-<p>wh-product-info works!</p>
+
 <div class="main-container">
     <div class="add-user-header">
         <div class="title">
-            <h3>Add Branch</h3>
+            <h3>Details</h3>
         </div> 
         <div class="back-to-branches">
             <button class="btn btn-primary">Back</button>
@@ -10,8 +10,26 @@
     </div>
     <div class="form-container">
         <form [formGroup]="form" (ngSubmit)="update()">
-            
-            <div class="form-row">
+            <div class="col">
+                <div class="row">
+                    <label for="branchName">Branch Name</label>
+                    <input type="text"  name="branchName" class="form-control" id="branchName" placeholder="Branch Name" formControlName="branchName">
+                </div>
+                <div class="row">
+                    <label for="active">Is Active</label>
+                    <input required type="checkbox" name="active" class="form-control" id="active" formControlName="isActive" (change)="onChange($event)">
+                </div>
+                <div class="row">
+                    <label for="address">Address</label>
+                    <input type="text"  name="address" class="form-control" id="address" placeholder="Address" formControlName="address">
+                </div>
+                <ul class="list-group row mt-2">
+                    <li class="list-group-item bg-info">Coordinates</li>
+                    <li class="list-group-item">Lat: {{ form.controls['lat'].value }}</li>
+                    <li class="list-group-item">Lon: {{ form.controls['lng'].value }}</li> 
+                </ul>
+            </div>
+            <!-- <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="branchName">Branch Name</label>
                     <input type="text"  name="branchName" class="form-control" id="branchName" placeholder="Branch Name" formControlName="branchName">
@@ -24,14 +42,17 @@
                   <label for="address">Address</label>
                   <input type="text"  name="address" class="form-control" id="address" placeholder="Address" formControlName="address">
                 </div>
-            </div> 
+            </div>  -->
              
         
               <div *ngIf="!isInputValid" class="alert alert-warning" role="alert">
                 {{ errorMessage }}
               </div>
-              <button id="submit-btn" type="submit" class="btn btn-success">Update</button>
+              <button id="submit-btn" type="submit" class="form-control btn btn-success mt-2" [disabled]="isBtnDisabled">{{ btnText }}</button>
           </form>
+          <div class="row ml-2">
+                <div id="map"></div>
+          </div>
     
     </div>
 </div>

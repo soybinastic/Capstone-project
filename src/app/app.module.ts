@@ -111,6 +111,16 @@ import { CustomerVerificationDetailsComponent } from './components/customer-veri
 import { CustomerProfileComponent } from './components/customer-profile/customer-profile.component';
 import { CustomerInformationComponent } from './components/customer-information/customer-information.component';
 import { OrderRefComponent } from './components/order-ref/order-ref.component';
+import { DashboardDetailsComponent } from './components/list-stores-in-main-admin/dashboard-details/dashboard-details.component';
+import { BillStatusComponent } from './components/list-stores-in-main-admin/dashboard-details/bill-status/bill-status.component';
+import { BillsSummaryComponent } from './components/branch-dashboard/bills-summary/bills-summary-page.component';
+import { BillDetailsPageComponent } from './components/branch-dashboard/bill-details/bill-details-page.component';
+import { SucessComponent } from './components/redirections/success-checkout/success.component';
+import { CancelComponent } from './components/redirections/cancel-checkout/cancel.component';
+import { AlertDialogComponent } from './components/redirections/alert-dialog/alert-dialog.component';
+import { CustomerMain } from './components/customer-main-page/customer-main.component';
+import { CustomerMainHeader } from './components/customer-main-page/customer-main-header/customer-main-header.component';
+import { NearbyStoresMap } from './components/nearby-stores-map/nearby-stores-map.component';
 
 @NgModule({
   declarations: [
@@ -221,7 +231,17 @@ import { OrderRefComponent } from './components/order-ref/order-ref.component';
     CustomerVerificationDetailsComponent,
     CustomerProfileComponent,
     CustomerInformationComponent,
-    OrderRefComponent
+    OrderRefComponent, 
+    DashboardDetailsComponent,
+    BillStatusComponent,
+    BillsSummaryComponent,
+    BillDetailsPageComponent, 
+    SucessComponent,
+    CancelComponent,
+    AlertDialogComponent,
+    CustomerMain,
+    CustomerMainHeader,
+    NearbyStoresMap
   ],
   imports: [
     BrowserModule,

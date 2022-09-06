@@ -16,6 +16,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ViewProductComponent implements OnInit {
 
+  prevUrl : string | null
   branchId : number
   productId : number
   hardwareStoreId : number
@@ -36,7 +37,7 @@ export class ViewProductComponent implements OnInit {
     this.hardwareStoreId = Number(storeIdParam)
     this.branchId = Number(branchIdParam)
     this.productId = Number(productIdParam)
-
+    this.prevUrl = this.urlParam.snapshot.queryParamMap.get('prev_url')
     if(!!localStorage.getItem('unauthorize_adding_to_cart')){
       localStorage.removeItem('unauthorize_adding_to_cart')
     }

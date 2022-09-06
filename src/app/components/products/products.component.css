@@ -138,3 +138,11 @@ li{
     transition: ease-out 350ms;
 }
 
+.products-container{
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 0fr 0fr 0fr 0fr;
+    margin-top: 2vh;
+}
+
+

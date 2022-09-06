@@ -1,10 +1,20 @@
-<div class="product"> 
+<!-- <div class="product"> 
     <img class="prod-img" [src]="product?.imageFile ? 'https://localhost:44367/' + product?.imageFile :'https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg'" alt="" height="350" width="279">
     <div class="prod-content"> 
-        <!-- <small><b>Stock :</b> {{ product.stockNumber }}</small> -->
         <p>{{ product?.price | currency : 'PHP'}}</p>
         <div class="product-name">
             <a [routerLink]="['/view-product',product.hardwareStoreId,product.hardwareProductId,product.branchId]" [title]="product.name"><h4>{{ product?.name }}</h4></a>
         </div>
+    </div>
+</div> -->
+
+<div class="card" style="width: 13rem;">
+    <img class="card-img-top" src="https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg" alt="Card image cap" height="220">
+    <div class="card-body">
+        <p class="card-title">{{ product?.name }}</p>
+        <p class="card-text text-secondary">{{ product?.price | currency : 'PHP'}}</p>
+    </div>
+    <div class="card-body">
+        <a [routerLink]="['/view-product', product?.hardwareStoreId, product?.hardwareProductId, product?.branchId]" [queryParams]="{ prev_url : '' + prevUrl + '' }" class="card-link visit">View</a>
     </div>
 </div>

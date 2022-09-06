@@ -33,6 +33,7 @@ export class WhProductInfoComponent implements OnInit {
     isActive : true,
     addedAt : ''
   } 
+  _costPrice : any
   categories : any[] = []
   defaultCategory : any = {}
   constructor(private urlParam : ActivatedRoute, private formBuilder : FormBuilder, 
@@ -47,7 +48,7 @@ export class WhProductInfoComponent implements OnInit {
       description : [this.product.description,Validators.required],
       supplier : [this.product.supplier,Validators.required],
       stockNumber : [Number(this.product.stockNumber),Validators.required],
-      costPrice : [this.product.costPrice,Validators.required],
+      initialPrice : [this.product.costPrice,Validators.required],
       isActive : [this.checkBoxInput],
       addedAt : [this.product.addedAt, Validators.required]
     }) 
@@ -109,7 +110,7 @@ export class WhProductInfoComponent implements OnInit {
     this.productInfoForm.controls['description'].disable()
     this.productInfoForm.controls['supplier'].disable()
     this.productInfoForm.controls['stockNumber'].disable()
-    this.productInfoForm.controls['costPrice'].disable()
+    this.productInfoForm.controls['initialPrice'].disable()
     this.productInfoForm.controls['isActive'].disable()
   }
   onDelete(){
@@ -128,7 +129,7 @@ export class WhProductInfoComponent implements OnInit {
     this.productInfoForm.controls['description'].enable()
     this.productInfoForm.controls['supplier'].enable()
     this.productInfoForm.controls['stockNumber'].enable()
-    this.productInfoForm.controls['costPrice'].enable()
+    this.productInfoForm.controls['initialPrice'].enable()
     this.productInfoForm.controls['isActive'].enable()
     this.productInfoForm.controls['categoryId'].enable()
     this.productInfoForm.controls['addedAt'].enable()
@@ -214,11 +215,12 @@ export class WhProductInfoComponent implements OnInit {
     })
   } 
   initializeData(data : any){
+    this._costPrice = data.hardwareProduct.costPrice;
     this.productInfoForm.controls['itemName'].patchValue(data.hardwareProduct.name)
     this.productInfoForm.controls['categoryId'].patchValue(data.hardwareProduct.categoryId)
     this.productInfoForm.controls['description'].patchValue(data.hardwareProduct.description)
     this.productInfoForm.controls['supplier'].patchValue(data.hardwareProduct.supplier)
-    this.productInfoForm.controls['costPrice'].patchValue(data.hardwareProduct.costPrice)
+    this.productInfoForm.controls['initialPrice'].patchValue(data.hardwareProduct.initialPrice)
     //this.productInfoForm.controls['isActive'].patchValue(Boolean(data.isActive))
     this.productInfoForm.controls['addedAt'].patchValue(this.toDate(data.addedAt).toISOString().slice(0, -1))
     this.productInfoForm.controls['stockNumber'].patchValue(Number(data.stockNumber))

@@ -2,46 +2,87 @@
     <div class="header">
         <!-- <h4>{{ dateToday | date : 'mediumDate' }}</h4> -->
     </div>
-    <div class="wrapper">
-        <div class="db-box revenue">
-            <div class="db-header">
-                <h5>Today</h5>
-            </div>
-            <div class="output">
-                <h2>{{ dateToday | date : 'mediumDate' }}</h2>
-            </div>
-        </div>
-        <div class="db-box sales">
-            <div class="db-header">
-                <h5>Sales</h5>
-            </div>
-            <div class="output">
-                <h2>{{ todaySales | currency : 'PHP' }}</h2>
-            </div>
-        </div>
-        <div class="db-box pending-orders">
-            <div class="db-header">
-                <h5>Pending Orders</h5>
-            </div>
-            <div class="output">
-                <h2>{{ pendingOrders.length }}</h2>
-            </div>
-        </div>
-    </div>
-    
-    <div class="monthly-sales-container">
-        <div class="monthly-sales-wrapper" *ngIf="monthlySales.sales?.length > 0">
-            <div class="sale-bar" *ngFor="let sale of monthlySales.sales">
-                <div class="date">
-                    <p>{{ sale?.dateSale | date : 'MMMM' }}</p>
+    <div class="dashboard-content-container">
+        <div class="wrapper">
+            <div class="db-box revenue">
+                <div class="db-header">
+                    <h5>Today</h5>
                 </div>
-                <div class="total-sales">
-                    <h5><b>{{ sale?.totalSale | currency : 'PHP'}}</b></h5>
+                <div class="output">
+                    <h2 class="val">{{ dateToday | date : 'mediumDate' }}</h2>
+                </div>
+            </div>
+            <div class="db-box sales">
+                <div class="db-header">
+                    <h5>Sales</h5>
+                </div>
+                <div class="output">
+                    <h2 class="val">{{ todaySales | currency : 'PHP' }}</h2>
+                </div>
+            </div>
+            <div class="db-box pending-orders">
+                <div class="db-header">
+                    <h5>Pending Orders</h5>
+                </div>
+                <div class="output">
+                    <h2 class="val">{{ pendingOrders.length }}</h2>
                 </div>
             </div>
         </div>
-        <div class="no-data" *ngIf="monthlySales.sales?.length < 1">
-            <h4>No Data found.</h4>
+        
+        <div class="monthly-sales-container">
+            <div class="monthly-sales-wrapper" *ngIf="monthlySales.sales?.length > 0">
+                <div class="sale-bar" *ngFor="let sale of monthlySales.sales">
+                    <div class="date">
+                        <p>{{ sale?.dateSale | date : 'MMMM' }}</p>
+                    </div>
+                    <div class="total-sales">
+                        <h5><b>{{ sale?.totalSale | currency : 'PHP'}}</b></h5>
+                    </div>
+                </div>
+            </div>
+            <div class="no-data" *ngIf="monthlySales.sales?.length < 1">
+                <h4>No Data found.</h4>
+            </div>
+        </div>
+        <div class="data-wrapper">
+            <!-- <div class="bill-wrapper">
+                
+            </div> -->
+            <div class="bill-header">
+                <h3 class="header-title-white">Bill Statement</h3>
+                <a class="custom-btn" [routerLink]="['/branch','bills']">Summary of Bills</a>
+            </div>
+            <div class="bill-wrapper">
+                <bill-status *ngFor="let dashboard of dashboards" 
+                    [dashboard]="dashboard" 
+                    [isShow]="true"
+                    [viewIsShow]="true"
+                    (onClickEvent)="onClick(dashboard, branchId)">
+                </bill-status>
+            </div>
+            <!-- <table class="table table-hover table-sm">
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Months</th>
+                        <th>Sales</th>
+                        <th>Profit(3%)</th>
+                        <th>Platform fee(PHP1,000)</th>
+                        <th>Total Amount</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let dashboard of dashboards">
+                    <tr>
+                        <td><span [class]="checkStatus(dashboard)">{{ dashboard?.status }}</span></td>
+                        <td><small>{{ dashboard?.date | date : 'mediumDate' }} - {{ dashboard?.dueDate | date : 'mediumDate' }}</small></td>
+                        <td>{{ dashboard?.salesOfMonth | currency : 'PHP'}}</td>
+                        <td>{{ dashboard?.profit | currency : 'PHP' }}</td>
+                        <td>{{ dashboard?.platformFee | currency : 'PHP'}}</td>
+                        <td>{{ (dashboard?.profit + dashboard?.platformFee) | currency : 'PHP'}}</td>
+                    </tr>
+                </tbody>
+            </table> -->
         </div>
     </div>
 </div>

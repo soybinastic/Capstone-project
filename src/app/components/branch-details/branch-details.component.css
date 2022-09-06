@@ -1,0 +1,18 @@
+.main-container{
+    width: auto;
+}
+.form-container{
+    width: auto;
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.map{
+    display: flex;
+    flex-direction: column;
+}
+#map{
+    height: auto;
+    width: 90vh;
+    border-radius: 10px;
+}

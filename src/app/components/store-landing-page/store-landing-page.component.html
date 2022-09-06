@@ -10,7 +10,7 @@
         <router-outlet></router-outlet>
     </div>
 </div> -->
-<div class="store-landing-page">
+<!-- <div class="store-landing-page">
     <div class="sl-header">
         <h3 class="sl-text">{{ hardwareStore?.hardwareStoreName }} Branches</h3>
     </div>
@@ -19,4 +19,42 @@
             <app-branch-display *ngFor="let branch of branches" [branch]="branch" (onGo)="go($event)"></app-branch-display>
         </div>
     </div>
+</div> -->
+<div class="content-container">
+    <div class="content">
+        <!-- <div class="card bg-dark text-white">
+            <img class="card-img" src="https://mrcheckout.net/wp-content/uploads/2017/01/Independent-Hardware-Store.jpg" alt="Card image" height="300" width="300">
+            <div class="card-img-overlay">
+                <h5 class="card-title">Card title</h5>
+            </div>
+        </div> -->
+    
+        <div class="branch-board" style="background-image: url('https://mrcheckout.net/wp-content/uploads/2017/01/Independent-Hardware-Store.jpg');">
+            <div></div>
+            <div class="branch-info">
+                <h3 class="base-title">{{ branch?.name }}</h3>
+                <p class="small-title">{{ branch?.address }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="header">
+        <div class="categories">
+            <a 
+                class="cat" 
+                [routerLink]="['/store', branchId, hardwareStoreId, 'products', branchId]">
+                All
+            </a>
+            <a 
+                *ngFor="let category of categories" 
+                class="cat" 
+                [routerLink]="['/store', branchId, hardwareStoreId, 'products', branchId]" [queryParams]="{ c_id : category?.categoryId }">
+                {{ category?.categoryName }}
+            </a>
+        </div>
+        <a [routerLink]="['/cart', hardwareStoreId, branchId,'none' ,0]" class="cart">
+            <i class="fal fa-shopping-cart"></i>
+            <span class="prod-count">{{ count > 0 ? count : '' }}</span>
+        </a>
+    </div>
+    <router-outlet></router-outlet>
 </div>

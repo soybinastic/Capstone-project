@@ -7,4 +7,6 @@ export interface ICustomer{
     address : string;
     contactNo : string;
     isVerified : boolean;
+    longitude : number;
+    latitude : number;
 }

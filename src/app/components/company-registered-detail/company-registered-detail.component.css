@@ -9,3 +9,24 @@
 .attachment-title{
     text-align: center;
 }
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3vh;
+}
+.register-btn{
+    text-align: center;
+    background-image: linear-gradient(315deg, #f5d020 0%, #f33918 74%);
+    padding: 1.5vh;
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+    width: 20%;
+    border-radius: 30px;
+    text-transform: uppercase;
+}
+.header-title{
+    font-weight: 700;
+}

@@ -1,7 +1,6 @@
 .main-caontainer{
-    margin-top: 80px;
-    padding: 50px;
-    padding-bottom: 60px;
+    margin-top: 5vh;
+    padding-bottom: 10vh;
 }
 #submit-btn{
     margin-left: 550px;
@@ -9,5 +8,29 @@
     text-align: center;
 }
 h3{
-    margin-bottom: 30px;
+    font-weight: 800;
+}
+.reg-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ctrl{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.form-group{
+    width: 35%;
+}
+.register-btn{
+    padding: 1.5vh;
+    margin-top: 2vh;
+    border-radius: 30px;
+    font-weight: 800;
+    border: 0;
+    background-color: #f5d020;
+    background-image: linear-gradient(315deg, #f5d020 0%, #f33918 74%);
+    width: 100%;
 }

@@ -1,0 +1,45 @@
+<div class="header">
+    <h3>Dashboard</h3>
+</div>
+<div class="content">
+    <div class="content-container">
+        <bill-status *ngFor="let dashboard of dashboards" [dashboard]="dashboard"></bill-status>
+    </div>
+    <div class="content-container con">
+        <div class="header-info">
+            <div class="header-con">
+                <small class="date">{{ dashboard?.date | date : 'mediumDate' }} - {{ dashboard?.dueDate | date : 'mediumDate' }}</small>
+                <span class="badge badge-pill badge-info">{{ dashboard?.status }}</span>
+            </div>
+            <h3 class="title">Current Bill</h3>
+        </div>
+        <div class="info">
+            <div class="branch-info">
+                <h3 class="title">{{ dashboard?.branch?.name }}</h3>
+                <small class="date">{{ dashboard?.branch?.address }}</small>
+            </div>
+            <div class="data">
+                <div class="data-wrapper">
+                    <div class="data-container">
+                        <h3 class="title">Profit(3%)</h3>
+                        <p class="date">{{ dashboard?.profit | currency : 'PHP'}}</p>
+                    </div>
+                    <div class="data-container">
+                        <h3 class="title">Platform Fee(PHP1,000)</h3>
+                        <p class="date">{{ dashboard?.platformFee | currency : 'PHP'}}</p>
+                    </div>
+                    <div class="data-container">
+                        <h3 class="title">Sales</h3>
+                        <p class="date">{{ dashboard?.salesOfMonth | currency : 'PHP'}}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-data">
+                <div class="total">
+                    <small class="date">Total Amount:</small>
+                    <h3 class="title">{{ (dashboard?.total + dashboard?.platformFee) | currency : 'PHP' }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

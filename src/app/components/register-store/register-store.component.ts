@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { IRegisterHardware } from 'src/app/models/hardware-store-models/registerhardwarestore';
+import { CompanyRegisteredService } from 'src/app/services/company-registered.service';
 import { HardwareStoreService } from 'src/app/services/hardware-store.service';
 @Component({
   selector: 'app-register-store',
@@ -11,9 +13,11 @@ export class RegisterStoreComponent implements OnInit {
   isValid: boolean = true;
   message: string
   registerForm : FormGroup; 
+  private readonly _companyRegisteredService : CompanyRegisteredService;
 
   constructor(private formBuilder: FormBuilder, 
-    private hardwareService: HardwareStoreService) { 
+    private hardwareService: HardwareStoreService, private route : ActivatedRoute,
+    private companyRegisteredService : CompanyRegisteredService) { 
     this.registerForm = formBuilder.group({
       firstName:['',[Validators.required]],
       lastName: ['',[Validators.required]],
@@ -27,9 +31,31 @@ export class RegisterStoreComponent implements OnInit {
       confirmPassword:['',[Validators.required]]
     }) 
     this.registerForm.valueChanges.subscribe();
+    this._companyRegisteredService = companyRegisteredService;
   }
 
   ngOnInit(): void {
+    const detailId = this.route.snapshot.queryParamMap.get("detail_id");
+    console.log(detailId === null);
+    if(detailId !== null){
+      this.loadDetails(Number(detailId));
+    }
+  }
+  loadDetails(id : number){
+    this._companyRegisteredService.get(id)
+      .subscribe((data) => {
+        console.log(data)
+        this.setData(data)
+      })
+  }
+  setData(data : any){
+    this.registerForm.controls["firstName"].setValue(data.firstName);
+    this.registerForm.controls["lastName"].setValue(data.lastName);
+    this.registerForm.controls["owner"].setValue(data.firstName + " " + data.lastName);
+    this.registerForm.controls["hardwareStoreName"].setValue(data.companyName);
+    this.registerForm.controls["contactNo"].setValue(data.phoneNumber);
+    this.registerForm.controls["email"].setValue(data.emailAddress);
+    this.registerForm.controls["businessAddress"].setValue(data.address);
   }
   register() : void{
     
@@ -60,7 +86,7 @@ export class RegisterStoreComponent implements OnInit {
             this.clear()
           }
         }, (err)=>{
-          console.log(err.error.errors)
+          console.log(err)
         })
       }
     }else{

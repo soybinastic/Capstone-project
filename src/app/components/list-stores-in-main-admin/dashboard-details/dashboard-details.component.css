@@ -1,0 +1,112 @@
+.content{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+}
+.con{
+    display: flex;
+    flex-direction: column;
+    margin-left: 2vh;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+    /* background-image: linear-gradient(315deg, #f5d020 0%, #f33918 74%); */
+    min-height: 60vh;
+    max-height: 60vh;
+    border: 2px black solid;
+    border-radius: 10px;
+}
+.date{
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 2vh;
+    color: white;
+}
+.header-info{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: center;
+    /* background-image: linear-gradient(315deg, #f5d020 0%, #f33918 74%); */
+    background-color: black;
+    padding: 1vh;
+}
+.title{
+    margin: 0;
+    padding: 0;
+    font-weight: 800;
+    color: white;
+}
+.header-con{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1vh;
+}
+.info{
+    padding: 1vh;
+    display: flex;
+    flex-direction: column;
+}
+.info-container-1{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.branch-info .title{
+    color: black;
+    margin: 0;
+    padding: 0;
+}
+.branch-info .date{
+    color: grey;
+    margin: 0;
+    padding: 0;
+}
+.data{
+    margin-top: 5vh;
+}
+.data .title{
+    color: grey;
+    margin: 0;
+    padding: 0;
+}
+.branch-info{
+    margin-top: 3vh;
+    
+}
+.data-container{
+    display: flex;
+    flex-direction: column;
+    /* background-image: linear-gradient(315deg, #f5d020 0%, #f33918 74%); */
+    background-color:  #f33918;
+    /* width: max-content; */
+    width: auto;
+    padding: 2vh;
+    border-radius: 10px;
+    /* border: 1px black solid; */
+    margin-right: 1vh;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+.data-wrapper{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.data-container .title{
+    color: rgb(190, 187, 187);
+}
+.data-container .date{
+    color: black;
+}
+.footer-data{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10vh;
+}
+.total .title{
+    color: black;
+}
+.total .date{
+    color: grey;
+}

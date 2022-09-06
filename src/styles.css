@@ -21,3 +21,22 @@ body {
   /* color: #101820FF; */
   /* color: #F2AA4CFF */
 }
+
+.custom-btn-app{
+  padding: 2vh;
+  padding-left: 6vh;
+  padding-right: 6vh;
+  border: 0;
+  border-radius: 30px;
+  font-weight: 700;
+  font-size: 20px;
+  background-color: black;
+  color: white;
+  text-decoration: none;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+} 
+
+.custom-btn-app:hover{
+  /* color: #FCA311; */
+  color: #f33918;
+}

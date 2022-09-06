@@ -39,4 +39,19 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  isShow() : boolean {
+    return (this.currentRoute !== '/welcome' 
+      && this.currentRoute !== '/privacy-and-termconditions' 
+      && this.currentRoute !== '/registration'
+      && this.currentRoute !== '/success'
+      && this.currentRoute !== '/cancel'
+      && !this.currentRoute.includes('/stores')
+      && (this.accountService.getUserRole() === "Admin" ||
+      this.accountService.getUserRole() === "TransportAgent" ||
+      this.accountService.getUserRole() === "StoreOwner" ||
+      this.accountService.getUserRole() === "StoreAdmin" ||
+      this.accountService.getUserRole() === "WarehouseAdmin" ||
+      this.accountService.getUserRole() === "SuperAdmin"))
+  }
+
 }

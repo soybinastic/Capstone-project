@@ -1,0 +1,87 @@
+<div class="bill-details">
+    <div class="header">
+        <h3 class="header-title">Bill Detail</h3>
+        <a [routerLink]="prevUrl" class="back-btn">Back</a>
+    </div>
+    <div class="bill-container" *ngIf="branchId > 0">
+        <div class="bill summary">
+            <div class="header bill-header bill-summary-header">
+                <p class="header-title">Summary</p>
+            </div>
+            <div class="bill-content-body">
+                <bill-status 
+                *ngFor="let dashboard of dashboards"
+                [dashboard]="dashboard">
+            </bill-status>
+            </div>
+        </div>
+        <div class="bill bill-statement">
+            <div class="header bill-header bill-statement-header">
+                <p class="header-title">Current Bill</p>
+            </div>
+            <div class="bill-content-body">
+                <div class="content-header">
+                    <small class="date">Due: {{ dashboard?.dueDate | date : 'mediumDate' }}</small>
+                    <span [class]="checkStatus(dashboard)">{{ dashboard?.status }}</span>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Sales of Month</div>
+                            <div class="card-body text-dark">
+                                <h5 class="card-title">{{ dashboard?.salesOfMonth | currency : 'PHP' }}</h5>
+                                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                            </div>
+                        </div>
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Platform fee(PHP1,000)</div>
+                            <div class="card-body text-dark">
+                                <h5 class="card-title">{{ dashboard?.platformFee | currency : 'PHP' }}</h5>
+                                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="card border-dark mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Profit(3%)</div>
+                            <div class="card-body text-dark">
+                                <h5 class="card-title">{{ dashboard?.profit | currency : 'PHP' }}</h5>
+                                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                            </div>
+                        </div>
+                        <div class="card border-danger mb-3" style="max-width: 18rem;">
+                            <div class="card-header">Amount to pay</div>
+                            <div class="card-body text-danger">
+                                <h5 class="card-title">{{ (dashboard?.total + dashboard?.platformFee) | currency : 'PHP' }}</h5>
+                                <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="conten-footer" *ngIf="dashboard.status == 'UNPAID'">
+                    <!-- <div class="content-header">
+                        <small class="date">PAY NOW:</small>
+                    </div>
+                    <div class="col">
+                        <div class="card">
+                            <div class="card-body row">
+                                Stripe
+                                <p>Gateway</p>
+                            </div>
+                        </div>
+                    </div> -->
+                    <div class="list-group">
+                        <div class="list-group-item list-group-item-action text-danger">PAY NOW: </div>
+                        <button class="list-group-item list-group-item-action text-primary" (click)="onClick()">STRIPE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bill-container-flex" *ngIf="branchId < 1">
+        <div class="bill">
+            <h3>Hello Wolrd</h3>
+        </div>
+    </div>
+</div>

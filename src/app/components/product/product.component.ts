@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { IProduct } from 'src/app/models/product-models/products';
 
 @Component({
@@ -9,9 +10,12 @@ import { IProduct } from 'src/app/models/product-models/products';
 export class ProductComponent implements OnInit {
   // @Input() product : IProduct
   @Input() product : any = {}
-  constructor() { }
+  prevUrl : string
+  constructor(private route : Router) { }
 
   ngOnInit(): void {
+    console.log(this.route.url)
+    this.prevUrl = this.route.url
   }
 
 }

@@ -1,0 +1,6 @@
+
+<customer-header></customer-header>
+<div class="body">
+    <h1 *ngIf="message == 'Please wait...'">{{ message }}</h1>
+    <router-outlet *ngIf="message == ''"></router-outlet>
+</div>
