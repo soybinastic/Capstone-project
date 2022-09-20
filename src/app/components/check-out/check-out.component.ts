@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPostOrder } from 'src/app/models/order-models/postorder';
 import { OrderService } from 'src/app/services/order.service';
 import { CustomerService } from 'src/app/services/customer.service';
+import { CartDetails } from 'src/app/models/cart-model/cartDetails.model';
 
 declare const L : any;
 @Component({
@@ -20,6 +21,7 @@ export class CheckOutComponent implements OnInit {
   longtitude : string = ''
 
   productsInCart : ICart[] = []
+  cartDetails : CartDetails
   hardwareStoreId : number
   branchId : number
   total : number = 0
@@ -64,7 +66,8 @@ export class CheckOutComponent implements OnInit {
       this.loadCustomerInfo()
        this.cartService.getProductsInCartV2(this.hardwareStoreId, this.branchId)
         .subscribe((data)=>{
-          this.productsInCart = data;
+          this.cartDetails = data;
+          this.productsInCart = data.cartItems;
           this.productsInCart.forEach((product)=>{
             this.total += (product.productPrice * product.productQuantity);
           })
@@ -75,11 +78,14 @@ export class CheckOutComponent implements OnInit {
     // pk.eyJ1Ijoic295YmkyMiIsImEiOiJjbDByb2VtdWEwNWc2M2tvMjZhcGdnb3Q5In0.xjFStx4zy9ZMC0tu2dARgA
     // if(this.deliver)
     //   this.loadMap()
-    this.loadMap()
+    //this.loadMap()
   } 
 
-  loadMap() : void {
-    var map = L.map('map').setView([51.505, -0.09], 13);
+  loadMap(lat : number, lng : number) : void {
+    if(lat === 0 || lng === 0){
+      alert('Please set your location. Go to your account.')
+    }
+    var map = L.map('map').setView([lat !== 0 ? lat : 51.505, lng !== 0 ? lng : -0.09], 13);
     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic295YmkyMiIsImEiOiJjbDFkM3phOWYwZHZqM2pvMGNnejBmc2M4In0.dmFiv4Ss4Nd44nJ9X4xxeA', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
@@ -89,20 +95,20 @@ export class CheckOutComponent implements OnInit {
       accessToken: 'your.mapbox.access.token'
     }).addTo(map);
 
-    var marker = L.marker([51.5, -0.09]).addTo(map);
+    var marker = L.marker([lat !== 0 ? lat : 51.505, lng !== 0 ? lng : -0.09]).addTo(map);
     //let prevMarked : any = {}
-    map.on('click', (event : any) => {
-      // let lat = event.latlang.lat;
-      // let lng = event.latlang.lng;
-      this.latitude = event.latlng.lat.toString();
-      this.longtitude = event.latlng.lng.toString();
-      //console.log(lat + ' - ' + lng)
-      if(marker != undefined){
-        map.removeLayer(marker)
-      }
+    // map.on('click', (event : any) => {
+    //   // let lat = event.latlang.lat;
+    //   // let lng = event.latlang.lng;
+    //   this.latitude = event.latlng.lat.toString();
+    //   this.longtitude = event.latlng.lng.toString();
+    //   //console.log(lat + ' - ' + lng)
+    //   if(marker != undefined){
+    //     map.removeLayer(marker)
+    //   }
 
-      marker = L.marker(event.latlng).addTo(map);
-    })
+    //   marker = L.marker(event.latlng).addTo(map);
+    // })
 
     L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -115,6 +121,9 @@ export class CheckOutComponent implements OnInit {
     this.customerService.getCustomerInfo().
       subscribe((data) => {
         console.log(data)
+        this.latitude = data.latitude.toString();
+        this.longtitude = data.longitude.toString();
+        this.loadMap(Number(this.latitude), Number(this.longtitude));
         this.setCustomerInfo(data)
       })
   }
@@ -128,7 +137,7 @@ export class CheckOutComponent implements OnInit {
   }
   order(){
     if(this.productsInCart.length > 0){
-      if (this.deliver && this.longtitude === '' && this.latitude === '') {
+      if (this.deliver && this.longtitude === '0' && this.latitude === '0') {
         this.isValid = false;
         this.messageError = 'Please set your exact location'
         return;
@@ -206,7 +215,7 @@ export class CheckOutComponent implements OnInit {
     }
   }
   private createOrder(){
-    const btn = document.getElementById('submit-btn') as HTMLButtonElement;
+    //const btn = document.getElementById('submit-btn') as HTMLButtonElement;
 
     const order : IPostOrder = {
       hardwareStoreId : this.hardwareStoreId,
@@ -220,6 +229,7 @@ export class CheckOutComponent implements OnInit {
       products : this.productsInCart,
       latitude : this.deliver ? this.latitude : '',
       longtitude : this.deliver ? this.longtitude : '',
+      shippingFee : this.cartDetails.shippingFee
       // barangayClearance : this.brgyClearanceImageFile,
       // nbi : this.nbiImageFile,
       // governmentId : this.governmentidImageFile,
@@ -250,23 +260,24 @@ export class CheckOutComponent implements OnInit {
     console.log(order)
     console.log(JSON.stringify(order.products))
     this.buttonText = "Processing..."
-    btn.classList.remove('sbt-btn')
-    btn.classList.add('btn-primary')
+    this.isSuccess = true
+    // btn.classList.remove('sbt-btn')
+    // btn.classList.add('btn-primary')
     this.orderService.postOrder(order)
     .subscribe((res)=>{
       if(res.success == 1){
         // alert(res.message)
-        btn.classList.remove('btn-primary')
-        btn.classList.add('btn-success')
+        // btn.classList.remove('btn-primary')
+        // btn.classList.add('btn-success')
         this.buttonText = "Order Successfully Posted"
         this.total = 0
         this.productsInCart = []
-        this.isSuccess = true
       }
     }, (err)=>{
       this.buttonText = 'Something went wrong'
-      btn.classList.remove('btn-primary')
-      btn.classList.add('btn-danger')
+      // btn.classList.remove('btn-primary')
+      // btn.classList.add('btn-danger')
+      this.isSuccess = false
       alert('Something went wrong')
     })
   }

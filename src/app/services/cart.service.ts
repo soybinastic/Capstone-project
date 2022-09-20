@@ -5,6 +5,7 @@ import { IAddToCart } from '../models/cart-model/addtocart';
 import { ICart } from '../models/cart-model/cart';
 import { AccountService } from './account.service';
 import { environment } from 'src/environments/environment';
+import { CartDetails } from '../models/cart-model/cartDetails.model';
 
 @Injectable({
   providedIn: 'root'
@@ -44,14 +45,14 @@ export class CartService {
 
     return this.http.get<ICart[]>(this.url+'api/cart/get-products-in-cart/'+hardwareStoreId,httpHeader)
   }
-  getProductsInCartV2(hardwareStoreId : number, branchId: number) : Observable<ICart[]>{
+  getProductsInCartV2(hardwareStoreId : number, branchId: number) : Observable<CartDetails>{
     const httpHeader = {
       headers: new HttpHeaders()
       .set('Content-Type','application/json')
       .set('Authorization','Bearer '+this.accountService.getToken())
     } 
 
-    return this.http.get<ICart[]>(this.url+'api/cart/get-products-in-cart/'+hardwareStoreId + '/' + branchId,httpHeader)
+    return this.http.get<CartDetails>(this.url+'api/cart/get-products-in-cart/'+hardwareStoreId + '/' + branchId,httpHeader)
   }
   // /api/cart/get-products-pending-in-cart
   getPendingItemsInCart() : Observable<any[]> {

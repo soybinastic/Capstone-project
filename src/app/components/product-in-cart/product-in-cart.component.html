@@ -1,24 +1,27 @@
-<div class="prod-container">
+<div class="prod-container card">
    <div class="prod">
     <i (click)="remove(productInCart)" class="fal fa-times remove-to-cart" title="Remove"></i>
     <div class="product">
         <div class="prod-img">
-            <img [src]="product?.imageFile ? 'https://localhost:44367/' + product?.imageFile :'https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg'" alt="" height="293" width="279">
+            <img [src]="product?.imageFile ? 'https://localhost:44367/' + product?.imageFile :'https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg'" alt="" height="293" width="210">
         </div> 
         <div class="content">
             <div class="prod-info">
                 <small><b>Stock :</b> {{product.stockNumber}}</small>
                 <p><b>Price :</b> {{ productInCart.productPrice }}</p>
-                <p>{{ productInCart.productName }}</p>
+                <p class="product_name" [title]="productInCart.productName">{{ productInCart.productName }}</p>
             </div>
             <div class="adjust-quantity">
-                <button *ngIf="showButton" (click)="increment(productInCart)" class="adjust-btn icrement adjust"><i class="fal fa-plus my-icon"></i></button>
+                <button *ngIf="showButton" (click)="increment(productInCart)" class="adjust-btn icrement adjust">+</button>
                 <!-- <p><b>QTY :</b>{{ productInCart.productQuantity }}</p> -->
                 <input type="number" [value]="productInCart.productQuantity" class="qty-input adjust" (input)="onAdjust($event)">
-                <button *ngIf="showButton" (click)="decrement(productInCart)" class="adjust-btn decrement adjust"><i class="fal fa-minus my-icon"></i></button>
+                <button *ngIf="showButton" (click)="decrement(productInCart)" class="adjust-btn decrement adjust">-</button>
             </div> 
             <button *ngIf="!showButton" class="btn btn-dark" (click)="onClickAdjust()">OK</button>
         </div>
     </div>
    </div>
 </div>
+
+<!-- <i class="fal fa-plus my-icon"></i> -->
+<!-- <i class="fal fa-minus my-icon"></i> -->

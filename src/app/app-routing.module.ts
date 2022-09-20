@@ -199,8 +199,8 @@ const routes: Routes = [
   {path : 'account', component : CustomerProfileComponent, 
   canActivate : [CustomerAccessGuard]},
   {path : 'my-information', component : CustomerInformationComponent, canActivate : [CustomerAccessGuard]},
-  { path : 'success', component : SucessComponent },
-  { path : 'cancel', component : CancelComponent }
+  { path : 'success/:dashboardId', component : SucessComponent, canActivate : [StoreAdminAccessGuard]},
+  { path : 'cancel', component : CancelComponent, canActivate : [StoreAdminAccessGuard] }
   // {path : 'order-refs', component : OrderRefComponent}
 ];
 

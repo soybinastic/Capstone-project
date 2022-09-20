@@ -23,6 +23,10 @@
                     <label for="address">Address</label>
                     <input type="text"  name="address" class="form-control" id="address" placeholder="Address" formControlName="address">
                 </div>
+                <div class="row">
+                    <label for="address">Range</label>
+                    <input type="number" name="range" class="form-control" id="range" placeholder="Kilometer range" formControlName="range">
+                </div>
                 <ul class="list-group row mt-2">
                     <li class="list-group-item bg-info">Coordinates</li>
                     <li class="list-group-item">Lat: {{ form.controls['lat'].value }}</li>

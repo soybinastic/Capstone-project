@@ -21,7 +21,7 @@ export class BranchService {
     return this.http.post<any>(this.url+'api/Branch/add-branch', data, httpHeader)
   }
   
-  getAllBranches(lat : number = 0, lng : number = 0) : Observable<any[]>{
+  getAllBranches(lat : number = 0, lng : number = 0, km : number = 5) : Observable<any[]>{
     const httpHeader = {
       headers : new HttpHeaders()
       .set('Content-Type','application/json')
@@ -29,7 +29,18 @@ export class BranchService {
       .set('lng', lng.toString())
     }
 
-    return this.http.get<any[]>(this.url + 'api/Branch/all-branches', httpHeader);
+    return this.http.get<any[]>(this.url + 'api/Branch/all-branches?adjusted_km=' + km, httpHeader);
+  }
+
+  search(value : string, lat : number = 0, lng : number = 0, km : number = 5) : Observable<any[]> {
+    const httpHeader = {
+      headers : new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('lat', lat.toString())
+      .set('lng', lng.toString())
+    }
+
+    return this.http.get<any[]>(this.url + 'api/Branch/search?search=' + value + '&adjusted_km=' + km, httpHeader);
   }
 
   getBranches(): Observable<any[]>{

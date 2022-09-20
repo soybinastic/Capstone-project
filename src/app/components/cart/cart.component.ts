@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdjustCartItemQuantity } from 'src/app/models/cart-model/addjustQuantityInCart';
 import { ICart } from 'src/app/models/cart-model/cart';
+import { CartDetails } from 'src/app/models/cart-model/cartDetails.model';
 import { AccountService } from 'src/app/services/account.service';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -21,6 +22,7 @@ export class CartComponent implements OnInit {
   //<-
   total : number = 0
   productsInCart : ICart[] = []
+  cartDetails : CartDetails
   constructor(private accountService : AccountService, private route : Router, 
     private urlParam : ActivatedRoute, private cartService : CartService) { }
 
@@ -64,10 +66,12 @@ export class CartComponent implements OnInit {
   loadProductsInCart() : void {
     this.cartService.getProductsInCartV2(this.hardwareStoreId, this.branchId)
       .subscribe((data) => {
-        this.productsInCart = data;
+        this.cartDetails = data;
+        this.productsInCart = data.cartItems;
         this.productsInCart.forEach((product) => {
           this.total += (product.productPrice * product.productQuantity)
         })
+        console.log(data)
       })
   }
 

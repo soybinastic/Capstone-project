@@ -49,7 +49,7 @@ export class StoreLandingPageComponent implements OnInit {
   loadProductsInCart() : void {
     this.cartService.getProductsInCartV2(this.hardwareStoreId, this.branchId)
       .subscribe(data => {
-        data.forEach(product => {
+        data.cartItems.forEach(product => {
           this.count += product.productQuantity;
         })
       })

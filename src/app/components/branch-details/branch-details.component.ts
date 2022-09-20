@@ -25,6 +25,7 @@ export class BranchDetailsComponent implements OnInit {
       branchName : ['',Validators.required],
       address : ['', Validators.required],
       isActive : [this.isCheck],
+      range : ['', Validators.required],
       lat : ['', Validators.required],
       lng : ['', Validators.required]
     })
@@ -96,6 +97,7 @@ export class BranchDetailsComponent implements OnInit {
         this.form.controls['isActive'].setValue(data.isActive)
         this.form.controls['lat'].setValue(data.latitude)
         this.form.controls['lng'].setValue(data.longitude)
+        this.form.controls['range'].setValue(data.range)
       })
   }
   updateBranch(data : any, branchId : number){

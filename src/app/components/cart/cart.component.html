@@ -1,8 +1,17 @@
 <div class="cart"> 
-    <div class="header">
+    <!-- <div class="header">
         <h1><i (click)="back()" class="fas fa-chevron-left"></i></h1>
         <h2>Products in Cart</h2>
         <h2>Total : {{ total | currency : 'PHP' }}</h2>
+    </div> -->
+    <div class="total-payment-info">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Payment Details: </li>
+            <li class="list-group-item">Total: {{ total | currency : 'PHP' }}</li>
+            <li class="list-group-item">Shipping fee: {{ cartDetails.shippingFee | currency : 'PHP' }}</li>
+            <li class="list-group-item">Total Cost: {{ (total + cartDetails.shippingFee) | currency : 'PHP' }}</li>
+        </ul>
+        <button class="co-btn" (click)="checkOut()">CHECKOUT</button>
     </div>
     <div class="products">
         <app-products-in-cart 
@@ -17,10 +26,10 @@
     
 </div>
 
-<div class="check-out" title="Check out" (click)="checkOut()">
+<!-- <div class="check-out" title="Check out" (click)="checkOut()">
     <div class="content">
         <p>Check Out</p>
         <i id="check" class="far fa-check-circle"></i>
     </div>
-</div>
+</div> -->
 

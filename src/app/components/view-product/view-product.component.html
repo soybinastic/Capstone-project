@@ -4,7 +4,7 @@
             <!-- <button  class="btn-item"> Back</button> -->
             <a routerLink="{{ prevUrl }}" class="back"><i class="fas fa-arrow-left"></i></a>
             <!-- <button (click)="goToCart()" class="btn-item cart">Cart  </button> -->
-            <a href="#"  class="cart"><i class="fal fa-shopping-cart"></i><span class="prod-count">{{ cartCounter > 0 ? cartCounter : '' }}</span></a>
+            <a [routerLink]="['/cart', hardwareStoreId, branchId,'none' ,0]"  class="cart"><i class="fal fa-shopping-cart"></i><span class="prod-count">{{ cartCounter > 0 ? cartCounter : '' }}</span></a>
         </div> 
 
        <div class="product-info">

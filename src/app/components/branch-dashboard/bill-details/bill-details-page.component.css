@@ -55,6 +55,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
 }
 .bill{
     /* border: 0.2px rgb(133, 130, 130) solid; */

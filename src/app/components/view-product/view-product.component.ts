@@ -72,7 +72,7 @@ export class ViewProductComponent implements OnInit {
   loadProductsInCart() : void {
     this.cartService.getProductsInCartV2(this.hardwareStoreId, this.branchId)
       .subscribe((data) => {
-        this.cart = data
+        this.cart = data.cartItems
         this.cart.forEach((product) => {
           this.cartCounter += product.productQuantity;
         })

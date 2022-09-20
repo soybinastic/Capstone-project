@@ -2,32 +2,41 @@
     display: flex;
     justify-content: center;
     padding: 12px;
-    height: 480px;
+    height: 440px;
     /* background: rgba(22, 23, 22, 0.01); */
-    width: 300px;
-    mix-blend-mode: darken;
+    width: 240px;
+    /* mix-blend-mode: darken;
     box-sizing: border-box;
-    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37); */
     border-radius: 4px;
+}
+.prod{
+    padding-top: 4vh;
+    padding-bottom: 3vh;
+}
+.product_name{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .content .adjust-quantity{
     display: flex;
     justify-content: center;
 }
+
 .adjust{
-    padding-right: 5px;
+    /* padding-right: 5px;
     padding-left: 5px;
     margin-right: 5px;
-    margin-left: 5px;
+    margin-left: 5px; */
 }
 .qty-input{
     padding: 10px;
     height: 40px;
-    width: 70px;
+    width: 60px;
     text-align: center;
     border: none;
     outline: 0;
-    border-bottom: 3px black solid;
 }
 .remove-to-cart{
     float: right;
@@ -37,7 +46,7 @@
 img{
     /* border-radius: 12px 12px 12px 12px; */
     height: 260px;
-    width: 280px;
+    width: 220px;
     /* border: 1px black solid; */
 }
 .remove-to-cart:hover{
@@ -47,25 +56,29 @@ img{
     transition: ease 200ms;
 }
 .icrement{
-    background-color: #020202;
-    color: rgba(249, 184, 17, 0.92);
+    background-color: #f33918;
+    color: white;
 }
 
 .decrement{
     /* border: 2px rgba(249, 184, 17, 0.92) solid; */
-    background-color:rgba(249, 184, 17, 0.92);
-    color: #020202;
+    background-color: #f33918;
+    color: white;
 }
 .adjust-btn{
-    height: 40px;
-    padding: 12px;
     margin-bottom: 5px;
     /* border-radius: 17px; */
-    width: 50px;
+    padding-left: 1vh;
+    padding-right: 1vh;
     font-size: 16px;
     display: flex;
     justify-content: center;
-    box-shadow: -4px 4px 9px rgba(0, 0, 0, 0.37);
+    align-items: center;
+    border: 0;
+    border-radius: 5%;
+}
+button i{
+    margin: 0 auto;
 }
 /* .prod-container{
     padding: 12px;

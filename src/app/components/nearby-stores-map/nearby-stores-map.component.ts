@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { BranchService } from "src/app/services/branch.service";
 declare const L : any
 @Component({
@@ -10,17 +11,19 @@ export class NearbyStoresMap implements OnInit {
     title : string = "Nearby stores"
     customerLat : number;
     customerLng : number;
-    constructor(private branchService : BranchService){
+    km : number
+    constructor(private branchService : BranchService, private activatedRoute : ActivatedRoute){
         this.customerLat = Number(localStorage.getItem("customer_lat"));
         this.customerLng = Number(localStorage.getItem("customer_lng"));
     }
     ngOnInit(): void {
         //this.initMap()
+        this.km = this.activatedRoute.snapshot.queryParamMap.get('km') !== null ? Number(this.activatedRoute.snapshot.queryParamMap.get('km')) : 5
         this.loadAllBranches()
     }
 
     loadAllBranches() : void {
-        this.branchService.getAllBranches(this.customerLat, this.customerLng)
+        this.branchService.getAllBranches(this.customerLat, this.customerLng, this.km)
             .subscribe((data) => {
                 this.initMap(this.customerLat, this.customerLng, data)
             })

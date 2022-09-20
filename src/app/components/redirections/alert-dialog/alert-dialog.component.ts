@@ -11,7 +11,8 @@ export class AlertDialogComponent {
         title : 'Alert Dialog',
         message : 'Thankyou for trusting our company!',
         icon : '',
-        btnClass : 'btn btn-success pl-5 pr-5'
+        btnClass : 'btn btn-success pl-5 pr-5',
+        disable : false
     } 
     @Output()
     clickEvent : EventEmitter<any> = new EventEmitter();

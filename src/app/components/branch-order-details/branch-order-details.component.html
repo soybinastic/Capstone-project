@@ -92,7 +92,7 @@
                 </div>
                 <div class="display-data-group">
                     <small>Total</small>
-                    <small class="display-data">{{ order?.total | currency : 'PHP' }}</small>
+                    <small class="display-data">{{ order?.total | currency : 'PHP' }} (Shipping Fee: {{ order?.shippingFee | currency : 'PHP' }})</small>
                 </div>
             </div>
             <div class="display-data-wrapper flex">

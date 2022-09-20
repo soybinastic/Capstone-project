@@ -80,8 +80,6 @@
         </div>
     </div>
     <div class="bill-container-flex" *ngIf="branchId < 1">
-        <div class="bill">
-            <h3>Hello Wolrd</h3>
-        </div>
+        <bill-status [dashboard]="dashboard"></bill-status>
     </div>
 </div>

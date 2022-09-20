@@ -12,6 +12,7 @@ export interface IPostOrder{
     products : ICart[];
     latitude : string;
     longtitude : string;
+    shippingFee : number;
     // nbi : File;
     // barangayClearance : File;
     // governmentId : File;

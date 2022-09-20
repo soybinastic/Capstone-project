@@ -67,7 +67,7 @@ export class BillDetailsPageComponent implements OnInit{
     }
 
     onClick() : void {
-        this._paymentService.checkOut(Number(this.dashboard.id), "http://localhost:4200/success", "http://localhost:4200/cancel")
+        this._paymentService.checkOut(Number(this.dashboard.id), "http://localhost:4200/success/" + this.dashboard.id, "http://localhost:4200/cancel")
             .subscribe(res => {
                 window.location.href = res.url;
             }, err => {

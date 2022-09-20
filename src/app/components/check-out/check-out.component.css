@@ -1,5 +1,5 @@
 .main-caontainer{
-    margin-top: 100px;
+    margin-top: 5vh;
     padding-right: 40px;
     padding-left: 40px;
 }
@@ -11,13 +11,12 @@
     justify-content: center;
 }
 #submit-btn{
-    width: 500px;
+    width: fit-content;
 }
 .sbt-btn{
     background-color:  rgba(249, 184, 17, 0.92);
 }
 .main-form{
-    padding: 25px;
     background: rgba(22, 23, 22, 0.01);
     mix-blend-mode: darken;
     /* border: 1px solid rgba(0, 0, 0, 0.38); */
@@ -68,8 +67,20 @@ input[type="checkbox"]{
 
 #map{
     height: 80vh;
+    margin-bottom: 3vh;
 }
 .error-alert{
     color: red;
     font-size: 18px;
+}
+.card{
+    padding: 10px;
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+}
+.container{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
+    padding-bottom: 5vh;
 }

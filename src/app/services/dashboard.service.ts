@@ -39,4 +39,14 @@ export class DashboardService{
 
         return this.client.get<any>(this.url + 'api/Dashboard/' + id, httpHeaders)
     }
+
+    public updateStatus(dashboardId : number) : Observable<any> {
+        const httpHeaders = {
+            headers : new HttpHeaders()
+                .set('Content-Type', 'application/json')
+                .set('Authorization', 'Bearer ' + this.accountService.getToken())
+        }
+
+        return this.client.put<any>(this.url + 'api/Dashboard/update-status/' + dashboardId, {}, httpHeaders)
+    }
 }
