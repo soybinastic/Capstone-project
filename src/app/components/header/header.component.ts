@@ -51,7 +51,9 @@ export class HeaderComponent implements OnInit {
       this.accountService.getUserRole() === "StoreOwner" ||
       this.accountService.getUserRole() === "StoreAdmin" ||
       this.accountService.getUserRole() === "WarehouseAdmin" ||
-      this.accountService.getUserRole() === "SuperAdmin"))
+      this.accountService.getUserRole() === "SuperAdmin" ||
+      this.accountService.getUserRole() === "Cashier" ||
+      this.accountService.getUserRole() === "SalesClerk"))
   }
 
 }

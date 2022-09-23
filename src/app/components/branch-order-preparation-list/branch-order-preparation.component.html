@@ -1,0 +1,23 @@
+
+<div class="wrappeer">
+    <table class="table table-hover table-sm">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Customer</th>
+                <th>Order Date</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let order of ordersToPrepare">
+            <tr>
+                <td>{{ order?.order?.id }}</td>
+                <td>{{ order?.order?.customerName }}</td>
+                <td>{{ order?.order?.orderDate | date : 'mediumDate'}}</td>
+                <td>{{ order?.order?.total | currency : 'PHP' }}</td>
+                <td><a [routerLink]="['/branch', 'orders', 'details', order?.order?.id]" class="btn btn-success">VIEW</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -92,6 +92,10 @@ import { SucessComponent } from './components/redirections/success-checkout/succ
 import { CancelComponent } from './components/redirections/cancel-checkout/cancel.component';
 import { CustomerMain } from './components/customer-main-page/customer-main.component';
 import { NearbyStoresMap } from './components/nearby-stores-map/nearby-stores-map.component';
+import { CashierAccessGuard } from './cashier-access.guard';
+import { TransportAgentAccessGuard } from './transport-agent-access.guard';
+import { BranchOrderPreparationComponent } from './components/branch-order-preparation-list/branch-order-preparation.component';
+import { SalesclerkAccessGuard } from './salesclerk-access.guard';
 // import { OrderRefComponent } from './components/customer-information/customer-information.component';
 
 const routes: Routes = [
@@ -179,7 +183,8 @@ const routes: Routes = [
     {path : 'orders', component : BranchOrdersComponent, children:[
       {path : 'list', component : BranchOrderListComponent},
       {path : 'details/:orderId', component : BranchOrderDetailsComponent},
-      {path : 'confirmation', component : BranchOrderConfirmationComponent, canActivate: [StoreAdminAccessGuard]}
+      {path : 'confirmation', component : BranchOrderConfirmationComponent, canActivate : [CashierAccessGuard]},
+      {path : 'to-prepare', component : BranchOrderPreparationComponent, canActivate : [SalesclerkAccessGuard]}
     ]},
     {path : 'reports', component : BranchReportsComponent, canActivate:[StoreAdminAccessGuard] , children:[
       {path : 'request', component : BranchRequestComponent, children : [

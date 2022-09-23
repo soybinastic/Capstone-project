@@ -121,6 +121,7 @@ import { AlertDialogComponent } from './components/redirections/alert-dialog/ale
 import { CustomerMain } from './components/customer-main-page/customer-main.component';
 import { CustomerMainHeader } from './components/customer-main-page/customer-main-header/customer-main-header.component';
 import { NearbyStoresMap } from './components/nearby-stores-map/nearby-stores-map.component';
+import { BranchOrderPreparationComponent } from './components/branch-order-preparation-list/branch-order-preparation.component';
 
 @NgModule({
   declarations: [
@@ -241,7 +242,8 @@ import { NearbyStoresMap } from './components/nearby-stores-map/nearby-stores-ma
     AlertDialogComponent,
     CustomerMain,
     CustomerMainHeader,
-    NearbyStoresMap
+    NearbyStoresMap,
+    BranchOrderPreparationComponent
   ],
   imports: [
     BrowserModule,

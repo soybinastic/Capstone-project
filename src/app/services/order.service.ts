@@ -102,14 +102,14 @@ export class OrderService {
     return this.http.get<any>(this.url + 'api/Order/get-completed-order/' + orderId, httpHeaders)
   }
 
-  approveOrder(orderId : number) : Observable<any>{
+  approveOrder(orderId : number, salesClerkId : number) : Observable<any>{
     const httpHeaders = {
       headers: new HttpHeaders()
       .set('Content-Type','application/json')
       .set('Authorization','Bearer '+this.accountService.getToken())
     }
 
-    return this.http.put<any>(this.url + 'api/Order/approve-order/' + orderId, {}, httpHeaders)
+    return this.http.put<any>(this.url + 'api/Order/approve-order/' + orderId + '/' + salesClerkId, {}, httpHeaders)
   }
   confirmOrder(orderId : number) : Observable<any>{
     
@@ -120,5 +120,32 @@ export class OrderService {
     }
 
     return this.http.put<any>(this.url + 'api/Order/confirm-order/' + orderId, {}, httpHeaders)
+  }
+
+  salesClerks() : Observable<any[]>{
+    const httpHeaders = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    }
+    return this.http.get<any[]>(this.url + 'api/Order/sales-clerks', httpHeaders);
+  }
+
+  toDeliver(orderId : number) : Observable<any>{
+    const httpHeaders = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    }
+    return this.http.put<any>(this.url + 'api/Order/to-deliver/' + orderId, {}, httpHeaders)
+  }
+
+  getPreparations() : Observable<any[]>{
+    const httpHeaders = {
+      headers: new HttpHeaders()
+      .set('Content-Type','application/json')
+      .set('Authorization','Bearer '+this.accountService.getToken())
+    }
+    return this.http.get<any[]>(this.url + 'api/Order/preparations', httpHeaders);
   }
 }

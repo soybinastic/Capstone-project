@@ -45,24 +45,47 @@
                     </div>
                 </div> -->
                 <div class="display-data-wrapper order-status-control">
-                    <div class="display-data-group ddg-p">
-                        <small>Order Status</small>
-                        <select class="custom-select" id="inputGroupSelect01" (change)="orderStatusSelected($event)">
-                            <option selected value="">Choose...</option>
-                            <option value="1">Cancelled</option>
-                            <option value="2">Done</option>
-                            <!-- <option value="2">Two</option>
-                            <option value="3">Three</option> -->
-                          </select>
+                    <div class="action-wrapper card" *ngIf="getRole() == 'TransportAgent'">
+                        <div class="display-data-group ddg-p">
+                            <small>Order Status</small>
+                            <select class="custom-select" id="inputGroupSelect01" (change)="orderStatusSelected($event)">
+                                <option selected value="">Choose...</option>
+                                <option value="1">Cancelled</option>
+                                <option value="2">Done</option>
+                                <!-- <option value="2">Two</option>
+                                <option value="3">Three</option> -->
+                              </select>
+                        </div>
+                        <div class="display-data-group ddg-p">
+                            <small>Submit</small>
+                            <button class="btn btn-dark" (click)="onUpdateOrder()" [disabled]="order?.status != 'To Deliver' || !order?.isApproved">{{ buttonText }}</button>
+                        </div>
                     </div>
-                    <div class="display-data-group ddg-p">
-                        <small>Submit</small>
-                        <button class="btn btn-dark" (click)="onUpdateOrder()" [disabled]="order?.status != 'Pending' || !order?.isApproved">{{ buttonText }}</button>
+                    <div class="action-wrapper card" *ngIf="getRole() == 'SalesClerk'">
+                        <div class="display-data-group ddg-p">
+                            <small>Ready to deliver</small>
+                            <button class="btn btn-dark" [disabled]="order.status !== 'Preparing'" (click)="donePreparing()">{{ doneBtnTxt }}</button>
+                        </div>
                     </div>
-                    <div class="display-data-group ddg-p" *ngIf="getRole() == 'StoreAdmin'">
-                        <small>Order Approval</small>
-                        <button [class]="order?.isApproved ? 'btn btn-primary' : 'btn btn-warning'" [disabled]="order?.isApproved
-                        " (click)="approveOrder()">{{ order?.isApproved ? 'Approved' : approveBtnText }}</button>
+                    <div class="action-wrapper card" *ngIf="getRole() == 'StoreAdmin'">
+                        <div class="display-data-group ddg-p">
+                            <small>Assign Sales Clerk</small>
+                            <select class="custom-select" id="inputGroupSelect01" (change)="selectedSalesClerk($event)">
+                                <option selected value="0">Choose...</option>
+                                <option *ngFor="let salesClerk of salesClerks" [value]="salesClerk?.salesClerk?.id">{{ salesClerk?.salesClerk?.name + ' ' + (salesClerk.isAvailable ? '' : '(Busy)') }}</option>
+                                
+                              </select>
+                        </div>
+                        <div class="display-data-group ddg-p">
+                            <small>Order Approval</small>
+                            <button [class]="order?.isApproved ? 'btn btn-primary' : 'btn btn-warning'" [disabled]="order?.isApproved
+                            " (click)="approveOrder()">{{ order?.isApproved ? 'Approved' : approveBtnText }}</button>
+                        </div>
+                        <div class="display-data-group ddg-p" *ngIf="alert.isShow">
+                            <div [class]="alert.isError ? 'alert alert-warning' : 'alert alert-primary'" role="alert">
+                                {{ alert.message }}
+                            </div>
+                        </div>
                     </div>
                     <div class="display-data-group ddg-p" *ngIf="getRole() == 'StoreAdmin' && completedOrder != null">
                         <small>Order Confirmation</small>
@@ -83,7 +106,7 @@
         <div class="order-details">
             <div class="order-nav-header">
                 <h5>Order Details</h5>
-                <small class="date-confirmed-text" *ngIf="order?.status != 'Pending'">Date Confirmed {{ order?.dateConfirmed | date : 'mediumDate'}}</small>
+                <small class="date-confirmed-text" *ngIf="order?.status == 'Completed'">Date Confirmed {{ order?.dateConfirmed | date : 'mediumDate'}}</small>
             </div>
             <div class="display-data-wrapper flex">
                 <div class="display-data-group">

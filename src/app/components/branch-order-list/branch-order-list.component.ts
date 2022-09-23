@@ -10,7 +10,7 @@ import { SignalrService } from 'src/app/services/signalr.service';
   styleUrls: ['./branch-order-list.component.css']
 })
 export class BranchOrderListComponent implements OnInit {
-
+  message : string = "Loading..."
   orders : any[] = []
   constructor(private orderService : OrderService, private signalRService : SignalrService, private hardwareStoreUserService : HardwareStoreUserService, private accountService : AccountService) { }
 
@@ -30,6 +30,7 @@ export class BranchOrderListComponent implements OnInit {
     this.orderService.getAllOrders()
       .subscribe((data) => {
         this.orders = data
+        this.message = this.orders.length == 0 && this.getUserRole() == "StoreAdmin" ? "No orders found" : "No orders to be deliver."
         console.log(this.orders)
       })
   }
@@ -73,6 +74,10 @@ export class BranchOrderListComponent implements OnInit {
         return 'status-span cancelled';
       case 'Completed':
         return 'status-span completed';
+      case 'Preparing':
+        return 'status-span bg-primary'
+      case 'To Deliver':
+        return 'status-span bg-dark'
       default:
         return '';
     }

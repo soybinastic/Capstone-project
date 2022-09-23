@@ -12,6 +12,12 @@ export class StoreAdminAccessGuard implements CanActivate {
     if(this.accountService.isLoggedIn()){
       if(this.accountService.getUserRole() == "StoreAdmin"){
         return true;
+      }else if(this.accountService.getUserRole() == "Cashier"){
+        this.route.navigate(['/branch','orders', 'confirmation'])
+        return false;
+      }else if(this.accountService.getUserRole() == "SalesClerk"){
+        this.route.navigate(['/branch','orders', 'to-prepare'])
+        return false;
       }else{
         this.route.navigate(['/branch','orders'])
         return false;

@@ -26,6 +26,10 @@ export class BranchOrderDetailsComponent implements OnInit {
   confirmBtnText : string = 'Confirm Order'
   attachBtnIsShow: boolean = false 
   completedOrder : any = null
+  salesClerks : any[] = []
+  salesClerkId : number = 0
+  alert : any = {}
+  doneBtnTxt : string = "DONE"
   constructor(private orderService : OrderService, private urlParam : ActivatedRoute, 
     private customerOrderRecieveImageService : CustomerOrderRecieveImageService, private accountService : AccountService) { }
 
@@ -40,6 +44,7 @@ export class BranchOrderDetailsComponent implements OnInit {
 
     if(this.getRole() == 'StoreAdmin'){
       this.loadCompletedOrder()
+      this.loadSalesClerks();
     }
   } 
   loadMap(lat : number, lng : number) : void {
@@ -62,7 +67,17 @@ export class BranchOrderDetailsComponent implements OnInit {
   }
   getRole() : string {
     return this.accountService.getUserRole()
-  } 
+  }
+  
+  loadSalesClerks() : void {
+    this.orderService.salesClerks()
+      .subscribe(data => {
+        this.salesClerks = data
+        console.log(this.salesClerks)
+      }, err => {
+        
+      })
+  }
 
   loadCompletedOrder() : void {
     this.orderService.getCompletedOrder(this.orderId)
@@ -73,16 +88,47 @@ export class BranchOrderDetailsComponent implements OnInit {
       })
   }
   approveOrder() : void {
+    this.alert.message = ""
+    this.alert.isShow = false;
+    if(this.salesClerkId === 0) {
+      this.alert.isShow = true;
+      this.alert.isError = true;
+      this.alert.message = "Please assign a sales clerk to prepare this order";
+      return;
+    }
+    
     this.onApproveOrder()
+  }
+  donePreparing() : void {
+    this.doneBtnTxt = "Processing..."
+    this.orderService.toDeliver(this.orderId)
+      .subscribe(data => {
+        this.order = data.order
+        this.alert.isShow = true;
+        this.alert.isError = false;
+        this.alert.message = "Success";
+        this.doneBtnTxt = "DONE"
+      }, err => {
+        this.alert.isShow = true;
+        this.alert.isError = true;
+        this.alert.message = err.error.message;
+        this.doneBtnTxt = "DONE"
+      })
   }
   onApproveOrder() : void {
     this.approveBtnText = 'Approving...'
-    this.orderService.approveOrder(this.orderId)
+    this.orderService.approveOrder(this.orderId, this.salesClerkId)
       .subscribe((res) => {
-        alert('res.message')
         this.order.isApproved = true
+        this.alert.isShow = true;
+        this.alert.isError = false;
+        this.alert.message = res.message;
       }, (err) => {
-        alert('Something went wrong')
+        console.log(err)
+        this.alert.isShow = true;
+        this.alert.isError = true;
+        this.alert.message = err.error.message;
+        this.approveBtnText = 'Approve'
       })
   } 
 
@@ -175,6 +221,10 @@ export class BranchOrderDetailsComponent implements OnInit {
         return 'status-span cancelled';
       case 'Completed':
         return 'status-span completed';
+      case 'Preparing':
+        return 'status-span bg-primary';
+      case 'To Deliver':
+        return 'status-span bg-dark';
       default:
         return ''
     }
@@ -195,6 +245,9 @@ export class BranchOrderDetailsComponent implements OnInit {
         this._isOnChangeValue = false;
         break;
     }
+  }
+  selectedSalesClerk(event : any) : void {
+    this.salesClerkId = Number(event.target.value)
   }
   isDeliverClasses(isDeliver : boolean) : string {
     return isDeliver ? 'status-span yes' : 'status-span no'

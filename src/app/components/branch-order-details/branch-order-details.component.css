@@ -85,6 +85,10 @@ h5{
     background-color: red;
     color: white;
 }
+.preparing{
+    background-color: rgb(255, 166, 0);
+    color: black;
+}
 .yes{
     background-color: #51bfb9;
     color: black;

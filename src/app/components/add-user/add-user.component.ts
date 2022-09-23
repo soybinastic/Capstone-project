@@ -80,7 +80,7 @@ export class AddUserComponent implements OnInit {
     const roleName = event.target.value.toString();
     this.addUserForm.controls['branchId'].setValidators([Validators.required])
     this.addUserForm.controls['warehouseId'].setValidators([Validators.required])
-    if(roleName == 'TransportAgent' || roleName == 'StoreAdmin'){
+    if(roleName == 'TransportAgent' || roleName == 'StoreAdmin' || roleName == 'Cashier' || roleName == 'SalesClerk'){
       this.addUserForm.controls['branchId'].enable()
       this.addUserForm.controls['warehouseId'].clearValidators()
       this.addUserForm.controls['warehouseId'].disable()
@@ -95,6 +95,9 @@ export class AddUserComponent implements OnInit {
       this.addUserForm.controls['branchId'].disable()
       this.addUserForm.controls['warehouseId'].enable()
       this.addUserForm.controls['branchId'].clearValidators()
+    }else{
+      this.addUserForm.controls['branchId'].disable()
+      this.addUserForm.controls['warehouseId'].disable()
     }
   }
   isValid() : boolean{
