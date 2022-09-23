@@ -11,7 +11,7 @@
     </div>
 </div> -->
 <div class="card hardware-store" style="width: 18rem;">
-    <img class="card-img-top" src="https://mrcheckout.net/wp-content/uploads/2017/01/Independent-Hardware-Store.jpg" alt="Card image cap" height="280">
+    <img class="card-img-top" [src]="(hardwareStore?.image != null ? 'http://fastlinehardware-001-site1.htempurl.com/' + hardwareStore?.image : 'https://mrcheckout.net/wp-content/uploads/2017/01/Independent-Hardware-Store.jpg')" alt="Card image cap" height="280">
     <div class="card-body">
         <!-- <h5 class="card-title">{{ hardwareStore?.name }}</h5> -->
         <p class="card-text">{{ hardwareStore?.name }}</p>

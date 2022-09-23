@@ -19,6 +19,7 @@ export class BranchDetailsComponent implements OnInit {
   isInputValid : boolean = true
   isCheck : boolean = true
   form : FormGroup;
+  imageFile : File
   constructor(private fb : FormBuilder, private branchService : BranchService, private urlParam : ActivatedRoute) { 
     this.form = fb.group({
       id : ['',Validators.required],
@@ -78,7 +79,7 @@ export class BranchDetailsComponent implements OnInit {
       
       const data = JSON.stringify(this.form.value)
       console.log(data)
-      this.updateBranch(data, this.branchId)
+      this.updateBranch(this.getData(), this.branchId)
     }else{
       this.isInputValid = false
       this.errorMessage = 'Invalid Input.'
@@ -99,6 +100,20 @@ export class BranchDetailsComponent implements OnInit {
         this.form.controls['lng'].setValue(data.longitude)
         this.form.controls['range'].setValue(data.range)
       })
+  }
+  getData() : FormData {
+    const formData = new FormData();
+    formData.append('id', this.form.controls['id'].value);
+    formData.append('branchName', this.form.controls['branchName'].value);
+    formData.append('address', this.form.controls['address'].value);
+    formData.append('isActive', this.form.controls['isActive'].value);
+    formData.append('lat', this.form.controls['lat'].value);
+    formData.append('lng', this.form.controls['lng'].value);
+    formData.append('range', this.form.controls['range'].value);
+    if(this.imageFile != null){
+      formData.append('image', this.imageFile, this.imageFile.name);
+    }
+    return formData;
   }
   updateBranch(data : any, branchId : number){
     this.isBtnDisabled = true;
@@ -129,4 +144,10 @@ export class BranchDetailsComponent implements OnInit {
     return this.form.controls['branchName'].value?.length > 0 && this.form.controls['address']
     .value?.length > 0;
   }
+  selectedImageFile(event : any) : void {
+    let file = <File>event.target.files[0];
+    this.imageFile = file;
+  }
+
+  
 }

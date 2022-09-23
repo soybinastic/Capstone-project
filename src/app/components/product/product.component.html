@@ -9,7 +9,7 @@
 </div> -->
 
 <div class="card" style="width: 13rem;">
-    <img class="card-img-top" src="https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg" alt="Card image cap" height="220">
+    <img class="card-img-top" [src]="(product?.imageFile !== null ? 'http://fastlinehardware-001-site1.htempurl.com/' + product?.imageFile : 'https://www.worldconstructiontoday.com/wp-content/uploads/press-releases/11199/Construction-Materials-Are-Used-for-Buildings.jpg')" alt="Card image cap" height="220">
     <div class="card-body">
         <p class="card-title">{{ product?.name }}</p>
         <p class="card-text text-secondary">{{ product?.price | currency : 'PHP'}}</p>

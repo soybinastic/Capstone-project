@@ -15,7 +15,6 @@ export class BranchService {
   addBranch(data : any) : Observable<any>{
     const httpHeader = {
       headers : new HttpHeaders()
-      .set('Content-Type','application/json')
       .set('Authorization','Bearer '+this.accountService.getToken())
     } 
     return this.http.post<any>(this.url+'api/Branch/add-branch', data, httpHeader)
@@ -57,7 +56,6 @@ export class BranchService {
   updateBranch(data : any, branchId : number) : Observable<any>{
     const httpHeader = {
       headers : new HttpHeaders()
-      .set('Content-Type','application/json')
       .set('Authorization','Bearer '+this.accountService.getToken())
     } 
     return this.http.put<any>(this.url+'api/Branch/update-branch/'+branchId, data, httpHeader);

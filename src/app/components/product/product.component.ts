@@ -16,6 +16,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.route.url)
     this.prevUrl = this.route.url
+    console.log(this.product)
   }
 
 }
