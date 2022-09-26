@@ -5,6 +5,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { BranchService } from 'src/app/services/branch.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { ControlService } from 'src/app/services/control.service';
 import { HardwareStoreService } from 'src/app/services/hardware-store.service';
 
 @Component({
@@ -25,7 +26,7 @@ export class StoreLandingPageComponent implements OnInit {
   constructor(private params : ActivatedRoute, private route : Router,private hardwareStoreService : HardwareStoreService, 
     private accountService: AccountService, private branchService : BranchService, 
     private categoryService : CategoryService, 
-    private cartService : CartService) { }
+    private cartService : CartService, private controlService : ControlService) { }
 
   ngOnInit(): void {
     this.isLogged =  this.accountService.isLoggedIn()
@@ -77,8 +78,17 @@ export class StoreLandingPageComponent implements OnInit {
     this.branchService.getBranch(this.branchId)
       .subscribe((data) => {
         this.branch = data;
+        console.log(this.branch)
       })
       
+  }
+
+  getImageUrl() : string {
+    return "'url('http://fastlinehardware-001-site1.htempurl.com/" + this.branch.image + "')'"
+  }
+  onSearchProduct(event : any) : void {
+    const val = event.target.value;
+    this.controlService.search(val)
   }
 
 }

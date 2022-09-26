@@ -9,10 +9,10 @@
             <label for="">First Name</label>
             <label for="" class="form-control">{{ details?.firstName }}</label>
         </div>
-        <div class="col">
+        <!-- <div class="col">
             <label for="">Middle Name</label>
             <label for="" class="form-control">{{ details?.middleName }}</label>
-        </div>
+        </div> -->
         <div class="col">
             <label for="">Last Name</label>
             <label for="" class="form-control">{{ details?.lastName }}</label>
@@ -23,10 +23,10 @@
             <label for="">Birth Date</label>
             <label for="" class="form-control">{{ details?.birthDate | date : 'mediumDate' }}</label>
         </div>
-        <div class="col">
+        <!-- <div class="col">
             <label for="">Age</label>
             <label for="" class="form-control">{{ details?.age }}</label>
-        </div>
+        </div> -->
     </div>
     <div class="row">
         <div class="col">
@@ -42,19 +42,19 @@
     <div class="images">
         <div class="col">
             <label for="">NBI</label>
-            <img [src]="'https://localhost:44367/' + details?.nbiImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.nbiImageFile)">
+            <img [src]="'http://fastlinehardware-001-site1.htempurl.com/' + details?.nbiImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.nbiImageFile)">
         </div>
         <div class="col">
             <label for="">Barangay Clearance</label>
-            <img [src]="'https://localhost:44367/' + details?.barangayClearanceImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.barangayClearanceImageFile)">
+            <img [src]="'http://fastlinehardware-001-site1.htempurl.com/' + details?.barangayClearanceImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.barangayClearanceImageFile)">
         </div>
         <div class="col">
             <label for="">Government Id</label>
-            <img [src]="'https://localhost:44367/' + details?.governmentIdImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.governmentIdImageFile)">
+            <img [src]="'http://fastlinehardware-001-site1.htempurl.com/' + details?.governmentIdImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.governmentIdImageFile)">
         </div>
         <div class="col">
             <label for="">Bank Statement</label>
-            <img [src]="'https://localhost:44367/' + details?.bankStatementImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.bankStatementImageFile)">
+            <img [src]="'http://fastlinehardware-001-site1.htempurl.com/' + details?.bankStatementImageFile" alt="" height="300" width="270" (click)="onViewImage(details?.bankStatementImageFile)">
         </div>
     </div>
 </div>

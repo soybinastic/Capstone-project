@@ -28,8 +28,9 @@
                 <h5 class="card-title">Card title</h5>
             </div>
         </div> -->
-    
-        <div class="branch-board" style="background-image: url('https://mrcheckout.net/wp-content/uploads/2017/01/Independent-Hardware-Store.jpg');">
+        <!-- branch.image != null ? 'url(http://fastlinehardware-001-site1.htempurl.com/' + branch.image + ')' : 'url(https://mrcheckout.net/wp-content/uploads/2017/01/Independent-Hardware-Store.jpg)'" -->
+        <!-- (branch?.image != null ? 'http://fastlinehardware-001-site1.htempurl.com/' + branch?.image + '':'https://mrcheckout.net/wp-content/uploads/2017/01/Independent-Hardware-Store.jpg' -->
+        <div class="branch-board" [style.background-image]="'url(https://mrcheckout.net/wp-content/uploads/2017/01/Independent-Hardware-Store.jpg)'">
             <div></div>
             <div class="branch-info">
                 <h3 class="base-title">{{ branch?.name }}</h3>
@@ -55,6 +56,12 @@
             <i class="fal fa-shopping-cart"></i>
             <span class="prod-count">{{ count > 0 ? count : '' }}</span>
         </a>
+    </div>
+    <div class="search-container">
+        <div class="search-bar">
+            <input type="text" name="searchStore" id="searchStore" placeholder="Serach a product..." (keyup)="onSearchProduct($event)">
+            <p class="search-text">Search</p>
+        </div>
     </div>
     <router-outlet></router-outlet>
 </div>

@@ -1,8 +1,8 @@
 <div class="orders-container">
     <div class="orders-header">
-        <a [routerLink]="['/branch','orders']">Orders</a>
-        <a [routerLink]="['/branch','orders','confirmation']">Order Confirmation</a>
-        <a [routerLink]="['/branch','orders','to-prepare']">Orders to be Prepare</a>
+        <a [routerLink]="['/branch','orders']" *ngIf="getRole() == 'StoreAdmin' || getRole() == 'TransportAgent'">{{ (getRole() == 'StoreAdmin' ? 'Orders' : 'Orders to be Deliver') }}</a>
+        <a [routerLink]="['/branch','orders','confirmation']" *ngIf="getRole() == 'Cashier'">Sales Confirmation</a>
+        <a [routerLink]="['/branch','orders','to-prepare']" *ngIf="getRole() == 'SalesClerk'">Orders to be Prepare</a>
     </div>
     <div class="orders-body">
         <router-outlet></router-outlet>

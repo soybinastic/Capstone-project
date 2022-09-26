@@ -74,14 +74,31 @@ export class LoginComponent implements OnInit {
           }else{
             this.route.navigate(['/home']).then(()=> window.location.reload())
           }
-          
-          alert(this.accountService.getUserRole().toString())
+          //alert(this.accountService.getUserRole().toString())
+          this.onNavigate(this.accountService.getUserRole());
         }
       }, (err)=>{
         this.btnText = "Sign In"
         this.message = err.error.message;
         this.isValid = false;
       })
+    }
+  }
+  onNavigate(role : string) : void {
+    if(role == "WarehouseAdmin" || role == "StoreOwner" || role == "SuperAdmin"){
+      this.route.navigate(['/ware-house','main-page']).then(()=> window.location.reload())
+    }else if(role == "Customer"){
+      this.route.navigate(['/']).then(()=> window.location.reload())
+    }else if(role == "StoreAdmin" || role == "Cashier"){
+      this.route.navigate(['/branch']).then(()=> window.location.reload())
+    }else if(role == "TransportAgent"){
+      this.route.navigate(['/branch', 'orders', 'list']).then(()=> window.location.reload())
+    }else if(role == "Cashier"){
+      this.route.navigate(['/branch', 'orders', 'confirmation']).then(()=> window.location.reload())
+    }else if(role == "SalesClerk"){
+      this.route.navigate(['/branch', 'orders', 'to-prepare']).then(()=> window.location.reload())
+    }else if(role == "Admin"){
+      this.route.navigate(['/main-admin'])
     }
   }
 }

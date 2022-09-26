@@ -7,6 +7,7 @@ import { AccountService } from 'src/app/services/account.service';
 import { BranchService } from 'src/app/services/branch.service';
 import { CartService } from 'src/app/services/cart.service';
 import { CategoryService } from 'src/app/services/category.service';
+import { ControlService } from 'src/app/services/control.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -24,10 +25,15 @@ export class ProductsComponent implements OnInit {
   form : FormGroup
   constructor(private params : ActivatedRoute, private categoryService : CategoryService, private productService : ProductService, private route : Router, private cartService : CartService, 
     private accountService : AccountService, private fb : FormBuilder,
-    private branchService : BranchService) { 
+    private branchService : BranchService, private controlService : ControlService) { 
       this.form = fb.group({
         searchItem : ['',Validators.required]
       })
+
+      controlService.onSearch()
+        .subscribe(val => {
+          this.loadProducts(val);
+        })
     }
 
   ngOnInit(): void {
@@ -112,8 +118,8 @@ export class ProductsComponent implements OnInit {
       
   } 
 
-  loadProducts() : void {
-    this.productService.getHardwareProducts(this.branchId)
+  loadProducts(search : string = "") : void {
+    this.productService.getHardwareProducts(this.branchId, search)
       .subscribe(data => {
         this.products = data;
       })
@@ -123,5 +129,10 @@ export class ProductsComponent implements OnInit {
       .subscribe(data => {
         this.products = data
       })
+  }
+
+  onSearchProduct(event : any) : void {
+    const val = event.target.value;
+    this.loadProducts(val);
   }
 }

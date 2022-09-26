@@ -17,14 +17,14 @@ export class ProductService {
 
   constructor(private http : HttpClient, private accountService : AccountService) { } 
 
-  getHardwareProducts(branchId : number) : Observable<any[]>{
+  getHardwareProducts(branchId : number, search : string = "") : Observable<any[]>{
     // /api/Product/get-hardwareproducts/{branchId}
     const httpHeader = {
       headers: new HttpHeaders()
       .set('Content-Type','application/json')
     } 
 
-    return this.http.get<any[]>(this.url + 'api/Product/get-hardwareproducts/' + branchId, httpHeader)
+    return this.http.get<any[]>(this.url + 'api/Product/get-hardwareproducts/' + branchId + '?search=' + search, httpHeader)
   }
   getHardwareProductByCategory(branchId : number, categoryId : number) : Observable<any[]>{
     // /api/Product/get-hardwareproduct-by-category/{branchId}/{categoryId}
