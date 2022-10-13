@@ -16,7 +16,7 @@
             <td>{{ completedOrder?.dateConfirmed | date : 'medium' }}</td>
             <td>{{ completedOrder?.order?.orderDate | date : 'medium' }}</td>
             <td>{{ completedOrder?.order?.total | currency : 'PHP' }}</td>
-            <td><button [class]="completedOrder?.isConfirmed ? 'btn btn-success' : 'btn btn-primary'" [disabled]="completedOrder?.isConfirmed" (click)="confirmOrder(completedOrder.orderId)"><i [class]="completedOrder?.isConfirmed ? 'fal fa-check' : 'fal fa-box-check'"></i> {{ completedOrder?.isConfirmed ? 'Confirmed' : 'Confirm Order' }}</button></td>
+            <td><button [class]="completedOrder?.isConfirmed ? 'btn btn-success' : 'btn btn-primary'" [disabled]="completedOrder?.isConfirmed || _confirmBtnDisable" (click)="confirmOrder(completedOrder.orderId)"><i [class]="completedOrder?.isConfirmed ? 'fal fa-check' : 'fal fa-box-check'"></i> {{ completedOrder?.isConfirmed ? 'Confirmed' : confirmBtnText }}</button></td>
         </tr>
         
     </tbody>
