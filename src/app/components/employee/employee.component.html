@@ -1,0 +1,24 @@
+<div class="con">
+    <div class="header-con">
+        <h3>Employees</h3>
+        <a class="btn btn-dark" [routerLink]="['/main-admin', 'register']">Add Employee</a>
+    </div>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Username</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{ employee?.user?.firstName }}</td>
+                <td>{{ employee?.user?.lastName }}</td>
+                <td>{{ employee?.user?.userName }}</td>
+                <td>{{ employee?.role }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

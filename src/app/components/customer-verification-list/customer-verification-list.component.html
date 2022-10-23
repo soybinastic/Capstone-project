@@ -1,4 +1,9 @@
-<h3 class="header-title">USERS</h3>
+<div class="header">
+    <h3 class="header-title">USERS</h3>
+    <div>
+        <a [routerLink]="['/main-admin', 'verified-users']" class="btn btn-dark">Verified Users</a>
+    </div>
+</div>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -10,13 +15,18 @@
     </thead>
     <tbody *ngFor="let userVerificationDetail of userVerificationDetails">
         <tr>
-            <td>{{ userVerificationDetail?.customer?.firstName + ', ' + userVerificationDetail?.customer?.lastName }}</td>
+            <td>{{ userVerificationDetail?.customer?.firstName + ', ' + userVerificationDetail?.customer?.lastName }}
+            </td>
             <td>
-                <i [class]="userVerificationDetail?.customer?.isVerified ? 'fal fa-badge-check verified' : 'fal fa-exclamation-triangle not-verified'"></i>
+                <i
+                    [class]="userVerificationDetail?.customer?.isVerified ? 'fal fa-badge-check verified' : 'fal fa-exclamation-triangle not-verified'"></i>
             </td>
             <td>{{ userVerificationDetail?.dateSubmitted | date : 'medium' }}</td>
-            <td><button class="btn btn-warning" [routerLink]="['/main-admin','verification-details', userVerificationDetail.id]">Details</button></td>
+            <td><button class="btn btn-warning"
+                    [routerLink]="['/main-admin','verification-details', userVerificationDetail.id]">Details</button>
+            </td>
         </tr>
     </tbody>
 </table>
-<h2 style="display: flex; justify-content: center; align-items: center;" *ngIf="userVerificationDetails.length == 0">{{ message }}</h2>
+<h2 style="display: flex; justify-content: center; align-items: center;" *ngIf="userVerificationDetails.length == 0">{{
+    message }}</h2>

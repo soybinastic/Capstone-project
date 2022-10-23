@@ -1,4 +1,10 @@
-<h3 class="header-title">SUBMITS</h3>
+<div class="header">
+    <h3 class="header-title">SUBMITS</h3>
+    <div>
+        <a [routerLink]="['/main-admin', 'registered-companies']" class="btn btn-dark">Companies officially
+            registered</a>
+    </div>
+</div>
 <table class="table table-hover">
     <thead>
         <tr>
@@ -13,9 +19,12 @@
             <td>{{ companyRegister?.firstName }}</td>
             <td>{{ companyRegister?.lastName }}</td>
             <td>{{ companyRegister?.registeredDate | date : 'mediumDate' }}</td>
-            <td><a class="btn btn-success" [routerLink]="['/main-admin','details',companyRegister?.id]">Details</a> | <button class="btn btn-danger" (click)="delete(companyRegister.id)" [disabled]="!isdeleteEnable">Delete</button></td>
+            <td><a class="btn btn-success" [routerLink]="['/main-admin','details',companyRegister?.id]">Details</a> |
+                <button *ngIf="getUserRole() == 'Admin'" class="btn btn-danger" (click)="delete(companyRegister.id)"
+                    [disabled]="!isdeleteEnable">Delete</button>
+            </td>
         </tr>
-       
+
     </tbody>
 </table>
 <h3 style="display: flex; justify-content: center;" *ngIf="companyRegisters.length == 0">{{ message }}</h3>

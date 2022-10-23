@@ -1,0 +1,11 @@
+.con {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.header-con {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

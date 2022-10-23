@@ -7,19 +7,23 @@ import { AccountService } from './services/account.service';
   providedIn: 'root'
 })
 export class MainAdminGuard implements CanActivate {
-  constructor(private accountService: AccountService, private route : Router){}
-  canActivate(){
-    if(this.accountService.isLoggedIn()){
-      if(this.accountService.getUserRole() == 'Admin'){
+  constructor(private accountService: AccountService, private route: Router) { }
+  canActivate() {
+    if (this.accountService.isLoggedIn()) {
+      if (this.accountService.getUserRole() == 'Admin') {
         return true;
-      }else{
+      } else {
+        if (this.accountService.getUserRole() == 'UserValidator') {
+          this.route.navigate(['/main-admin', 'user-verification-list'])
+          return false
+        }
         this.route.navigate(['/home'])
         return false
       }
-    }else{
+    } else {
       this.route.navigate(['/login'])
       return false
     }
   }
-  
+
 }

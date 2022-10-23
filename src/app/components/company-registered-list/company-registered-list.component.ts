@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountService } from 'src/app/services/account.service';
 import { CompanyRegisteredService } from 'src/app/services/company-registered.service';
 
 @Component({
@@ -8,32 +9,36 @@ import { CompanyRegisteredService } from 'src/app/services/company-registered.se
 })
 export class CompanyRegisteredListComponent implements OnInit {
 
-  isdeleteEnable : boolean = true
-  companyRegisters : any[] = []
-  message : string = 'Loading...'
-  constructor(private companyRegisterService : CompanyRegisteredService) { }
+  isdeleteEnable: boolean = true
+  companyRegisters: any[] = []
+  message: string = 'Loading...'
+  constructor(private companyRegisterService: CompanyRegisteredService, private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.loadData()
   }
-  delete(id : number) : void {
+  delete(id: number): void {
     this.isdeleteEnable = false
     this.companyRegisterService.delete(id)
-      .subscribe((res) =>{
+      .subscribe((res) => {
         this.isdeleteEnable = true
         this.companyRegisters = this.companyRegisters.filter(c => c.id != id)
       }, (err) => {
         this.isdeleteEnable = true
       })
   }
-  loadData() : void {
-    this.companyRegisterService.getAll()  
+  loadData(): void {
+    this.companyRegisterService.getAll()
       .subscribe((data) => {
         this.companyRegisters = data
         console.log(this.companyRegisters)
-        if(this.companyRegisters.length == 0){
+        if (this.companyRegisters.length == 0) {
           this.message = 'No Data Found!'
         }
       })
+  }
+
+  getUserRole(): string {
+    return this.accountService.getUserRole();
   }
 }

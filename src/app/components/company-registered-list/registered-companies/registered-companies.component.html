@@ -1,0 +1,16 @@
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Company Name</th>
+            <th>Owner</th>
+            <th>Registered by</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let reg of regCompanies">
+            <td>{{ reg?.hardwareStore?.hardwareStoreName }}</td>
+            <td>{{ reg?.hardwareStore?.owner }}</td>
+            <td>{{ reg?.user?.firstName + ", " + reg?.user?.lastName }} <small>({{ reg?.user?.userName }})</small></td>
+        </tr>
+    </tbody>
+</table>

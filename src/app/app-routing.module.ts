@@ -96,116 +96,153 @@ import { CashierAccessGuard } from './cashier-access.guard';
 import { TransportAgentAccessGuard } from './transport-agent-access.guard';
 import { BranchOrderPreparationComponent } from './components/branch-order-preparation-list/branch-order-preparation.component';
 import { SalesclerkAccessGuard } from './salesclerk-access.guard';
+import { EmployeeComponent } from './components/employee/employee.component';
+import { CreateEmployeeComponent } from './components/employee/create-employee/create-employee.component';
+import { UserValidatorGuard } from './user-validator.guard';
+import { AdminAccessGuard } from './admin-access.guard';
+import { VerifiedUsersComponent } from './components/customer-verification-list/verified-users/verfied-users.component';
+import { RegisteredCompaniesComponent } from './components/company-registered-list/registered-companies/registered-companies.component';
+import { CompanyValidatorGuard } from './company.validator.guard';
 // import { OrderRefComponent } from './components/customer-information/customer-information.component';
 
 const routes: Routes = [
   // {path:'', redirectTo:'/hardware-stores', pathMatch:'full'},
-  { path: '', component : CustomerMain, children :[
-    { path : '', redirectTo: '/stores', pathMatch: 'full' },
-    { path : 'stores', component : HardwareStoresComponent },
-    { path : 'store/:branchId/:hardwareStoreId', component : StoreLandingPageComponent, children : [
-      { path : 'products/:branchId', component : ProductsComponent }
-    ] },
-    {path : 'view-product/:hardwareStoreId/:productId/:branchId', component: ViewProductComponent},
-    {path : 'cart/:hardwareStoreId/:branchId/:from/:productId', component : CartComponent},
-    {path : 'check-out/:hardwareStoreId/:branchId', component: CheckOutComponent, canActivate : [CheckOutAccessGuard]},
-    { path : 'nearby-stores', component : NearbyStoresMap, canActivate : [CustomerAccessGuard] }
-  ] },
-  {path : 'ware-house', redirectTo:'/ware-house/main-page', pathMatch: 'full'},
-  {path : 'branch', redirectTo: '/branch/dashboard', pathMatch: 'full'},
-  {path : 'branch/products', redirectTo : '/branch/products/list', pathMatch : 'full'},
-  {path : 'branch/orders', redirectTo : '/branch/orders/list', pathMatch : 'full'},
-  {path: 'login', component:LoginComponent},
-  {path: 'register', component: RegisterComponent},
-  {path : 'home', component: HomeComponent},
-  {path: 'main-admin', component: MainAdminComponent, canActivate:[MainAdminGuard], children :[
-    { path: 'store-list', component: ListStoresInMainAdminComponent },
-    { path : 'dashboard-details/:id/:branchId', component : DashboardDetailsComponent },
-    { path: 'register-store', component: RegisterStoreComponent },
-    { path: 'company-registered-list', component: CompanyRegisteredListComponent },
-    { path: 'details/:id', component: CompanyRegisteredDetailComponent },
-    {path : 'user-verification-list', component : CustomerVerificationListComponent},
-    {path : 'verification-details/:id', component : CustomerVerificationDetailsComponent}
-  ]},
-  {path: 'store-admin', component: MainStoreAdminComponent,canActivate:[StoreAdminAccessGuard]},
-  {path : 'welcome', component : WelcomeComponent},
-  {path : 'hardware-stores', component: HardwareStoresComponent},
-  {path : 'hardware-store-page/:hardwareStoreId', component : StoreLandingPageComponent},
-  {path:'products/:branchId/:hardwareStoreId', component: ProductsComponent, children:[
-    {path: 'product-category/:categoryId/:branchId/:hardwareStoreId', component: ProductListComponent}
-  ]},
-  {path : 'ware-house', component : WarehouseComponent, canActivate: [WarehouseAccessGuard],children:[
-    {path : 'main-page', component : WhMainPageComponent},
-    {path : 'users', component : UsersComponent},
-    {path : 'add-user', component : AddUserComponent},
-    {path : 'user-details/:userId', component : UserDetailsComponent},
-    {path: 'warehouse-manage-products', component: WarehouseManageProductsComponent, children:[ {path : '', component: WhProductListComponent}, 
-      {path : 'wh-product-info/:productId/:warehouseId', component: WhProductInfoComponent},
-      {path : 'add-product', component : WhAddProductComponent},
-      {path : 'transfer/:productId', component : MoveProductComponent},
-      {path : 'transfer-products', component : ListMoveProductsComponent},
-      {path : 'available-products', component : WhAvailableProductsComponent},
-      {path : 'deliver-product/:productId', component : WhDeliverProductComponent}
-    ]},
-    {path : 'product-categories', component : WhProductCategoriesComponent},
-    {path : 'notifications', component : WhNotificationComponent},
-    {path: 'warehouses', component : WarehouseManagementComponent},
-    {path: 'add-warehouse', component : AddWarehouseComponent},
-    {path : 'branches', component : BranchesComponent},
-    {path : 'add-branch', component : AddBranchComponent},
-    {path : 'branch-details/:branchId', component : BranchDetailsComponent},
-    {path : 'reports', component : WhReportsComponent, children : [
-      {path : 'status-product', component : WhProductSatatusReportComponent},
-      {path : 'add-status-product', component : WhAddProductStatsReportComponent} ,
-      {path : 'product-status-info/:warehouseReportId', component : WhProductStatusInfoComponent},
-      {path : 'recieve-products', component : WhRecieveProductsComponent},
-      {path : 'attach-recieved-product', component: WhAddRecievedProductsComponent},
-      {path : 'recieve-product-info/:warehouseReportId', component : WhRecieveProductReportInfoComponent},
-      {path : 'branch-requests', component : WhRequestsComponent},
-      {path : 'deliver-products', component : WhDeliverProductReportsComponent},
-      {path : 'best-selling', component : WhBestsellingProductReportsComponent}
-    ]}
-  ]},
-  {path : 'branch', component : BranchComponent,canActivate:[BranchUserAccessGuard] , children : [
-    {path : 'dashboard', component : BranchDashboardComponent, canActivate:[StoreAdminAccessGuard]},
-    {path : 'notifications', component : BranchNotificationComponent, canActivate:[StoreAdminAccessGuard]},
-    {path : 'pending-products-in-cart', component : BranchPendingProductsInCartComponent, canActivate:[StoreAdminAccessGuard]},
-    {path : 'best-selling-products', component : BranchBestsellingProductsComponent, canActivate:[StoreAdminAccessGuard]},
-    {path : 'sales', component : BranchSalesComponent, canActivate:[StoreAdminAccessGuard]},
-    {path : 'sales-summary', component : BranchSaleSummaryComponent},
-    {path : 'view-sale-item', component : BranchSaleItemComponent},
-    {path : 'view-sale-item-monthly', component : BranchSaleItemMonthlyComponent},
-    {path : 'view-sale-item-yearly', component : BranchSaleItemYearlyComponent},
-    {path : 'products', component : BranchProductsComponent, canActivate:[StoreAdminAccessGuard] , children : [
-      {path : 'list', component : BranchProductListComponent},
-      {path : 'details/:hardwareProductId/:branchId', component : BranchProductDetailsComponent}
-    ]},
-    {path : 'orders', component : BranchOrdersComponent, children:[
-      {path : 'list', component : BranchOrderListComponent},
-      {path : 'details/:orderId', component : BranchOrderDetailsComponent},
-      {path : 'confirmation', component : BranchOrderConfirmationComponent, canActivate : [CashierAccessGuard]},
-      {path : 'to-prepare', component : BranchOrderPreparationComponent, canActivate : [SalesclerkAccessGuard]}
-    ]},
-    {path : 'reports', component : BranchReportsComponent, canActivate:[StoreAdminAccessGuard] , children:[
-      {path : 'request', component : BranchRequestComponent, children : [
-        {path : 'send', component : BranchSendRequestComponent},
-        {path : 'list', component : BranchRequestListComponent}
-      ]},
-      {path : 'best-selling', component : BranchBestsellingReportsComponent},
-      {path : 'sales', component : BranchSaleReportsComponent},
-      {path : 'journal', component : BranchJournalComponent}
-    ]},
-    { path : 'bills', component : BillsSummaryComponent, canActivate : [StoreAdminAccessGuard] },
-    { path : 'bill-details/:dashboardId', component : BillDetailsPageComponent, canActivate : [StoreAdminAccessGuard] }
-  ]},
-  {path : 'registration', component : StoreRegistrationFormComponent},
-  {path : 'privacy-and-termconditions', component : PrivacyTermAndConditionsComponent},
-  {path : 'verification', component : CustomerVerificationFormComponent, canActivate : [CustomerAccessGuard]},
-  {path : 'account', component : CustomerProfileComponent, 
-  canActivate : [CustomerAccessGuard]},
-  {path : 'my-information', component : CustomerInformationComponent, canActivate : [CustomerAccessGuard]},
-  { path : 'success/:dashboardId', component : SucessComponent, canActivate : [StoreAdminAccessGuard]},
-  { path : 'cancel', component : CancelComponent, canActivate : [StoreAdminAccessGuard] }
+  {
+    path: '', component: CustomerMain, children: [
+      { path: '', redirectTo: '/stores', pathMatch: 'full' },
+      { path: 'stores', component: HardwareStoresComponent },
+      {
+        path: 'store/:branchId/:hardwareStoreId', component: StoreLandingPageComponent, children: [
+          { path: 'products/:branchId', component: ProductsComponent }
+        ]
+      },
+      { path: 'view-product/:hardwareStoreId/:productId/:branchId', component: ViewProductComponent },
+      { path: 'cart/:hardwareStoreId/:branchId/:from/:productId', component: CartComponent },
+      { path: 'check-out/:hardwareStoreId/:branchId', component: CheckOutComponent, canActivate: [CheckOutAccessGuard] },
+      { path: 'nearby-stores', component: NearbyStoresMap, canActivate: [CustomerAccessGuard] }
+    ]
+  },
+  { path: 'ware-house', redirectTo: '/ware-house/main-page', pathMatch: 'full' },
+  { path: 'branch', redirectTo: '/branch/dashboard', pathMatch: 'full' },
+  { path: 'branch/products', redirectTo: '/branch/products/list', pathMatch: 'full' },
+  { path: 'branch/orders', redirectTo: '/branch/orders/list', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'home', component: HomeComponent },
+  {
+    path: 'main-admin', component: MainAdminComponent, canActivate: [AdminAccessGuard], children: [
+      { path: 'store-list', component: ListStoresInMainAdminComponent, canActivate: [MainAdminGuard] },
+      { path: 'dashboard-details/:id/:branchId', component: DashboardDetailsComponent, canActivate: [MainAdminGuard] },
+      { path: 'register-store', component: RegisterStoreComponent },
+      { path: 'company-registered-list', component: CompanyRegisteredListComponent, canActivate: [CompanyValidatorGuard] },
+      { path: 'details/:id', component: CompanyRegisteredDetailComponent, canActivate: [CompanyValidatorGuard] },
+      { path: 'user-verification-list', component: CustomerVerificationListComponent, canActivate: [UserValidatorGuard] },
+      { path: 'verification-details/:id', component: CustomerVerificationDetailsComponent, canActivate: [UserValidatorGuard] },
+      { path: 'employees', component: EmployeeComponent, canActivate: [MainAdminGuard] },
+      { path: 'register', component: CreateEmployeeComponent, canActivate: [MainAdminGuard] },
+      { path: 'verified-users', component: VerifiedUsersComponent, canActivate: [UserValidatorGuard] },
+      { path: 'registered-companies', component: RegisteredCompaniesComponent }
+    ]
+  },
+  { path: 'store-admin', component: MainStoreAdminComponent, canActivate: [StoreAdminAccessGuard] },
+  { path: 'welcome', component: WelcomeComponent },
+  { path: 'hardware-stores', component: HardwareStoresComponent },
+  { path: 'hardware-store-page/:hardwareStoreId', component: StoreLandingPageComponent },
+  {
+    path: 'products/:branchId/:hardwareStoreId', component: ProductsComponent, children: [
+      { path: 'product-category/:categoryId/:branchId/:hardwareStoreId', component: ProductListComponent }
+    ]
+  },
+  {
+    path: 'ware-house', component: WarehouseComponent, canActivate: [WarehouseAccessGuard], children: [
+      { path: 'main-page', component: WhMainPageComponent },
+      { path: 'users', component: UsersComponent },
+      { path: 'add-user', component: AddUserComponent },
+      { path: 'user-details/:userId', component: UserDetailsComponent },
+      {
+        path: 'warehouse-manage-products', component: WarehouseManageProductsComponent, children: [{ path: '', component: WhProductListComponent },
+        { path: 'wh-product-info/:productId/:warehouseId', component: WhProductInfoComponent },
+        { path: 'add-product', component: WhAddProductComponent },
+        { path: 'transfer/:productId', component: MoveProductComponent },
+        { path: 'transfer-products', component: ListMoveProductsComponent },
+        { path: 'available-products', component: WhAvailableProductsComponent },
+        { path: 'deliver-product/:productId', component: WhDeliverProductComponent }
+        ]
+      },
+      { path: 'product-categories', component: WhProductCategoriesComponent },
+      { path: 'notifications', component: WhNotificationComponent },
+      { path: 'warehouses', component: WarehouseManagementComponent },
+      { path: 'add-warehouse', component: AddWarehouseComponent },
+      { path: 'branches', component: BranchesComponent },
+      { path: 'add-branch', component: AddBranchComponent },
+      { path: 'branch-details/:branchId', component: BranchDetailsComponent },
+      {
+        path: 'reports', component: WhReportsComponent, children: [
+          { path: 'status-product', component: WhProductSatatusReportComponent },
+          { path: 'add-status-product', component: WhAddProductStatsReportComponent },
+          { path: 'product-status-info/:warehouseReportId', component: WhProductStatusInfoComponent },
+          { path: 'recieve-products', component: WhRecieveProductsComponent },
+          { path: 'attach-recieved-product', component: WhAddRecievedProductsComponent },
+          { path: 'recieve-product-info/:warehouseReportId', component: WhRecieveProductReportInfoComponent },
+          { path: 'branch-requests', component: WhRequestsComponent },
+          { path: 'deliver-products', component: WhDeliverProductReportsComponent },
+          { path: 'best-selling', component: WhBestsellingProductReportsComponent }
+        ]
+      }
+    ]
+  },
+  {
+    path: 'branch', component: BranchComponent, canActivate: [BranchUserAccessGuard], children: [
+      { path: 'dashboard', component: BranchDashboardComponent, canActivate: [StoreAdminAccessGuard] },
+      { path: 'notifications', component: BranchNotificationComponent, canActivate: [StoreAdminAccessGuard] },
+      { path: 'pending-products-in-cart', component: BranchPendingProductsInCartComponent, canActivate: [StoreAdminAccessGuard] },
+      { path: 'best-selling-products', component: BranchBestsellingProductsComponent, canActivate: [StoreAdminAccessGuard] },
+      { path: 'sales', component: BranchSalesComponent, canActivate: [StoreAdminAccessGuard] },
+      { path: 'sales-summary', component: BranchSaleSummaryComponent },
+      { path: 'view-sale-item', component: BranchSaleItemComponent },
+      { path: 'view-sale-item-monthly', component: BranchSaleItemMonthlyComponent },
+      { path: 'view-sale-item-yearly', component: BranchSaleItemYearlyComponent },
+      {
+        path: 'products', component: BranchProductsComponent, canActivate: [StoreAdminAccessGuard], children: [
+          { path: 'list', component: BranchProductListComponent },
+          { path: 'details/:hardwareProductId/:branchId', component: BranchProductDetailsComponent }
+        ]
+      },
+      {
+        path: 'orders', component: BranchOrdersComponent, children: [
+          { path: 'list', component: BranchOrderListComponent },
+          { path: 'details/:orderId', component: BranchOrderDetailsComponent },
+          { path: 'confirmation', component: BranchOrderConfirmationComponent, canActivate: [CashierAccessGuard] },
+          { path: 'to-prepare', component: BranchOrderPreparationComponent, canActivate: [SalesclerkAccessGuard] }
+        ]
+      },
+      {
+        path: 'reports', component: BranchReportsComponent, canActivate: [StoreAdminAccessGuard], children: [
+          {
+            path: 'request', component: BranchRequestComponent, children: [
+              { path: 'send', component: BranchSendRequestComponent },
+              { path: 'list', component: BranchRequestListComponent }
+            ]
+          },
+          { path: 'best-selling', component: BranchBestsellingReportsComponent },
+          { path: 'sales', component: BranchSaleReportsComponent },
+          { path: 'journal', component: BranchJournalComponent }
+        ]
+      },
+      { path: 'bills', component: BillsSummaryComponent, canActivate: [StoreAdminAccessGuard] },
+      { path: 'bill-details/:dashboardId', component: BillDetailsPageComponent, canActivate: [StoreAdminAccessGuard] }
+    ]
+  },
+  { path: 'registration', component: StoreRegistrationFormComponent },
+  { path: 'privacy-and-termconditions', component: PrivacyTermAndConditionsComponent },
+  { path: 'verification', component: CustomerVerificationFormComponent, canActivate: [CustomerAccessGuard] },
+  {
+    path: 'account', component: CustomerProfileComponent,
+    canActivate: [CustomerAccessGuard]
+  },
+  { path: 'my-information', component: CustomerInformationComponent, canActivate: [CustomerAccessGuard] },
+  { path: 'success/:dashboardId', component: SucessComponent, canActivate: [StoreAdminAccessGuard] },
+  { path: 'cancel', component: CancelComponent, canActivate: [StoreAdminAccessGuard] }
   // {path : 'order-refs', component : OrderRefComponent}
 ];
 
@@ -214,4 +251,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const RoutingComponents = [LoginComponent,RegisterComponent,WelcomeComponent,MainAdminComponent,MainStoreAdminComponent,HardwareStoresComponent, StoreLandingPageComponent,ProductsComponent];
+export const RoutingComponents = [LoginComponent, RegisterComponent, WelcomeComponent, MainAdminComponent, MainStoreAdminComponent, HardwareStoresComponent, StoreLandingPageComponent, ProductsComponent];

@@ -1,4 +1,10 @@
-.header-title{
+.header-title {
     font-weight: 700;
     margin-bottom: 5vh;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

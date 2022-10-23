@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="header">
+        Register
+    </div>
+    <div class="form">
+        <form [formGroup]="form" (ngSubmit)="onCreate()">
+            <div class="col">
+                <div class="row">
+                    <div class="form-floating mb-3">
+                        <input formControlName="firstName" type="text" class="form-control" id="floatingInput"
+                            placeholder="First name">
+                    </div>
+                    <div class="form-floating">
+                        <input formControlName="lastName" type="text" class="form-control" id="floatingPassword"
+                            placeholder="Last name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-floating mb-3">
+                        <input formControlName="username" type="text" class="form-control" id="floatingInput"
+                            placeholder="Username">
+                    </div>
+                    <select class="form-select" aria-label="Default select example" (change)="onSelectedRole($event)">
+                        <option value="" selected>Open this select menu</option>
+                        <option value="Admin">Admin</option>
+                        <option value="UserValidator">UserValidator</option>
+                        <option value="CompanyValidator">CompanyValidator</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="form-floating mb-3">
+                        <input formControlName="password" type="password" class="form-control" id="floatingInput"
+                            placeholder="Password">
+                    </div>
+                    <div class="form-floating">
+                        <input formControlName="confirmPassword" type="password" class="form-control"
+                            id="floatingPassword" placeholder="Confirm Password">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-warning" [disabled]="disable">{{ btnText }}</button>
+        </form>
+    </div>
+</div>

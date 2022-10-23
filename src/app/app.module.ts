@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule }  from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
@@ -122,6 +122,10 @@ import { CustomerMain } from './components/customer-main-page/customer-main.comp
 import { CustomerMainHeader } from './components/customer-main-page/customer-main-header/customer-main-header.component';
 import { NearbyStoresMap } from './components/nearby-stores-map/nearby-stores-map.component';
 import { BranchOrderPreparationComponent } from './components/branch-order-preparation-list/branch-order-preparation.component';
+import { EmployeeComponent } from './components/employee/employee.component';
+import { CreateEmployeeComponent } from './components/employee/create-employee/create-employee.component';
+import { VerifiedUsersComponent } from './components/customer-verification-list/verified-users/verfied-users.component';
+import { RegisteredCompaniesComponent } from './components/company-registered-list/registered-companies/registered-companies.component';
 
 @NgModule({
   declarations: [
@@ -232,18 +236,22 @@ import { BranchOrderPreparationComponent } from './components/branch-order-prepa
     CustomerVerificationDetailsComponent,
     CustomerProfileComponent,
     CustomerInformationComponent,
-    OrderRefComponent, 
+    OrderRefComponent,
     DashboardDetailsComponent,
     BillStatusComponent,
     BillsSummaryComponent,
-    BillDetailsPageComponent, 
+    BillDetailsPageComponent,
     SucessComponent,
     CancelComponent,
     AlertDialogComponent,
     CustomerMain,
     CustomerMainHeader,
     NearbyStoresMap,
-    BranchOrderPreparationComponent
+    BranchOrderPreparationComponent,
+    EmployeeComponent,
+    CreateEmployeeComponent,
+    VerifiedUsersComponent,
+    RegisteredCompaniesComponent
   ],
   imports: [
     BrowserModule,
